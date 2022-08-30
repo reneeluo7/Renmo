@@ -1,2 +1,2 @@
 # Renmo 
-Welcome to Renmo, it is designed to clone Venmo.
+Renmo is designed to clone Venmo.
