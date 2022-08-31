@@ -10,7 +10,7 @@ class Transaction(db.Model):
     amount = db.Column(db.Float(precision=2, asdecimal=False), nullable=False)
     created_at = db.Column(db.DateTime, default=datetime.utcnow)
     pending = db.Column(db.Boolean, nullable=False)
-    privacy = db.Column(db.String, nullable=False)
+    privacy = db.Column(db.String, default='public')
     note = db.Column(db.Text(300), nullable=False)
     category = db.Column(db.String, nullable=False)
 
