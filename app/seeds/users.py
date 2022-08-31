@@ -3,16 +3,39 @@ from app.models import db, User
 
 # Adds a demo user, you can add other users here if you want
 def seed_users():
-    demo = User(
+    u1 = User(
         username='Demo', email='demo@aa.io', password='password', first_name='Demo', last_name='Limo')
-    marnie = User(
+    u2 = User(
         username='marnie', email='marnie@aa.io', password='password',first_name='Marnie', last_name='Edgar')
-    bobbie = User(
+    u3 = User(
         username='bobbie', email='bobbie@aa.io', password='password', first_name='Bobbie', last_name='Brown')
+    u4 = User(
+        username='renee-luo', email='renee@aa.io',password='password', first_name='Renee', last_name='Luo')
+    u5 = User(
+        username='me-rachel', email='rachel@aa.io',password='password', first_name='Rachel', last_name='Green')
+    u6 = User(
+        username='ross-G', email='ross@aa.io',password='password', first_name='Ross', last_name='Geller')
+    u7 = User(
+        username='monica-1', email='monica@aa.io',password='password', first_name='Monica', last_name='Geller')
+    u8 = User(
+        username='phoebebuffay', email='phoebe@aa.io',password='password', first_name='Phoebe', last_name='Buffay')
+    u9 = User(
+        username='a-joey', email='joey@aa.io',password='password', first_name='Joey', last_name='Tribbiani')
+    u10 = User(
+        username='chandler-bing', email='chandler@aa.io',password='password', first_name='Chandler', last_name='Bing')
+    
+    
 
-    db.session.add(demo)
-    db.session.add(marnie)
-    db.session.add(bobbie)
+    db.session.add(u1)
+    db.session.add(u2)
+    db.session.add(u3)
+    db.session.add(u4)
+    db.session.add(u5)
+    db.session.add(u6)
+    db.session.add(u7)
+    db.session.add(u8)
+    db.session.add(u9)
+    db.session.add(u10)
 
     db.session.commit()
 
