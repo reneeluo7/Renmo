@@ -1,6 +1,7 @@
 // constants
 const SET_USER = 'session/SET_USER';
 const REMOVE_USER = 'session/REMOVE_USER';
+const GET_ALL_USERS = 'session/GET_ALL_USER'
 
 const setUser = (user) => ({
   type: SET_USER,
@@ -11,7 +12,20 @@ const removeUser = () => ({
   type: REMOVE_USER,
 })
 
+const getAllUserAction = (users) => ({
+  type: GET_ALL_USERS,
+  users
+})
+
 const initialState = { user: null };
+
+export const getAllUsers = () => async(dispatch) => {
+  const response = await fetch('/api/users/', {
+      headers: {}
+    });
+  const users = await response.json()
+  dispatch(getAllUserAction(users.users))
+}
 
 export const authenticate = () => async (dispatch) => {
   const response = await fetch('/api/auth/', {
@@ -70,13 +84,16 @@ export const logout = () => async (dispatch) => {
 };
 
 
-export const signUp = (username, email, password) => async (dispatch) => {
+export const signUp = (first_name, last_name, username, email, password) => async (dispatch) => {
+  
   const response = await fetch('/api/auth/signup', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
     },
     body: JSON.stringify({
+      first_name,
+      last_name,
       username,
       email,
       password,
