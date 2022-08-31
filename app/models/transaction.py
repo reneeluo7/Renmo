@@ -11,7 +11,7 @@ class Transaction(db.Model):
     created_at = db.Column(db.DateTime, default=datetime.utcnow)
     pending = db.Column(db.Boolean, nullable=False)
     privacy = db.Column(db.String, default='public')
-    note = db.Column(db.Text(300), nullable=False)
+    note = db.Column(db.String(300), nullable=False)
     category = db.Column(db.String, nullable=False)
 
      #relationship
