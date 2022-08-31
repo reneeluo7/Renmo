@@ -14,7 +14,7 @@ class Transaction(db.Model):
     note = db.Column(db.Text(300), nullable=False)
     category = db.Column(db.String, nullable=False)
 
-     #relationship
+     #relationship goes here
     payer = db.relationship("User",
         foreign_keys=[payer_id],
         back_populates="txn_payer")
