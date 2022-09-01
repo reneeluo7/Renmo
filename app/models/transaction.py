@@ -39,7 +39,7 @@ class Transaction(db.Model):
             'note': self.note
         }
 
-    def to_dict_with_users(self):
+    def to_dict_users_comments(self):
         return {
             'id': self.id,
             'payer': self.payer.to_dict(),
@@ -48,5 +48,6 @@ class Transaction(db.Model):
             'created_at': self.created_at,
             'pending': self.pending,
             'privacy': self.privacy,
-            'note': self.note
+            'note': self.note,
+            'comments': [comment.to_dict() for comment in self.comments]
         }
