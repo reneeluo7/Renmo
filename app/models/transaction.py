@@ -36,7 +36,8 @@ class Transaction(db.Model):
             'created_at': self.created_at,
             'pending': self.pending,
             'privacy': self.privacy,
-            'note': self.note
+            'note': self.note,
+            'category': self.category
         }
 
     def to_dict_users_comments(self):
@@ -49,5 +50,6 @@ class Transaction(db.Model):
             'pending': self.pending,
             'privacy': self.privacy,
             'note': self.note,
+            'category': self.category,
             'comments': [comment.to_dict() for comment in self.comments]
         }
