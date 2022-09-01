@@ -16,12 +16,12 @@ class Comment(db.Model):
         return {
             'id': self.id,
             'content': self.content,
-            'user_id': self.user_id,
-            'transaction_id': self.transaction_id
+            'user': self.user.to_dict(),
+            # 'transaction_id': self.transaction_id
         }
 
 
-    def to_dict_user_txn(self):
+    def to_dict_txn(self):
         return {
             'id': self.id,
             'content': self.content,
