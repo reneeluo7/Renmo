@@ -3,8 +3,9 @@ import { useEffect, useState } from "react";
 import { NavLink } from "react-router-dom";
 // import LogoutButton from './auth/LogoutButton';
 import { useSelector, useDispatch } from "react-redux";
-import getUserInitials from "../util/userInitial";
+import {getUserInitials, getUserFullName} from "../util/nameconvert";
 import { getCompletedTxns } from "../store/transaction";
+import { getAllUsers } from "../store/session";
 import NavBar from "./NavBar.js";
 import "./HomePage.css";
 
@@ -15,7 +16,8 @@ const HomePage = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(getCompletedTxns());
+    dispatch(getCompletedTxns())
+    dispatch(getAllUsers());
   }, [dispatch]);
 
   return (
@@ -40,7 +42,7 @@ const HomePage = () => {
                     <div className="topline">
                       <span>You</span> paid{" "}
                       <span>
-                        {txn.payee.firstName} {txn.payee.lastName}
+                        {getUserFullName(txn.payee)}
                       </span>{" "}
                     </div>
                     <div className="second-txn-date-line">
@@ -59,7 +61,7 @@ const HomePage = () => {
                     <div className="topline">
                       {" "}
                       <span>
-                        {txn.payee.firstName} {txn.payee.lastName}
+                        {getUserFullName(txn.payee)}
                       </span>{" "}
                       charged <span>You</span>
                     </div>
@@ -79,7 +81,7 @@ const HomePage = () => {
                     <div className="topline">
                       {" "}
                       <span>
-                        {txn.payer.firstName} {txn.payer.lastName} paid{" "}
+                        {getUserFullName(txn.payer)} paid{" "}
                         <span>You</span>
                       </span>{" "}
                     </div>
@@ -97,8 +99,7 @@ const HomePage = () => {
                     <div className="topline">
                       {" "}
                       <span>
-                        <span>You</span> charged {txn.payer.firstName}{" "}
-                        {txn.payer.lastName}
+                        <span>You</span> charged {getUserFullName(txn.payer)}
                       </span>{" "}
                     </div>
                     <div className="second-txn-date-line">

@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import NavBar from "./NavBar.js";
 import { getIncompleteTxns } from "../store/transaction";
-import getUserInitials from "../util/userInitial";
+import {getUserInitials, getUserFullName} from "../util/nameconvert";
 
 const IncompletePage = () => {
   const user = useSelector((state) => state.session?.user);
@@ -33,7 +33,7 @@ const IncompletePage = () => {
                       {" "}
                       Request to{" "}
                       <span>
-                        {txn.payer.firstName} {txn.payer.lastName}{" "}
+                        {getUserFullName(txn.payer)}{" "}
                       </span>
                     </div>
                     <div className="second-txn-date-line">
@@ -52,7 +52,7 @@ const IncompletePage = () => {
                     <div className="topline">
                       {" "}
                       <span>
-                        {txn.payee.firstName} {txn.payee.lastName}{" "}
+                        {getUserFullName(txn.payee)}{" "}
                       </span>{" "}
                       requests <span>You</span> to pay
                     </div>

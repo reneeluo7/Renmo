@@ -120,6 +120,12 @@ export default function reducer(state = initialState, action) {
       return { user: action.payload }
     case REMOVE_USER:
       return { user: null }
+    case GET_ALL_USERS:
+      let newState={...state}
+      action?.users?.forEach(user => {
+        newState[user?.id]= user
+      })
+      return newState
     default:
       return state;
   }
