@@ -29,7 +29,7 @@ export const getIncompleteTxns= () => async dispatch => {
     if (response.ok) {
         const data = await response.json();
         // console.log("---console log in thunk fetch from backend data", data)
-        dispatch(loadCompleted(data.transactions));
+        dispatch(loadIncomplete(data.transactions));
         return response;
     }
 }
@@ -48,7 +48,7 @@ export default function reducer(state = initialState, action){
             return newState;
 
         case LOAD_INCOMPLETE:
-            newState = {...state, completed:[...state?.transactions], incomplete:[...action?.incomplete]};
+            newState = {...state, completed:[...state?.completed], incomplete:[...action?.transactions]};
             action?.transactions?.forEach(txn => {
                 newState[txn?.id] = txn
             })

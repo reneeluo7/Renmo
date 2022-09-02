@@ -10,6 +10,7 @@ import User from './components/User';
 import { authenticate } from './store/session';
 import HomePage from './components/HomePage';
 import IncompletePage from './components/Incomplete';
+import Search from './components/Search';
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -52,6 +53,9 @@ function App() {
         </ProtectedRoute>
         <ProtectedRoute path='/incomplete' exact={true} >
           <IncompletePage />
+        </ProtectedRoute>
+        <ProtectedRoute path='/search' exact={true} >
+          <Search />
         </ProtectedRoute>
       </Switch>
     </BrowserRouter>
