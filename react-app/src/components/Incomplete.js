@@ -1,69 +1,77 @@
-import React from 'react';
-import { useEffect, useState } from "react"
-import { useSelector, useDispatch } from 'react-redux';
-import NavBar from './NavBar.js';
-import { getIncompleteTxns } from '../store/transaction';
-import getUserInitials from '../util/userInitial'
-
+import React from "react";
+import { useEffect, useState } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import NavBar from "./NavBar.js";
+import { getIncompleteTxns } from "../store/transaction";
+import getUserInitials from "../util/userInitial";
 
 const IncompletePage = () => {
-    const user = useSelector(state => state.session?.user)
-    const transactions = useSelector(state => state.transaction?.incomplete)
-    const initial = getUserInitials(user)
-    const dispatch = useDispatch()
-    
-    useEffect(() => {
-        dispatch(getIncompleteTxns())
-        
-    }, [dispatch])
+  const user = useSelector((state) => state.session?.user);
+  const transactions = useSelector((state) => state.transaction?.incomplete);
+  const initial = getUserInitials(user);
+  const dispatch = useDispatch();
 
-    return (
-        <div className="homepage-container">
-            <NavBar />
-            <div className='homepage-right incomplete'>
-                <h1>Incomplete</h1>
-                <div className="homepage-user-txns incomplete">
-                {/* {transactions?.map(txn => (
-                    <div className="txn-bar" key={txn.id}>
-                        <div className="txn-bar-left">
-                            {user.id == txn.payee.id && 
-                            <div className="txn-bar-initial">{initial}</div>
-                            <div className="txn-bar-info"></div>
+  useEffect(() => {
+    dispatch(getIncompleteTxns());
+  }, [dispatch]);
 
-                            }
-                            <div className="txn-bar-info">
-
-                            {user.id == txn.payer.id && txn.category == 'pay' && 
-                            <div><span>You</span> paid <span>{txn.payee.firstName} {txn.payee.lastName}</span> </div>
-                            }
-                            {user.id == txn.payer.id && txn.category == 'request' && <div> <span>{txn.payee.firstName} {txn.payee.lastName}</span> charged <span>You</span></div>}
-                            {user.id == txn.payee.id && txn.category == 'pay' && <div> <span>{txn.payer.firstName} {txn.payer.lastName} paid <span>You</span></span> </div>}
-                            {user.id == txn.payee.id && txn.category == 'request' && <div> <span><span>You</span> charged {txn.payer.firstName} {txn.payer.lastName}</span> </div>}
-
-                         </div>
-                        </div>
-                        <div className="txn-bar-amount">
-                            {user.id == txn.payer.id && <div style={{color: 'red'}}>
-                                - {txn.amount.toFixed(2)}
-
-                            </div>}
-                            {user.id == txn.payee.id && <div style={{color: 'green'}}>
-                                + {txn.amount.toFixed(2)}
-
-                            </div>}
-                        
-                        </div>
-    
+  return (
+    <div className="homepage-container">
+      <NavBar />
+      <div className="homepage-right incomplete">
+        <h1>Incomplete</h1>
+        <div className="homepage-user-txns incomplete">
+          {transactions?.map((txn) => (
+            <div className="txn-bar" key={txn.id}>
+              {user.id === txn.payee.id && (
+                <div className="txn-bar-left">
+                  <div className="txn-bar-initial">
+                    {getUserInitials(txn.payer)}
+                  </div>
+                  <div className="txn-bar-info">
+                    <div className="topline">
+                      {" "}
+                      Request to{" "}
+                      <span>
+                        {txn.payer.firstName} {txn.payer.lastName}{" "}
+                      </span>
                     </div>
-                ))} */}
+                    <div className="second-txn-date-line">
+                      {txn.created_at.slice(0, 16)}
+                    </div>
+                    <div className="thrid-txn-note-line">{txn.note}</div>
+                  </div>
                 </div>
+              )}
+              {user.id === txn.payer.id && (
+                <div className="txn-bar-left">
+                  <div className="txn-bar-initial">
+                    {getUserInitials(txn.payee)}
+                  </div>
+                  <div className="txn-bar-info">
+                    <div className="topline">
+                      {" "}
+                      <span>
+                        {txn.payee.firstName} {txn.payee.lastName}{" "}
+                      </span>{" "}
+                      requests <span>You</span> to pay
+                    </div>
+                    <div className="second-txn-date-line">
+                      {txn.created_at.slice(0, 16)}
+                    </div>
+                    <div className="thrid-txn-note-line">{txn.note}</div>
+                  </div>
+                </div>
+              )}
 
-
+              <div className="txn-bar-amount">
+                <div>${txn.amount.toFixed(2)}</div>
+              </div>
             </div>
-
+          ))}
         </div>
-    )
-
-
-}
-export default IncompletePage
+      </div>
+    </div>
+  );
+};
+export default IncompletePage;
