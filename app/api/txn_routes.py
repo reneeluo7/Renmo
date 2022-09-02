@@ -1,5 +1,7 @@
+from datetime import datetime
 from flask import Blueprint, redirect, request
 from flask_login import login_required, current_user
+from datetime import datetime
 from app.models import Transaction , Comment ,db ,User
 from sqlalchemy import or_
 from app.forms import TransactionForm
@@ -17,7 +19,7 @@ def get_completed_txns():
 
     return {'transactions':[txn.to_dict_users_comments() for txn in txns]}
 
-#Get current user incompleted txns
+#Get current user incomplete txns
 @transaction_routes.route('/incomplete')
 @login_required
 def get_incomplete_txns():
@@ -73,44 +75,47 @@ def initiate_txn(userid):
 
 
 
-# Edit a request and pending transaction    
+# Edit a pending request transaction    
 @transaction_routes.route('/<int:txnid>', methods=['PUT'])
 @login_required
 def edit_txn(txnid):
     transaction = Transaction.query.get(txnid)
 
-    if transaction.payee_id != current_user.id:
-         return {"message": "You are not allowed to edit this transaction."}
-    elif transaction.pending == False:
+    if transaction.pending == False:
         return {"message": "This transaction has completed, can not be edited."}
+    elif transaction.payee_id != current_user.id:
+         return {"message": "You are not allowed to edit this transaction."}
         
     form = TransactionForm()
     form['csrf_token'].data = request.cookies['csrf_token']
     if form.validate_on_submit():
-        category = form.data['category']
-        if category == 'pay':
-            payer = current_user.id
-            payee = userid
-            pay_pending=False
-        else:
-            payer = userid
-            payee = current_user.id
-            pay_pending=True
-
-
-        transaction = Transaction(
-            amount=form.data['amount'],
-            note=form.data['note'],
-            pending=pay_pending,
-            privacy=form.data['privacy'],
-            category=form.data['category'],
-            payer_id=payer,
-            payee_id=payee
-           
-        )
-        db.session.add(transaction)
+        transaction.amount=form.data['amount']
+        transaction.note=form.data['note']
+        transaction.privacy=form.data['privacy']
+        transaction.pending=True
+        transaction.category='request'
+        # transaction.update_at=datetime.utcnow()
+        # transaction.create_at=datetime.utcnow()
+        
         db.session.commit()
        
-        return {'message': "successfully created"}
+        return {'transaction': transaction.to_dict()}
 
     return {'errors': validation_errors_to_error_messages(form.errors)}, 401
+
+
+
+# Cancel a pending request transaction   
+@transaction_routes.route('/<int:txnid>', methods=['DELETE'])
+@login_required
+def cancel_txn(txnid):
+    transaction = Transaction.query.get(txnid)
+
+    if transaction.pending == False:
+        return {"message": "This transaction has completed, can not be edited."}
+    elif transaction.payee_id != current_user.id:
+         return {"message": "You are not allowed to edit this transaction."}
+
+    db.session.delete(transaction)
+    db.session.commit()
+    return {'message': 'Transaction Deleted'}
