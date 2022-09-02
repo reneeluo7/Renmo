@@ -3,6 +3,8 @@ import NavBar from "../NavBar";
 import SearchBar from "./SearchBar";
 
 const Search = () => {
+    
+
     return (
         <div className="homepage-container">
             <NavBar />

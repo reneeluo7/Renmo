@@ -17,7 +17,7 @@ const HomePage = () => {
 
   useEffect(() => {
     dispatch(getCompletedTxns())
-    dispatch(getAllUsers());
+    // dispatch(getAllUsers());
   }, [dispatch]);
 
   return (
