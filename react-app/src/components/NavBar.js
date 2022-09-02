@@ -3,6 +3,7 @@ import { NavLink } from 'react-router-dom';
 import LogoutButton from './auth/LogoutButton';
 import { useSelector } from 'react-redux';
 import getUserInitials from '../util/userInitial'
+import './NavBar.css'
 
 
 
@@ -11,9 +12,9 @@ const NavBar = () => {
   const initial = getUserInitials(user)
 
   return (
-    <nav>
+    <nav className='nav-bar'>
       <div className="app-logo"> 
-      <NavLink to='/' exact={true}>
+      <NavLink to='/home' exact={true}>
 
         <h1>Renmo (app-logo)</h1>
       </NavLink>
@@ -21,7 +22,9 @@ const NavBar = () => {
         <div className="nav-container">
           <div className="user-info">
             <div className="user-initial">
+            <NavLink to='/home' exact={true}>
                 {initial}
+                </NavLink>
             </div>
             <div className="user-info-right">
               <div className="user-welcome">Hi, {user.firstName}</div>
@@ -29,16 +32,18 @@ const NavBar = () => {
             </div>
           </div>
           <div className="pay-btn"> 
-          <button>
-            Pay or Request button
-          </button>
+            <a href="/pay">
+              Pay or Request 
+            </a>
+          
           </div>
           {/* <div className="payment-method">
             Money will be transferred from your bank account
           </div> */}
           <div className="nav-links">
-              <button className="search">Search</button>
-              <button className="incomplete">Incomplete</button>
+              <div className="search"> <a href='/search'>Search</a></div>
+              <div className="incomplete"><a href="/incomplete">Incomplete</a></div>
+              
               <LogoutButton />
           </div>
 

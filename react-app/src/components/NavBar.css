@@ -1,0 +1,86 @@
+.nav-bar {
+    position: fixed;
+    height: 100%;
+    width: 317px;
+    min-width: 317px;
+   
+    padding: 1.7rem 8px 1.7rem 40px;
+    border-right: 1px solid #ccc;
+    overflow-y: auto;
+}
+
+.user-info{
+    min-height: 80px;
+    display: flex;
+    margin: 40px 32px 32px 0;
+    height: auto;
+}
+
+.user-initial{
+    position: relative;
+    border-radius: 50%;
+    justify-content: center;
+    text-align: center;
+    width: 80px;
+    height: 80px;
+    border: 1px solid #888C94;
+    padding-top: 28px;
+    font-size: 16px;
+}
+
+.user-info-right{
+    display: flex;
+    flex-direction: column;
+    margin: 0px 0px 0px 8px;
+    justify-content: space-evenly;
+}
+
+.user-welcome{
+    display: block;
+    font-size: 1.17em;
+    /* margin-block-start: 1em; */
+    margin-block-end: 1em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+    font-weight: bold;
+    white-space: normal;
+
+}
+
+.user-username{
+    width: 100%;
+    font-weight: 600;
+    position: relative;
+    /* text-align: center; */
+    color: #0074DE;
+    /* padding: 6px 16px; */
+    font-size: 0.875rem;
+    min-width: 64px;
+    /* justify-content: center; */
+    /* margin-bottom: 10px; */
+    white-space: normal;
+    /* vertical-align: middle; */
+}
+
+.pay-btn{
+    position: relative;
+    text-align: center;
+    width: 85%;
+    background-color: #0074de;
+    border-radius: 24px;
+    height: 48px;
+    justify-content: center;
+    align-items: center;
+    padding-top: 12px;
+}
+
+.pay-btn > a {
+    position: relative;
+    color: white;
+    height: 100%;
+    font-size: 1.125rem;
+    font-weight: bold;
+    text-align: center;
+    justify-content: center;
+    /* padding-top: 20px; */
+}

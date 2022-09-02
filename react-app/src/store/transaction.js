@@ -1,9 +1,14 @@
 // constants
 const LOAD_COMPLETED = 'transactions/GET_ALL_COMPLETED_TXNS'
+const LOAD_INCOMPLETE = 'transactions/GET_ALL_INCOMPLETE_TXNS'
 
 // action
 const loadCompleted = (transactions) => ({
     type: LOAD_COMPLETED,
+    transactions
+})
+const loadIncomplete = (transactions) => ({
+    type: LOAD_INCOMPLETE,
     transactions
 })
 
@@ -19,6 +24,15 @@ export const getCompletedTxns= () => async dispatch => {
         return response;
     }
 }
+export const getIncompleteTxns= () => async dispatch => {
+    const response = await fetch(`/api/transactions/incomplete`);
+    if (response.ok) {
+        const data = await response.json();
+        // console.log("---console log in thunk fetch from backend data", data)
+        dispatch(loadCompleted(data.transactions));
+        return response;
+    }
+}
 
 
 // reducer
@@ -28,6 +42,13 @@ export default function reducer(state = initialState, action){
     switch(action.type) {
         case LOAD_COMPLETED:
             newState = {...state, completed:[...action.transactions], incomplete:[...state?.incomplete]};
+            action?.transactions?.forEach(txn => {
+                newState[txn?.id] = txn
+            })
+            return newState;
+
+        case LOAD_INCOMPLETE:
+            newState = {...state, completed:[...state?.transactions], incomplete:[...action?.incomplete]};
             action?.transactions?.forEach(txn => {
                 newState[txn?.id] = txn
             })

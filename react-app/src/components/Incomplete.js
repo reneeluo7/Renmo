@@ -1,43 +1,36 @@
 import React from 'react';
 import { useEffect, useState } from "react"
-import { NavLink } from 'react-router-dom';
-// import LogoutButton from './auth/LogoutButton';
 import { useSelector, useDispatch } from 'react-redux';
-import getUserInitials from '../util/userInitial' 
-import { getCompletedTxns } from '../store/transaction';
-import NavBar from './NavBar.js'
-import './HomePage.css'
+import NavBar from './NavBar.js';
+import { getIncompleteTxns } from '../store/transaction';
+import getUserInitials from '../util/userInitial'
 
-const HomePage = () => {
+
+const IncompletePage = () => {
     const user = useSelector(state => state.session?.user)
-    const transactions = useSelector(state => state.transaction?.completed)
+    const transactions = useSelector(state => state.transaction?.incomplete)
     const initial = getUserInitials(user)
     const dispatch = useDispatch()
     
     useEffect(() => {
-        dispatch(getCompletedTxns())
+        dispatch(getIncompleteTxns())
         
     }, [dispatch])
 
     return (
         <div className="homepage-container">
             <NavBar />
-            <div className='homepage-right'>
-
-                <div className="homepage-userinfo">
-                <div className="user-initial">
-                    {initial}
-                </div>
-                <div className="homepage-user-fullname">{user.firstName}  {user.lastName}</div>
-                <div className="homepage-user-username">@{user.username}</div>
-                </div>
-                
-                <div className="homepage-user-txns">
-                {transactions?.map(txn => (
+            <div className='homepage-right incomplete'>
+                <h1>Incomplete</h1>
+                <div className="homepage-user-txns incomplete">
+                {/* {transactions?.map(txn => (
                     <div className="txn-bar" key={txn.id}>
                         <div className="txn-bar-left">
-
+                            {user.id == txn.payee.id && 
                             <div className="txn-bar-initial">{initial}</div>
+                            <div className="txn-bar-info"></div>
+
+                            }
                             <div className="txn-bar-info">
 
                             {user.id == txn.payer.id && txn.category == 'pay' && 
@@ -51,22 +44,26 @@ const HomePage = () => {
                         </div>
                         <div className="txn-bar-amount">
                             {user.id == txn.payer.id && <div style={{color: 'red'}}>
-                                - ${txn.amount.toFixed(2)}
+                                - {txn.amount.toFixed(2)}
 
                             </div>}
                             {user.id == txn.payee.id && <div style={{color: 'green'}}>
-                                + ${txn.amount.toFixed(2)}
+                                + {txn.amount.toFixed(2)}
 
                             </div>}
                         
                         </div>
     
                     </div>
-                ))}
+                ))} */}
                 </div>
+
+
             </div>
+
         </div>
     )
-}
 
-export default HomePage
+
+}
+export default IncompletePage
