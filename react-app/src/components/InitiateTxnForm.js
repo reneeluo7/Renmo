@@ -1,6 +1,7 @@
 import React from "react";
 import NavBar from "./NavBar.js";
 import './InitiateTxnForm.css'
+import SearchUser from "./search/SearchUser.js";
 
 const InitiateTxn = () => {
     return (
@@ -18,8 +19,16 @@ const InitiateTxn = () => {
                         </div>
                     </div>
                     <p></p>
-                    <div className="search-user-input"></div>
-                    <div className="pay-note"></div>
+                    <div className="search-user-input">
+                        <div className="search-user-input-box">
+                            <div>To</div> <SearchUser />
+                        </div>
+                    </div>
+                    <div className="pay-note">
+                        <div className="pay-note-board">
+                            <textarea name="note" id="payform-note" cols="30" rows="5" placeholder="Note"></textarea>
+                        </div>
+                    </div>
                     <div className="pay-privacySection"></div>
                     <div className="pay-or-request-btns"></div>
 
