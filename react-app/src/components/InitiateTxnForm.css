@@ -1,0 +1,24 @@
+.payment-amount{
+    text-align: center;
+}
+
+
+.dollar-sign{
+    display: inline-block;
+    font-size: 1.5rem;
+    font-style: normal;
+    margin-top: 8px;
+    font-family: Athletics Medium;
+    font-weight: 500;
+    margin-right: 8px;
+    vertical-align: top;
+}
+
+.Number{
+    width: inherit;
+    padding: 0;
+    font-size: 3.25rem;
+    font-style: normal;
+    /* font-family: Athletics Medium; */
+    font-weight: 500;
+}
