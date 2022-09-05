@@ -21,6 +21,7 @@
     font-style: normal;
     /* font-family: Athletics Medium; */
     font-weight: 500;
+    -webkit-tap-highlight-color: transparent;
 }
 
 .search-user-input-box{
@@ -40,7 +41,8 @@
 }
 
 .pay-note-board{
-    
+    border-radius: 5px;
+    border: 1px solid black;
 }
 
 textarea {
@@ -54,7 +56,7 @@ textarea {
     min-width: 0;
     background: none;
     box-sizing: content-box;
-    animation-name: mui-auto-fill-cancel;
+   
     letter-spacing: inherit;
     animation-duration: 10ms;
     -webkit-tap-highlight-color: transparent;
@@ -67,4 +69,35 @@ textarea {
     overflow-wrap: break-word;
     column-count: initial;
 
+}
+.pay-privacy-btn h6{
+    color: #0074DE;
+    margin-left: 8px;
+    font-size: 0.875rem;
+    font-weight: 600;
+    line-height: 1.43;
+    display: block;
+    margin-block-start: 2.33em;
+    margin-block-end: 2.33em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+}
+
+.pay-or-request-btns{
+    padding-top: 150px;
+    display: flex;
+    justify-content: space-between;
+
+}
+.pay-or-request-btns > * {
+    width: 209px;
+    color: #fff;
+    background-color: #0074DE;
+    padding: 10px 16px;
+    font-size: 1rem;
+    padding: 10px 16px;
+    font-size: 1rem;
+    box-shadow: none;
+    line-height: 1.25;
+    border-radius: 2em;
 }

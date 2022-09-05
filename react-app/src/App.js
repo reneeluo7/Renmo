@@ -11,7 +11,7 @@ import { authenticate } from './store/session';
 import HomePage from './components/HomePage';
 import IncompletePage from './components/Incomplete';
 import Search from './components/search';
-import InitiateTxn from './components/InitiateTxnForm';
+import InitiateTxn from './components/txnForms/InitiateTxnForm';
 
 function App() {
   const [loaded, setLoaded] = useState(false);

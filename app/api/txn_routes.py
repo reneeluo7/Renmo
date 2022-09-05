@@ -69,9 +69,9 @@ def initiate_txn(userid):
         db.session.add(transaction)
         db.session.commit()
        
-        return {"message": "successfully created"}
-
-    return {"errors": validation_errors_to_error_messages(form.errors)}, 401
+        return {"transaction": transaction.to_dict_users_comments() }
+    print("xxxxxxxxx", form.errors)
+    return {"errors": (form.errors)}, 401
 
 
 

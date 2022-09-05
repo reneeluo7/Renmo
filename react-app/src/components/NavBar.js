@@ -1,8 +1,10 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 import LogoutButton from './auth/LogoutButton';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import {getUserInitials} from '../util/nameconvert'
+import { useEffect } from "react";
+import { getIncompleteTxns} from '../store/transaction'
 
 import './NavBar.css'
 
@@ -10,7 +12,13 @@ import './NavBar.css'
 
 const NavBar = () => {
   const user = useSelector(state => state.session?.user)
+  const transactions = useSelector((state) => state.transaction?.incomplete);
   const initial = getUserInitials(user)
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(getIncompleteTxns());
+  }, [dispatch]);
 
   return (
     <nav className='nav-bar'>
@@ -43,7 +51,16 @@ const NavBar = () => {
           </div> */}
           <div className="nav-links">
               <div className="search"> <a href='/search'>Search</a></div>
-              <div className="incomplete"><a href="/incomplete">Incomplete</a></div>
+              <div className="incomplete">
+                <div className="incomplete-left">
+
+                <a href="/incomplete">Incomplete</a>
+                </div>
+                <div className="incomplete-right">
+
+                {transactions.length}
+                </div>
+              </div>
               
               <LogoutButton />
           </div>

@@ -4,6 +4,9 @@ import { useSelector, useDispatch } from "react-redux";
 import NavBar from "./NavBar.js";
 import { getIncompleteTxns } from "../store/transaction";
 import {getUserInitials, getUserFullName} from "../util/nameconvert";
+import './Incomplete.css'
+import { cancelTransaction } from "../store/transaction";
+
 
 const IncompletePage = () => {
   const user = useSelector((state) => state.session?.user);
@@ -11,9 +14,9 @@ const IncompletePage = () => {
   const initial = getUserInitials(user);
   const dispatch = useDispatch();
 
-  useEffect(() => {
-    dispatch(getIncompleteTxns());
-  }, [dispatch]);
+  // useEffect(() => {
+  //   dispatch(getIncompleteTxns());
+  // }, [dispatch]);
 
   return (
     <div className="homepage-container">
@@ -40,8 +43,17 @@ const IncompletePage = () => {
                       {txn.created_at.slice(0, 16)}
                     </div>
                     <div className="thrid-txn-note-line">{txn.note}</div>
+                    <div className="manage-btns-container">
+                      <button className="cancel-txn" onClick={(e)=> {
+                        e.preventDefault()
+                        dispatch(cancelTransaction(txn.id))
+                      }}>Cancel</button>
+                      <button className="edit-txn">Edit</button>
+
+                    </div>
                   </div>
                 </div>
+                
               )}
               {user.id === txn.payer.id && (
                 <div className="txn-bar-left">
@@ -60,6 +72,11 @@ const IncompletePage = () => {
                       {txn.created_at.slice(0, 16)}
                     </div>
                     <div className="thrid-txn-note-line">{txn.note}</div>
+                    <div className="manage-btns-container">
+                      <button className="decline-txn">Decline</button>
+                      <button className="pay-txn">Pay</button>
+
+                    </div>
                   </div>
                 </div>
               )}

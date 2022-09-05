@@ -84,3 +84,20 @@
     justify-content: center;
     /* padding-top: 20px; */
 }
+
+.incomplete{
+   display: flex;
+   justify-content: space-between;
+}
+
+.incomplete-right {
+    background-color: red;
+    color: white;
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+    padding-top: 2px;
+}

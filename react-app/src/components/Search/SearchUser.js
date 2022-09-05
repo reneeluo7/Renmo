@@ -1,10 +1,11 @@
 import React from "react";
 import { useEffect, useState } from "react";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { getUserFullName, getUserInitials } from "../../util/nameconvert";
-
+import { setSelectedUser } from "../../store/session";
 
 const SearchUser = () => {
+  const dispatch = useDispatch();
   const loggedInUser = useSelector((state) => state.session.user);
   const [inputStr, setInputStr] = useState("");
   const [showMenu, setShowMenu] = useState(false);
@@ -14,7 +15,7 @@ const SearchUser = () => {
 
   const noLogInUsers = users.filter((user) => user.id !== loggedInUser.id);
   
-    console.log("----to check selected", selected)
+    // console.log("----to check selected", selected)
   const filteredUsers = (inputStr) => {
     const list = [];
     for (let user of noLogInUsers) {
@@ -33,6 +34,7 @@ const SearchUser = () => {
     setInputStr('')
   }
 
+  
   useEffect(() => {
     async function fetchData() {
       const response = await fetch("/api/users/");
@@ -52,6 +54,10 @@ const SearchUser = () => {
     }
   }, [inputStr]);
 
+  useEffect(async() => {
+    await dispatch(setSelectedUser(selected))
+  },[selected])
+
   return (
     <div className="user-search-input">
       {!selected && <input
@@ -69,7 +75,8 @@ const SearchUser = () => {
           {searchResult.map((user, index) => (
             <div
               key={index}
-              onClick={() => {
+              onClick={(e) => {
+                e.preventDefault()
                 setSelected(user)
                 setShowMenu(false)
             
