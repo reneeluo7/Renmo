@@ -7,7 +7,8 @@ function CreateComment(){
     return (
          <>
             <form action="">
-                <input placeholder="sdf"></input>
+                <input placeholder="add your comment here"></input>
+                <button >Post</button>
             </form>
         </>
     )

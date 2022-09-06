@@ -10,7 +10,7 @@ import User from './components/users/User';
 import { authenticate } from './store/session';
 import HomePage from './components/HomePage';
 import IncompletePage from './components/Incomplete';
-import Search from './components/search';
+import Search from './components/Search';
 import InitiateTxn from './components/txnForms/InitiateTxnForm';
 import EditIncompleteTxn from './components/txnForms/EditTxn';
 import TxnComments from './components/TxnComments';
