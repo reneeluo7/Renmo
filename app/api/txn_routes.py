@@ -95,11 +95,11 @@ def edit_txn(txnid):
         transaction.pending=True
         transaction.category='request'
         # transaction.update_at=datetime.utcnow()
-        # transaction.create_at=datetime.utcnow()
+        transaction.created_at=datetime.utcnow()
         
         db.session.commit()
        
-        return {'transaction': transaction.to_dict()}
+        return {'transaction': transaction.to_dict_users_comments()}
 
     return {'errors': validation_errors_to_error_messages(form.errors)}, 401
 

@@ -12,6 +12,10 @@ import HomePage from './components/HomePage';
 import IncompletePage from './components/Incomplete';
 import Search from './components/search';
 import InitiateTxn from './components/txnForms/InitiateTxnForm';
+import EditIncompleteTxn from './components/txnForms/EditTxn';
+import TxnComments from './components/TxnComments';
+
+
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -59,6 +63,12 @@ function App() {
         </ProtectedRoute>
         <ProtectedRoute path='/pay' exact={true} >
           <InitiateTxn />
+        </ProtectedRoute>
+        <ProtectedRoute path='/transactions/:id/edit' exact={true} >
+          <EditIncompleteTxn />
+        </ProtectedRoute>
+        <ProtectedRoute path='/transactions/:id/comments' exact={true} >
+          <TxnComments />
         </ProtectedRoute>
       </Switch>
     </BrowserRouter>

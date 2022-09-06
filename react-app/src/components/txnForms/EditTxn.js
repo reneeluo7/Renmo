@@ -1,90 +1,91 @@
 import React from "react";
+import { useState, useEffect } from "react"
 import { useDispatch, useSelector } from "react-redux";
-import { useEffect, useState } from "react";
-import { useHistory } from "react-router-dom";
 import NavBar from "../NavBar.js";
-import "./InitiateTxnForm.css";
-import SearchUser from "../search/SearchUser.js";
-import { createTxn } from "../../store/transaction.js";
+import { useHistory, useParams } from "react-router-dom";
+import { getUserFullName } from "../../util/nameconvert.js";
+import { getIncompleteTxns, editTransaction  } from '../../store/transaction'
 
-const InitiateTxn = () => {
+const EditIncompleteTxn = () => {
   const dispatch = useDispatch();
-  const history = useHistory();
-  // const loggedInUser = useSelector((state) => state.session.user);
-  const selectedUser = useSelector((state) => state.session.selected);
-  const [amount, setAmount] = useState(0);
-  const [note, setNote] = useState("");
+  const history = useHistory()
+  const { id } = useParams();
+  const user = useSelector((state) => state.session.user);
+  const txnArr = useSelector((state) =>
+    state.transaction?.incomplete?.filter((txn) => txn.id === Number(id))
+    );
+  const txn = txnArr[0]
+  console.log('+++++txn filter from state:', txn)
+  const [amount, setAmount] = useState(txn?.amount);
+  const [note, setNote] = useState(txn?.note);
   const [isPublic, setIsPublic] = useState(true);
-  const [errors, setErrors] = useState([]);
-  const [message, setMessage] = useState({})
+  const [errors, setErrors] = useState({})
 
-  // console.log('-----set amount', amount)
-  // console.log('-----set note', note)
-  // console.log('-----set privacy', isPublic)
-  // console.log('-----selected user', selectedUser?.id)
-
-  const handleSubmit = async (e) => {
+  const handleSubmit = async(e) => {
     e.preventDefault();
-    setErrors([])
-    let category = e.target.value;
-    // console.log('----set category', category)
-    let pending;
-    category === "pay" ? (pending = 0) : (pending = 1);
+    setErrors({})
     let privacy;
     isPublic ? (privacy = "public") : (privacy = "private");
-    // console.log(privacy)
     if (Number(amount) <= 0) {
-      errors.push("Please enter a value grater than 0!") ;
-    } 
-    if (!selectedUser) {
-      errors.push("Please enter a recipient");
-    } 
-    if (!note) {
-      errors.push("Please enter some details regarding the payment");
-    }
-    if (note.length > 300) {
-      errors.push("Maximum note length is 300 characters");
-    }
-
-    const newTxn = {
-      amount,
-      note,
-      privacy,
-      pending,
-      category,
-    };
-    console.log("****** newTXN: ", newTxn);
-    if (errors.length === 0){
-
-      const data = await dispatch(createTxn(newTxn, selectedUser.id));
-      console.log('----data return from thunk', data)
-      if (data) {
-        setMessage(data);
-      } else {
-        setMessage({});
-        return history.push('/home');
-       
+        setErrors({amount:['Please enter a value grater than 0!']})
+        return
+      } 
+      
+      if (!note) {
+        setErrors({note: ["Please enter some details regarding the payment"]});
+        return
       }
-    }
-  };
+      if (note.length > 300) {
+        setErrors({note: ["Maximum note length is 300 characters"]});
+        return
+      }
 
-  return (
-    <div className="homepage-container">
-      <NavBar />
-      <div className="homepage-right">
-        <h1>Pay and Request</h1>
-        <form>
+      const editTxn = {
+        amount,
+        note,
+        privacy,
+        category:'request',
+        pending:1
+      }
+      console.log('**** edit txn:', editTxn )
+      if (Object.keys(errors).length === 0 ) {
+        const data = await dispatch(editTransaction(editTxn, txn.id))
+        if(data){
+            setErrors(data)
+        }else{
+            setErrors({})
+            return history.push('/incomplete')
+        }
+      }
+  }
+
+  useEffect( async() => {
+    await dispatch(getIncompleteTxns());
+  }, [dispatch]);
+
+ 
+    return (
+      <div className="homepage-container">
+        <NavBar />
+        <div className="homepage-right">
+            { (!txn || user.id !== txn?.payee?.id ) &&
+            
+          <h2>You are not allowed to edit this transaction</h2>
+            }
+            <h1>Edit Your Transaction</h1>
+            <h3>Only amount, note and privacy can be edited</h3>
+            <form onSubmit={handleSubmit}>
           <div>
             {/* {message && message?.map((error, ind) => (
               <div key={ind} className="form-errors" style={{ color: "red" }}>
                 {error}
               </div>
             ))} */}
-            {errors && errors?.map((error, ind) => (
+            {/* {errors && errors?.map((error, ind) => (
               <div key={ind} className="form-errors" style={{ color: "red" }}>
                 {error}
               </div>
-            ))}
+            ))} */}
           </div>
           <div className="payment-amount">
             <div className="payment-amount-box">
@@ -115,15 +116,15 @@ const InitiateTxn = () => {
           <p></p>
           <div className="search-user-input">
             <div className="search-user-input-box">
-              <label>To <span style={{ color: "red" }}>*</span></label> <SearchUser />
+              {/* <label>To </label> <input type="text" disabled value={getUserFullName(txn?.payer)} /> */}
             </div>
-            {errors?.recipient &&  !selectedUser &&
+            {/* {errors?.recipient &&  !selectedUser &&
               <div className="error" style={{ color: "red" }}>
                 {errors?.recipient?.map((error, ind) => (
                   <div key={ind}>{error}</div>
                 ))}
               </div>
-            }
+            } */}
           </div>
           <div className="pay-note">
             <div className="pay-note-board">
@@ -133,8 +134,8 @@ const InitiateTxn = () => {
                 id="payform-note"
                 cols="30"
                 rows="5"
-                value={note}
                 placeholder="Enter some details regarding the payment"
+                value={note}
                 onChange={(e) => setNote(e.target.value)}
               ></textarea>
             </div>
@@ -159,28 +160,20 @@ const InitiateTxn = () => {
               {!isPublic ? <h6>Private</h6> : <h6>Public</h6>}
             </button>
           </div>
-          <div className="pay-or-request-btns">
+          <div className="edit-txn-submit-btn">
             <button
-              className="pay-btn-form"
-              value={"pay"}
+              className="edit-submit-btn"
               type="submit"
-              onClick={handleSubmit}
             >
-              Pay
+              Submit
             </button>
-            <button
-              className="request-btn-form"
-              value={"request"}
-              type="submit"
-              onClick={handleSubmit}
-            >
-              Request
-            </button>
+            
           </div>
         </form>
+        </div>
       </div>
-    </div>
-  );
+    );
+  
 };
 
-export default InitiateTxn;
+export default EditIncompleteTxn;
