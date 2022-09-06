@@ -53,9 +53,9 @@ const HomePage = () => {
                     <div className="forth-txn-comment-line">
                       <Link to={{pathname:`/transactions/${txn.id}/comments`, state:{txn}}} >
                         <div
-                          onClick={() => {
-                            dispatch(setCommentTarget(txn));
-                          }}
+                          // onClick={() => {
+                          //   dispatch(setCommentTarget(txn));
+                          // }}
                         >
                           <i className="fa-sharp fa-solid fa-comment"></i>
                           {txn.comments.length !== 0 && (

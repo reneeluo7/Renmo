@@ -2,25 +2,35 @@ import React, { useState }  from "react";
 import { Link, useParams } from "react-router-dom";
 import NavBar from "../NavBar";
 import { useSelector, useDispatch } from "react-redux";
+import { useLocation } from 'react-router-dom'
 import { getUserInitials, getUserFullName } from "../../util/nameconvert";
 import CreateComment from "./CreateComment";
 import './index.css'
 
 function TxnComments() {
     // const [isLoad, setLoaded] = useState(false)  
-  const targetArr = useSelector((state) => state.transaction.target);
+    const location = useLocation()
+//   const targetArr = useSelector((state) => state.transaction.target);
   // console.log("888888 targetTxn:",targetTxn[0])
-  const targetTxn = targetArr[0];
+//   const targetTxn = targetArr[0];
   const user = useSelector((state) => state.session?.user);
   const { id } = useParams();
+  const targetTxn = location.state?.txn
+  if (!targetTxn) return(
+    <div className="homepage-container">
+         <NavBar />
+         <div className="homepage-right">
+
+            <h2>You are not authorized, please go back </h2>
+         </div>
+    </div>
+  )
 
   return (
      <div className="homepage-container">
       <NavBar />
       <div className="homepage-right">
-        { Number(id) !== targetTxn?.id && (
-          <h3>You are not authorized, please go back</h3>
-        )}
+        
         <div className="homepage-user-txns comments-page">
           <div className="txn-bar">
             {targetTxn?.category === "pay" && (
@@ -103,7 +113,7 @@ function TxnComments() {
           </div>
           <div className="comment-area">
                 {targetTxn.comments && targetTxn.comments?.map(cmt => (
-                    <div className="txn-bar-left">
+                    <div className="txn-bar-left" key={cmt.id}>
                         <div className="txn-bar-initial">{getUserInitials(cmt.user)}</div>
                         <div className="txn-bar-info">
                         <div className="topline">{getUserFullName(cmt.user)}</div>
