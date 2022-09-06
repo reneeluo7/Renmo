@@ -51,7 +51,7 @@ const HomePage = () => {
                     </div>
                     <div className="third-txn-note-line">{txn.note}</div>
                     <div className="forth-txn-comment-line">
-                      <Link to={`/transactions/${txn.id}/comments`}>
+                      <Link to={{pathname:`/transactions/${txn.id}/comments`, state:{txn}}} >
                         <div
                           onClick={() => {
                             dispatch(setCommentTarget(txn));
