@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import { useHistory } from "react-router-dom";
 import NavBar from "../NavBar.js";
 import "./InitiateTxnForm.css";
-import SearchUser from "../search/SearchUser.js";
+import SearchUser from "../Search/SearchUser.js";
 import { createTxn } from "../../store/transaction.js";
 
 const InitiateTxn = () => {
