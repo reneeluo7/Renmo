@@ -16,6 +16,7 @@ const HomePage = () => {
   const transactions = useSelector((state) => state.transaction?.completed);
   const initial = getUserInitials(user);
   const dispatch = useDispatch();
+  const [isLoad, setLoaded] = useState(false) 
 
   useEffect(() => {
     dispatch(getCompletedTxns());
@@ -125,6 +126,7 @@ const HomePage = () => {
                           {txn.comments.length !== 0 && (
                             <span>{txn.comments.length}</span>
                           )}
+                          
                         </button>
                       </Link>
                     </div>
