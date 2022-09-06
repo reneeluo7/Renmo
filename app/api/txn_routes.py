@@ -69,9 +69,9 @@ def initiate_txn(userid):
         db.session.add(transaction)
         db.session.commit()
        
-        return {"message": "successfully created"}
-
-    return {"errors": validation_errors_to_error_messages(form.errors)}, 401
+        return {"transaction": transaction.to_dict_users_comments() }
+    print("xxxxxxxxx", form.errors)
+    return {"errors": (form.errors)}, 401
 
 
 
@@ -95,11 +95,11 @@ def edit_txn(txnid):
         transaction.pending=True
         transaction.category='request'
         # transaction.update_at=datetime.utcnow()
-        # transaction.create_at=datetime.utcnow()
+        transaction.created_at=datetime.utcnow()
         
         db.session.commit()
        
-        return {'transaction': transaction.to_dict()}
+        return {'transaction': transaction.to_dict_users_comments()}
 
     return {'errors': validation_errors_to_error_messages(form.errors)}, 401
 

@@ -1,0 +1,103 @@
+.payment-amount{
+    text-align: center;
+}
+
+
+.dollar-sign{
+    display: inline-block;
+    font-size: 1.5rem;
+    font-style: normal;
+    margin-top: 8px;
+    font-family: Athletics Medium;
+    font-weight: 500;
+    margin-right: 8px;
+    vertical-align: top;
+}
+
+.Number{
+    width: inherit;
+    padding: 0;
+    font-size: 3.25rem;
+    font-style: normal;
+    /* font-family: Athletics Medium; */
+    font-weight: 500;
+    -webkit-tap-highlight-color: transparent;
+}
+
+.search-user-input-box{
+    border: 0.5px solid;
+    overflow: hidden;
+    /* transition: border-color 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms,box-shadow 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms; */
+    border-color: #888C94;
+    border-radius: 8px;
+    padding-right: 0;
+    background-color: #fff;
+    display: flex;
+    font-size: 1rem;
+    /* align-items: center; */
+    box-sizing: border-box;
+    font-weight: 400;
+    line-height: 1.1876em;
+}
+
+.pay-note-board{
+    border-radius: 5px;
+    border: 1px solid black;
+}
+
+textarea {
+    -webkit-font-smoothing: antialiased;
+    font: inherit;
+    color: currentColor;
+    width: 100%;
+    border: 0;
+    margin: 0;
+    display: block;
+    min-width: 0;
+    background: none;
+    box-sizing: content-box;
+   
+    letter-spacing: inherit;
+    animation-duration: 10ms;
+    -webkit-tap-highlight-color: transparent;
+    height: auto;
+    resize: none;
+    padding: 0;
+    padding-right: 0;
+    writing-mode: horizontal-tb;
+    white-space: pre-wrap;
+    overflow-wrap: break-word;
+    column-count: initial;
+
+}
+.pay-privacy-btn h6{
+    color: #0074DE;
+    margin-left: 8px;
+    font-size: 0.875rem;
+    font-weight: 600;
+    line-height: 1.43;
+    display: block;
+    margin-block-start: 2.33em;
+    margin-block-end: 2.33em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+}
+
+.pay-or-request-btns{
+    padding-top: 150px;
+    display: flex;
+    justify-content: space-between;
+
+}
+.pay-or-request-btns > * {
+    width: 209px;
+    color: #fff;
+    background-color: #0074DE;
+    padding: 10px 16px;
+    font-size: 1rem;
+    padding: 10px 16px;
+    font-size: 1rem;
+    box-shadow: none;
+    line-height: 1.25;
+    border-radius: 2em;
+}

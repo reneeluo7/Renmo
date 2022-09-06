@@ -3,20 +3,23 @@ import { useEffect, useState } from "react";
 import { NavLink } from "react-router-dom";
 // import LogoutButton from './auth/LogoutButton';
 import { useSelector, useDispatch } from "react-redux";
-import {getUserInitials, getUserFullName} from "../util/nameconvert";
-import { getCompletedTxns } from "../store/transaction";
+import { getUserInitials, getUserFullName } from "../util/nameconvert";
+import { getCompletedTxns, setCommentTarget } from "../store/transaction";
 import { getAllUsers } from "../store/session";
 import NavBar from "./NavBar.js";
 import "./HomePage.css";
+import { Link } from "react-router-dom";
+import TxnComments from "./TxnComments";
 
 const HomePage = () => {
   const user = useSelector((state) => state.session?.user);
   const transactions = useSelector((state) => state.transaction?.completed);
   const initial = getUserInitials(user);
   const dispatch = useDispatch();
+  const [isLoad, setLoaded] = useState(false) 
 
   useEffect(() => {
-    dispatch(getCompletedTxns())
+    dispatch(getCompletedTxns());
     // dispatch(getAllUsers());
   }, [dispatch]);
 
@@ -41,14 +44,26 @@ const HomePage = () => {
                   <div className="txn-bar-info">
                     <div className="topline">
                       <span>You</span> paid{" "}
-                      <span>
-                        {getUserFullName(txn.payee)}
-                      </span>{" "}
+                      <span>{getUserFullName(txn.payee)}</span>{" "}
                     </div>
                     <div className="second-txn-date-line">
                       {txn.created_at.slice(0, 16)}
                     </div>
-                    <div className="thrid-txn-note-line">{txn.note}</div>
+                    <div className="third-txn-note-line">{txn.note}</div>
+                    <div className="forth-txn-comment-line">
+                      <Link to={`/transactions/${txn.id}/comments`}>
+                        <div
+                          onClick={() => {
+                            dispatch(setCommentTarget(txn));
+                          }}
+                        >
+                          <i className="fa-sharp fa-solid fa-comment"></i>
+                          {txn.comments.length !== 0 && (
+                            <span>{txn.comments.length}</span>
+                          )}
+                        </div>
+                      </Link>
+                    </div>
                   </div>
                 </div>
               )}
@@ -60,15 +75,27 @@ const HomePage = () => {
                   <div className="txn-bar-info">
                     <div className="topline">
                       {" "}
-                      <span>
-                        {getUserFullName(txn.payee)}
-                      </span>{" "}
-                      charged <span>You</span>
+                      <span>{getUserFullName(txn.payee)}</span> charged{" "}
+                      <span>You</span>
                     </div>
                     <div className="second-txn-date-line">
                       {txn.created_at.slice(0, 16)}
                     </div>
-                    <div className="thrid-txn-note-line"></div>
+                    <div className="third-txn-note-line">{txn.note}</div>
+                    <div className="forth-txn-comment-line">
+                      <Link to={`/transactions/${txn.id}/comments`}>
+                        <button
+                          onClick={() => {
+                            dispatch(setCommentTarget(txn));
+                          }}
+                        >
+                          <i className="fa-sharp fa-solid fa-comment"></i>
+                          {txn.comments.length !== 0 && (
+                            <span>{txn.comments.length}</span>
+                          )}
+                        </button>
+                      </Link>
+                    </div>
                   </div>
                 </div>
               )}
@@ -81,14 +108,28 @@ const HomePage = () => {
                     <div className="topline">
                       {" "}
                       <span>
-                        {getUserFullName(txn.payer)} paid{" "}
-                        <span>You</span>
+                        {getUserFullName(txn.payer)} paid <span>You</span>
                       </span>{" "}
                     </div>
                     <div className="second-txn-date-line">
                       {txn.created_at.slice(0, 16)}
                     </div>
-                    <div className="thrid-txn-note-line"></div>
+                    <div className="third-txn-note-line">{txn.note}</div>
+                    <div className="forth-txn-comment-line">
+                      <Link to={`/transactions/${txn.id}/comments`}>
+                        <button
+                          onClick={() => {
+                            dispatch(setCommentTarget(txn));
+                          }}
+                        >
+                          <i className="fa-sharp fa-solid fa-comment"></i>
+                          {txn.comments.length !== 0 && (
+                            <span>{txn.comments.length}</span>
+                          )}
+                          
+                        </button>
+                      </Link>
+                    </div>
                   </div>
                 </div>
               )}
@@ -105,7 +146,21 @@ const HomePage = () => {
                     <div className="second-txn-date-line">
                       {txn.created_at.slice(0, 16)}
                     </div>
-                    <div className="thrid-txn-note-line"></div>
+                    <div className="third-txn-note-line">{txn.note}</div>
+                    <div className="forth-txn-comment-line">
+                      <Link to={`/transactions/${txn.id}/comments`}>
+                        <button
+                          onClick={() => {
+                            dispatch(setCommentTarget(txn));
+                          }}
+                        >
+                          <i className="fa-sharp fa-solid fa-comment"></i>
+                          {txn.comments.length !== 0 && (
+                            <span>{txn.comments.length}</span>
+                          )}
+                        </button>
+                      </Link>
+                    </div>
                   </div>
                 </div>
               )}

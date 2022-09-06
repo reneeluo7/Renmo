@@ -1,0 +1,25 @@
+.manage-btns-container {
+    display: flex;
+
+}
+
+.manage-btns-container > * {
+    /* border: 2px red dotted; */
+    color: #2F3033;
+    box-shadow: 0 0 0 1px #2f3033 inset;
+    background-color: #fff;
+    padding: 10px 16px;
+    font-size: 1rem;
+    line-height: 1.25;
+    border-radius: 2em;
+    width: 140px;
+    height: 40px;
+    min-width: 64px;
+    box-sizing: border-box;
+    font-weight: 600;
+    position: relative;
+    align-items: center;
+    vertical-align: middle;
+    justify-content: center;
+    text-decoration: none;
+}

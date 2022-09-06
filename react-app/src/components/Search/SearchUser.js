@@ -1,18 +1,21 @@
 import React from "react";
 import { useEffect, useState } from "react";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { getUserFullName, getUserInitials } from "../../util/nameconvert";
-import { Link } from "react-router-dom";
+import { setSelectedUser } from "../../store/session";
 
-const SearchBar = () => {
+const SearchUser = () => {
+  const dispatch = useDispatch();
   const loggedInUser = useSelector((state) => state.session.user);
   const [inputStr, setInputStr] = useState("");
   const [showMenu, setShowMenu] = useState(false);
   const [searchResult, setSearchResult] = useState([]);
   const [users, setUsers] = useState([]);
+  const [selected, setSelected] = useState()
 
   const noLogInUsers = users.filter((user) => user.id !== loggedInUser.id);
   
+    // console.log("----to check selected", selected)
   const filteredUsers = (inputStr) => {
     const list = [];
     for (let user of noLogInUsers) {
@@ -26,6 +29,12 @@ const SearchBar = () => {
     return list;
   };
 
+  const handleClear =() =>{
+    setSelected()
+    setInputStr('')
+  }
+
+  
   useEffect(() => {
     async function fetchData() {
       const response = await fetch("/api/users/");
@@ -45,22 +54,34 @@ const SearchBar = () => {
     }
   }, [inputStr]);
 
+  useEffect(async() => {
+    await dispatch(setSelectedUser(selected))
+  },[selected])
+
   return (
     <div className="user-search-input">
-      <input
+      {!selected && <input
         type="text"
         className="user-search"
         placeholder="Name or username"
         onChange={(e) => setInputStr(e.target.value.toLowerCase())}
         value={inputStr}
-      />
+      />}
+      {selected && <div className="show-selected-user">
+            <span>{getUserFullName(selected)}</span> <button className="clear-selected-user" onClick={handleClear}>x</button>
+        </div>}
       {showMenu && searchResult.length > 0 && (
         <div className="search-bar-drop-down">
           {searchResult.map((user, index) => (
-            <Link
+            <div
               key={index}
-              onClick={() => setInputStr("")}
-              to={`/u/${user.username}`}
+              onClick={(e) => {
+                e.preventDefault()
+                setSelected(user)
+                setShowMenu(false)
+            
+            }}
+              
               className="search-dropdown-item"
             >
               <div className="search-dropdown-user-info">
@@ -72,7 +93,7 @@ const SearchBar = () => {
                     <p className="secondline">@{user.username}</p>
                 </div>
               </div>
-            </Link>
+            </div>
           ))}
         </div>
       )}
@@ -80,4 +101,4 @@ const SearchBar = () => {
   );
 };
 
-export default SearchBar;
+export default SearchUser;
