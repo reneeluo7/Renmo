@@ -17,7 +17,7 @@ class Comment(db.Model):
             'id': self.id,
             'content': self.content,
             'user': self.user.to_dict(),
-            # 'transaction_id': self.transaction_id
+            'transaction_id': self.transaction_id
         }
 
 

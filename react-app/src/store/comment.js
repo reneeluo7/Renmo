@@ -1,6 +1,7 @@
 const LOAD = "comments/LOAD_COMMENTS";
 const CREATE = "comments/CREATE_COMMENT";
 const DELETE = "comments/DELETE_COMMENT";
+const UPDATE = "comments/UPDATE_COMMENT";
 
 //action
 const loadComments = (comments) => ({
@@ -16,6 +17,11 @@ const addCom = (com) => ({
 const remove = (id) => ({
   type: DELETE,
   id,
+});
+
+const update = (cmt) => ({
+  type: UPDATE,
+  cmt,
 });
 
 //thunk
@@ -68,6 +74,33 @@ export const deleteComment = (cmtId) => async (dispatch) => {
   return data;
 };
 
+// PUT
+export const editComment = (cmt, cmtId) => async (dispatch) => {
+    
+  const response = await fetch(`/api/comments/${cmtId}`, {
+    method: "PUT",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(cmt)
+  });
+  
+  if (response.ok) {
+    const data = await response.json();
+    await dispatch(update(data.comment));
+    
+    return null;
+  } else if (response.status < 500) {
+    const data = await response.json();
+    if (data.errors) {
+      return data.errors;
+    }
+  } else {
+    return ["An error occurred. Please try again."];
+  }
+  
+};
+
 //reducer
 const initialState = { comment: [] };
 const reducer = (state = initialState, action) => {
@@ -83,6 +116,16 @@ const reducer = (state = initialState, action) => {
     case CREATE:
       newState = { ...state, comment: [...state.comment, action.com] };
       newState[action.com.id] = action.com;
+      return newState;
+
+    case UPDATE:
+      state?.comment?.forEach((cmt,i) => {
+        if (cmt.id === action.cmt.id) {
+          state.comment?.splice(i, 1, action.cmt)
+        }
+      })
+      newState = { ...state, comment: [...state.comment] };
+      newState[action.cmt.id] = action.cmt;
       return newState;
 
     case DELETE:
