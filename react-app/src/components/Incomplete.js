@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { useHistory } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import NavBar from "./NavBar.js";
-import { getIncompleteTxns } from "../store/transaction";
+import { closeTxn } from "../store/transaction";
 import { getUserInitials, getUserFullName } from "../util/nameconvert";
 import "./Incomplete.css";
 import { cancelTransaction } from "../store/transaction";
@@ -14,11 +14,10 @@ const IncompletePage = () => {
   const transactions = useSelector((state) => state.transaction?.incomplete);
   // const initial = getUserInitials(user);
   const dispatch = useDispatch();
+  
   // const history = useHistory()
 
-  // useEffect(async() => {
-  //   await dispatch(getIncompleteTxns());
-  // }, [dispatch]);
+  
 
   return (
     <div className="homepage-container">
@@ -26,7 +25,7 @@ const IncompletePage = () => {
       <div className="homepage-right incomplete">
         <h1>Incomplete</h1>
         <div className="homepage-user-txns incomplete">
-          {transactions?.map((txn) => (
+          {transactions && transactions?.map((txn) => (
             <div className="txn-bar" key={txn.id}>
               {user.id === txn.payee.id && (
                 <div className="txn-bar-left">
@@ -77,8 +76,9 @@ const IncompletePage = () => {
                     </div>
                     <div className="thrid-txn-note-line">{txn.note}</div>
                     <div className="manage-btns-container">
-                      <button className="decline-txn">Decline</button>
-                      <button className="pay-txn">Pay</button>
+                      <DeleteClick txn={txn} />
+                      <button className="pay-txn" onClick={() => dispatch(closeTxn(txn, txn.id))}>Pay</button>
+                      {/* <button className="pay-txn" >Pay</button> */}
                     </div>
                   </div>
                 </div>
@@ -89,9 +89,40 @@ const IncompletePage = () => {
               </div>
             </div>
           ))}
+          {transactions.length === 0 && <div><h2>There is no incomplete transaction.</h2></div>}
         </div>
       </div>
     </div>
   );
 };
+
+const DeleteClick = ({txn}) => {
+
+
+  const dispatch = useDispatch();
+ 
+
+  const handleDelete = async (e) => {
+    e.preventDefault();
+    const declinedTxn = {
+      amount:txn.amount,
+      note:txn.note,
+      privacy:txn.privacy,
+      category:'Declined',
+      pending:0,
+  
+    };
+    dispatch(closeTxn(declinedTxn, txn.id));
+   
+  };
+
+  return (
+    <>
+      <button key={Math.random()} onClick={handleDelete}>
+        Decline
+      </button>
+    </>
+  );
+};
+
 export default IncompletePage;

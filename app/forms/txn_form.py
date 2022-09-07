@@ -6,7 +6,7 @@ from wtforms.validators import DataRequired, NumberRange, Length
 
 class TransactionForm(FlaskForm):
     note = StringField('note', validators=[DataRequired( message='Note is required'), Length(min=1, max=300, message='Limit 300 characters')] )
-    amount = DecimalField('amount', validators=[DataRequired(), NumberRange(
+    amount = DecimalField('amount', validators=[DataRequired(message='Amount is required'), NumberRange(
         min=0, max=3000, message='Enter a value between $0 to $3000')])
     # pending = BooleanField('pending', validators=[DataRequired( message='Pending is required')])
     pending = BooleanField('pending')

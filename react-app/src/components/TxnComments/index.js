@@ -6,10 +6,9 @@ import { useLocation } from "react-router-dom";
 import { getUserInitials, getUserFullName } from "../../util/nameconvert";
 import CreateComment from "./CreateComment";
 import "./index.css";
-
-// import { setCommentTarget } from "../../store/transaction";
+import EditComment from "./EditComment";
 import { getCommentByTxn } from "../../store/comment";
-import CommentsList from "./CommentsList";
+
 
 function TxnComments() {
   const location = useLocation();
@@ -17,7 +16,7 @@ function TxnComments() {
 
   const user = useSelector((state) => state.session?.user);
   const comments = useSelector((state) => state.comment?.comment);
-  // const { id } = useParams();
+ 
   const targetTxn = location.state?.txn;
 
   useEffect(async () => {
@@ -112,8 +111,22 @@ function TxnComments() {
               </div>
             </div>
             <div className="comment-area">
-              
-                <CommentsList comments={comments} />
+              <div>
+                {comments &&
+                  comments?.map((cmt) => (
+                    <div className="txn-bar-left" key={cmt.id}>
+                      <div className="txn-bar-initial">
+                        {getUserInitials(cmt.user)}
+                      </div>
+                      <div className="txn-bar-info">
+                        <div className="topline">
+                          {getUserFullName(cmt.user)}
+                        </div>
+                        <EditComment cmt={cmt} />
+                      </div>
+                    </div>
+                  ))}
+              </div>
               <div className="add-comment-container">
                 <CreateComment txn={targetTxn} />
               </div>

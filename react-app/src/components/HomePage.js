@@ -1,6 +1,6 @@
 import React from "react";
 import { useEffect, useState } from "react";
-import { NavLink } from "react-router-dom";
+
 // import LogoutButton from './auth/LogoutButton';
 import { useSelector, useDispatch } from "react-redux";
 import { getUserInitials, getUserFullName } from "../util/nameconvert";
@@ -148,10 +148,10 @@ const HomePage = () => {
                 </div>
               )}
               <div className="txn-bar-amount">
-                {user.id === txn.payer.id && (
+                {user.id === txn.payer.id && txn.category !== 'Declined' && (
                   <div style={{ color: "red" }}>- ${txn.amount.toFixed(2)}</div>
                 )}
-                {user.id === txn.payee.id && (
+                {user.id === txn.payee.id && txn.category !== 'Declined' && (
                   <div style={{ color: "green" }}>
                     + ${txn.amount.toFixed(2)}
                   </div>
