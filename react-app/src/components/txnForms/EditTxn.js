@@ -23,7 +23,7 @@ const EditIncompleteTxn = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setErrors({});
+    // setErrors({});
     let privacy;
     isPublic ? (privacy = "public") : (privacy = "private");
     if (Number(amount) <= 0) {
@@ -48,7 +48,8 @@ const EditIncompleteTxn = () => {
       pending: 1,
     };
     console.log("**** edit txn:", editTxn);
-    if (Object.keys(errors).length === 0) {
+    console.log("**** errors", errors);
+    // if (Object.keys(errors).length === 0) {
       const data = await dispatch(editTransaction(editTxn, txn.id));
       if (data) {
         setErrors(data);
@@ -56,7 +57,7 @@ const EditIncompleteTxn = () => {
         setErrors({});
         return history.push("/incomplete");
       }
-    }
+    // }
   };
 
   

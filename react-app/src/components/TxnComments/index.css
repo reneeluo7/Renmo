@@ -1,3 +1,10 @@
 .comment-area{
     border-top: 1px solid grey;
 }
+
+.edit-delete-line{
+    display: flex;
+    justify-content: space-between;
+
+
+}

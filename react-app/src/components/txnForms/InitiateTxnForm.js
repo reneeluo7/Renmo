@@ -15,8 +15,8 @@ const InitiateTxn = () => {
   const [amount, setAmount] = useState(0);
   const [note, setNote] = useState("");
   const [isPublic, setIsPublic] = useState(true);
-  const [errors, setErrors] = useState([]);
-  const [message, setMessage] = useState({})
+  const [errors, setErrors] = useState({});
+  // const [message, setMessage] = useState({})
 
   // console.log('-----set amount', amount)
   // console.log('-----set note', note)
@@ -25,7 +25,7 @@ const InitiateTxn = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setErrors([])
+    // setErrors([])
     let category = e.target.value;
     // console.log('----set category', category)
     let pending;
@@ -34,16 +34,20 @@ const InitiateTxn = () => {
     isPublic ? (privacy = "public") : (privacy = "private");
     // console.log(privacy)
     if (Number(amount) <= 0) {
-      errors.push("Please enter a value grater than 0!") ;
+      setErrors({ amount: ["Please enter a value grater than 0!"] });
+      return;
     } 
     if (!selectedUser) {
-      errors.push("Please enter a recipient");
+      setErrors({ recipient: ["Please enter a recipient"] });
+      return;
     } 
     if (!note) {
-      errors.push("Please enter some details regarding the payment");
+      setErrors({ note: ["Please enter some details regarding the payment"] });
+      return;
     }
     if (note.length > 300) {
-      errors.push("Maximum note length is 300 characters");
+      setErrors({ note: ["Maximum note length is 300 characters"] });
+      return;
     }
 
     const newTxn = {
@@ -53,19 +57,19 @@ const InitiateTxn = () => {
       pending,
       category,
     };
-    console.log("****** newTXN: ", newTxn);
-    if (errors.length === 0){
+    // console.log("****** newTXN: ", newTxn);
+    // if (errors.length === 0){
 
       const data = await dispatch(createTxn(newTxn, selectedUser.id));
       console.log('----data return from thunk', data)
       if (data) {
-        setMessage(data);
+        setErrors(data);
       } else {
-        setMessage({});
+        setErrors({});
         return history.push('/home');
        
       }
-    }
+    // }
   };
 
   return (
@@ -80,11 +84,11 @@ const InitiateTxn = () => {
                 {error}
               </div>
             ))} */}
-            {errors && errors?.map((error, ind) => (
+            {/* {errors && errors?.map((error, ind) => (
               <div key={ind} className="form-errors" style={{ color: "red" }}>
                 {error}
               </div>
-            ))}
+            ))} */}
           </div>
           <div className="payment-amount">
             <div className="payment-amount-box">

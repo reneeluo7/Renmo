@@ -4,23 +4,23 @@ import { NavLink } from "react-router-dom";
 // import LogoutButton from './auth/LogoutButton';
 import { useSelector, useDispatch } from "react-redux";
 import { getUserInitials, getUserFullName } from "../util/nameconvert";
-import { getCompletedTxns, setCommentTarget } from "../store/transaction";
-import { getAllUsers } from "../store/session";
+import { getCompletedTxns } from "../store/transaction";
+
 import NavBar from "./NavBar.js";
 import "./HomePage.css";
 import { Link } from "react-router-dom";
-import TxnComments from "./TxnComments";
+
 
 const HomePage = () => {
   const user = useSelector((state) => state.session?.user);
   const transactions = useSelector((state) => state.transaction?.completed);
   const initial = getUserInitials(user);
   const dispatch = useDispatch();
-  const [isLoad, setLoaded] = useState(false) 
+  
 
   useEffect(() => {
     dispatch(getCompletedTxns());
-    // dispatch(getAllUsers());
+   
   }, [dispatch]);
 
   return (
@@ -52,11 +52,7 @@ const HomePage = () => {
                     <div className="third-txn-note-line">{txn.note}</div>
                     <div className="forth-txn-comment-line">
                       <Link to={{pathname:`/transactions/${txn.id}/comments`, state:{txn}}} >
-                        <div
-                          // onClick={() => {
-                          //   dispatch(setCommentTarget(txn));
-                          // }}
-                        >
+                        <div>
                           <i className="fa-sharp fa-solid fa-comment"></i>
                           {txn.comments.length !== 0 && (
                             <span>{txn.comments.length}</span>
@@ -83,17 +79,13 @@ const HomePage = () => {
                     </div>
                     <div className="third-txn-note-line">{txn.note}</div>
                     <div className="forth-txn-comment-line">
-                      <Link to={`/transactions/${txn.id}/comments`}>
-                        <button
-                          onClick={() => {
-                            dispatch(setCommentTarget(txn));
-                          }}
-                        >
+                    <Link to={{pathname:`/transactions/${txn.id}/comments`, state:{txn}}} >
+                        <div>
                           <i className="fa-sharp fa-solid fa-comment"></i>
                           {txn.comments.length !== 0 && (
                             <span>{txn.comments.length}</span>
                           )}
-                        </button>
+                        </div>
                       </Link>
                     </div>
                   </div>
@@ -116,18 +108,13 @@ const HomePage = () => {
                     </div>
                     <div className="third-txn-note-line">{txn.note}</div>
                     <div className="forth-txn-comment-line">
-                      <Link to={`/transactions/${txn.id}/comments`}>
-                        <button
-                          onClick={() => {
-                            dispatch(setCommentTarget(txn));
-                          }}
-                        >
+                    <Link to={{pathname:`/transactions/${txn.id}/comments`, state:{txn}}} >
+                        <div>
                           <i className="fa-sharp fa-solid fa-comment"></i>
                           {txn.comments.length !== 0 && (
                             <span>{txn.comments.length}</span>
                           )}
-                          
-                        </button>
+                        </div>
                       </Link>
                     </div>
                   </div>
@@ -148,17 +135,13 @@ const HomePage = () => {
                     </div>
                     <div className="third-txn-note-line">{txn.note}</div>
                     <div className="forth-txn-comment-line">
-                      <Link to={`/transactions/${txn.id}/comments`}>
-                        <button
-                          onClick={() => {
-                            dispatch(setCommentTarget(txn));
-                          }}
-                        >
+                    <Link to={{pathname:`/transactions/${txn.id}/comments`, state:{txn}}} >
+                        <div>
                           <i className="fa-sharp fa-solid fa-comment"></i>
                           {txn.comments.length !== 0 && (
                             <span>{txn.comments.length}</span>
                           )}
-                        </button>
+                        </div>
                       </Link>
                     </div>
                   </div>
