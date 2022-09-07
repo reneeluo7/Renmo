@@ -1,12 +1,25 @@
-from flask import Blueprint
+from flask import Blueprint, redirect, request
 from app.forms.comment_form import CommentForm
-from app.models import Transaction, Comment, db
+from app.models import Transaction, Comment, comment, db
 from flask_login import current_user, login_user, logout_user, login_required
 
 
 comment_routes = Blueprint('comments', __name__)
 
+#GET
+@comment_routes.route('/transactions/<int:txn_id>')
+@login_required
+def get_txn_comments(txn_id):
+    txn = Transaction.query.get(txn_id)
+    if not txn:
+        return {'errors':['Transaction can not be found']},404
+    comments = Comment.query.filter(Comment.transaction_id == txn_id).all()
 
+    return {'comments': [com.to_dict() for com in comments]}
+
+
+
+#POST
 @comment_routes.route('/transactions/<int:txn_id>', methods=['POST'])
 @login_required
 
@@ -28,4 +41,19 @@ def txn_comment(txn_id):
        
 
     return {'errors': form.errors}, 401
+
+
+# DELETE 
+@comment_routes.route('/<int:cmtId>', methods=['DELETE'])
+@login_required
+def cancel_txn(cmtId):
+    comment = Comment.query.get(cmtId)
+
+    if not comment:
+        return {"message": "This comment does not exit."}
+   
+
+    db.session.delete(comment)
+    db.session.commit()
+    return {'message': 'Comment Deleted'}
 

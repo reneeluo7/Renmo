@@ -4,23 +4,23 @@ import { NavLink } from "react-router-dom";
 // import LogoutButton from './auth/LogoutButton';
 import { useSelector, useDispatch } from "react-redux";
 import { getUserInitials, getUserFullName } from "../util/nameconvert";
-import { getCompletedTxns, setCommentTarget } from "../store/transaction";
-import { getAllUsers } from "../store/session";
+import { getCompletedTxns } from "../store/transaction";
+
 import NavBar from "./NavBar.js";
 import "./HomePage.css";
 import { Link } from "react-router-dom";
-import TxnComments from "./TxnComments";
+
 
 const HomePage = () => {
   const user = useSelector((state) => state.session?.user);
   const transactions = useSelector((state) => state.transaction?.completed);
   const initial = getUserInitials(user);
   const dispatch = useDispatch();
-  const [isLoad, setLoaded] = useState(false) 
+  
 
   useEffect(() => {
     dispatch(getCompletedTxns());
-    // dispatch(getAllUsers());
+   
   }, [dispatch]);
 
   return (

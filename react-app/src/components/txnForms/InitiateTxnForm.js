@@ -57,7 +57,7 @@ const InitiateTxn = () => {
       pending,
       category,
     };
-    console.log("****** newTXN: ", newTxn);
+    // console.log("****** newTXN: ", newTxn);
     // if (errors.length === 0){
 
       const data = await dispatch(createTxn(newTxn, selectedUser.id));
