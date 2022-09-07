@@ -110,10 +110,10 @@ export const editTransaction = (txn, txnId) => async (dispatch) =>{
       });
       if (response.ok) {
         const data = await response.json();
-        console.log(
-          "---console log in edit txn thunk fetch from backend data",
-          data
-        );
+        // console.log(
+        //   "---console log in edit txn thunk fetch from backend data",
+        //   data
+        // );
         dispatch(editATxn(data.transaction));
         return null;
       } else if (response.status < 500) {

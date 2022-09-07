@@ -46,14 +46,35 @@ def txn_comment(txn_id):
 # DELETE 
 @comment_routes.route('/<int:cmtId>', methods=['DELETE'])
 @login_required
-def cancel_txn(cmtId):
+def delete_comment(cmtId):
     comment = Comment.query.get(cmtId)
 
     if not comment:
-        return {"message": "This comment does not exit."}
+        return {"message": "This comment does not exist."}
    
 
     db.session.delete(comment)
     db.session.commit()
     return {'message': 'Comment Deleted'}
 
+
+#PUT
+@comment_routes.route('/<int:cmtId>', methods=['PUT'])
+@login_required
+def edit_comment(cmtId):
+    comment = Comment.query.get(cmtId)
+
+    if not comment:
+        return{'message': 'This comment does not exist.'}
+    
+    form = CommentForm()
+    form['csrf_token'].data = request.cookies['csrf_token']
+    if form.validate_on_submit():
+        comment.content = form.data['content']
+       
+
+        db.session.commit()
+
+        return{'comment': comment.to_dict()}
+    
+    return {'errors': form.errors}, 401

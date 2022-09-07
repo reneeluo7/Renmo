@@ -47,9 +47,7 @@ const EditIncompleteTxn = () => {
       category: "request",
       pending: 1,
     };
-    console.log("**** edit txn:", editTxn);
-    console.log("**** errors", errors);
-    // if (Object.keys(errors).length === 0) {
+   
       const data = await dispatch(editTransaction(editTxn, txn.id));
       if (data) {
         setErrors(data);
@@ -57,7 +55,7 @@ const EditIncompleteTxn = () => {
         setErrors({});
         return history.push("/incomplete");
       }
-    // }
+   
   };
 
   
