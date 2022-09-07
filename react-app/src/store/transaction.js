@@ -4,6 +4,7 @@ const LOAD_INCOMPLETE = "transaction/GET_ALL_INCOMPLETE_TXNS";
 const ADD_NEW_TXN = "transaction/ADD_NEW_TXN";
 const CANCEL_TXN = "transaction/CANCEL_TXN";
 const EDIT_TXN = "transaction/EDIT_TXN";
+const CLOSE_TXN = "transaction/CLOSE_TXN";
 const SET_TARGET = "transaction/SET_TARGET";
 
 
@@ -31,9 +32,14 @@ const editATxn = (txn) => ({
   txn,
 });
 
-export const setCommentTarget = (txn) => ({
-  type: SET_TARGET,
+const closeATxn = (txn) => ({
+  type: CLOSE_TXN,
   txn,
+});
+
+ const loadTargetUserTxns = (txns) => ({
+  type: SET_TARGET,
+  txns,
 })
 
 
@@ -55,6 +61,15 @@ export const getIncompleteTxns = () => async (dispatch) => {
     const data = await response.json();
     // console.log("---console log in thunk fetch from backend data", data)
     dispatch(loadIncomplete(data.transactions));
+    return response;
+  }
+};
+
+export const getTargetUserTxns = (user) => async (dispatch) => {
+  const response = await fetch(`/api/transactions/u/${user.id}`);
+  if (response.ok) {
+    const data = await response.json();
+    dispatch(loadTargetUserTxns(data.transactions));
     return response;
   }
 };
@@ -124,6 +139,36 @@ export const editTransaction = (txn, txnId) => async (dispatch) =>{
       } else {
         return ["An error occurred. Please try again."];
       }
+}
+
+// PUT -CLOSE PENDING
+export const closeTxn = (txn, txnid) => async dispatch => {
+  const response = await fetch(`/api/transactions/${txnid}/close`, {
+    method:['PUT'],
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      amount: txn.amount,
+      note: txn.note,
+      category: txn.category,
+      privacy: txn.privacy,
+      pending: 0
+    }),
+  })
+  if (response.ok) {
+    const data = await response.json();
+   
+    dispatch(closeATxn(data.transaction));
+    return null;
+  } else if (response.status < 500) {
+    const data = await response.json();
+    if (data.errors) {
+      return data.errors;
+    }
+  } else {
+    return ["An error occurred. Please try again."];
+  }
 }
 
 
@@ -217,10 +262,14 @@ export default function reducer(state = initialState, action) {
           return newState
       
       case SET_TARGET:
-        newState = {...state, completed:[...state?.completed], incomplete:[...state?.incomplete],target:[action.txn]}
+        newState = {...state, completed:[...state?.completed], incomplete:[...state?.incomplete],target:[...action.txns]}
           return newState
 
-
+      case CLOSE_TXN:
+        const updateIncomplete = state.incomplete?.filter(txn => txn.id !== action.txn.id)
+        newState = {...state, completed:[...state?.completed, action.txn], incomplete:[...updateIncomplete],target:[...state?.target]}
+        newState[action.txn.id] = action.txn
+          return newState
       
         
 

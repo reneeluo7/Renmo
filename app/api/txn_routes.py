@@ -101,7 +101,32 @@ def edit_txn(txnid):
        
         return {'transaction': transaction.to_dict_users_comments()}
 
-    return {'errors': validation_errors_to_error_messages(form.errors)}, 401
+    return {'errors': form.errors}, 401
+
+
+# Close pending transaction
+@transaction_routes.route('/<int:txnid>/close', methods=['PUT'])
+@login_required
+def close_pending_txn(txnid):
+    transaction = Transaction.query.get(txnid)
+    if not transaction:
+        return {"message": "This transaction does not exist."}
+    elif transaction.payer_id != current_user.id:
+         return {"message": "You are not allowed to edit this transaction."}
+    
+    form = TransactionForm()
+    form['csrf_token'].data = request.cookies['csrf_token']
+    if form.validate_on_submit():
+        
+        transaction.pending=False
+        transaction.category=form.data['category']
+        transaction.created_at=datetime.utcnow()
+
+        db.session.commit()
+
+        return {'transaction': transaction.to_dict_users_comments()}
+    
+    return {'errors': form.errors}, 401
 
 
 

@@ -56,10 +56,13 @@ const NavBar = () => {
 
                 <a href="/incomplete">Incomplete</a>
                 </div>
+                {transactions.length > 0 && 
+                
                 <div className="incomplete-right">
 
                 {transactions.length}
                 </div>
+                }
               </div>
               
               <LogoutButton />

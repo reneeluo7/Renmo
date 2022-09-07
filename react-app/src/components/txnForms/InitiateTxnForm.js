@@ -95,14 +95,15 @@ const InitiateTxn = () => {
               <p className="dollar-sign">$</p>
               <div className="amount-number">
                 <input
-                  type="Number"
+                  type="number"
                   className="Number"
-                  autoFocus
-                  placeholder="0"
+                  // autoFocus
+                  // placeholder="0"
                   value={amount}
-                  min={0}
-                  max={3000}
-                  step={0.01}
+                  // min='0'
+                  // max='3000'
+                  step='0.01'
+                  // pattern="^\d*(\.\d{0,2})?$"
                   onChange={(e) => setAmount(e.target.value)}
                   required
                 />
@@ -142,7 +143,7 @@ const InitiateTxn = () => {
                 onChange={(e) => setNote(e.target.value)}
               ></textarea>
             </div>
-            {errors?.note && !note &&
+            {errors?.note &&
               <div className="error" style={{ color: "red" }}>
                 {errors?.note?.map((error, ind) => (
                   <div key={ind}>{error}</div>

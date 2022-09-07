@@ -60,7 +60,7 @@ const SearchBar = () => {
             <Link
               key={index}
               onClick={() => setInputStr("")}
-              to={`/u/${user.username}`}
+              to={{pathname:`/u/${user.username}`, state:{user}}}
               className="search-dropdown-item"
             >
               <div className="search-dropdown-user-info">
