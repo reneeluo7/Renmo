@@ -62,7 +62,7 @@ const SearchUser = () => {
     <div className="user-search-input">
       {!selected && <input
         type="text"
-        className="user-search"
+        className="user-search-payform"
         placeholder="Name or username"
         onChange={(e) => setInputStr(e.target.value.toLowerCase())}
         value={inputStr}
