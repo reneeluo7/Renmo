@@ -15,7 +15,7 @@ const SearchUser = () => {
 
   const noLogInUsers = users.filter((user) => user.id !== loggedInUser.id);
   
-    console.log("----to check selected", inputStr)
+    // console.log("----to check selected", inputStr)
     // console.log("----to check selected", selected)
   const filteredUsers = (inputStr) => {
     const list = [];
