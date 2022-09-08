@@ -1,0 +1,97 @@
+.splash-main{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.splash-top-bar{
+    width: 100%;
+    height: 100px;
+    box-shadow: 0 2px 5px 0 rgb(0 0 0 / 6%);
+    /* margin: auto; */
+    /* border: 2px red dotted; */
+    position: fixed;
+    /* padding-bottom: 10px; */
+}
+
+.splash-top-bar-container{
+    width: 65%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 5px auto;
+   
+}
+
+.top-bar-right{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+}
+
+.top-bar-right > * {
+    /* border: 2px blue dotted; */
+    font-size: 20px;
+    margin-right: 25px;
+    justify-content: center;
+    align-items: center;
+}
+
+.top-bar-right > * :hover{
+    text-decoration: underline;
+    color: #008CFF;
+}
+
+.splash-main-container{
+    position: relative;
+    top: 100px;
+    background-color: #F4FAFF;
+    display: flex;
+    width: 100%;
+    height: 100%;
+}
+
+.splash-main-content{
+    width: 65%;
+    display: flex;
+    margin: auto;
+}
+.splash-main-left{
+    margin-top: 250px;
+    width: 55%;
+    height: 100%;
+    justify-content: center;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+
+}
+.slogan-large{
+    font-size: 5rem;
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 500;
+    margin-bottom: 4.5rem;
+}
+.slogan-small{
+    font-size: 24px;
+}
+.get-start-btn{
+   margin-top: 30px;
+
+}
+.get-start-btn > button{
+    background-color: #008cff;
+    border-radius: 50px;
+    width: 100%;
+    height: 100%;
+    border: 1px solid #008cff;;
+    /* background-color: transparent; */
+    color: #2F3033;
+    color: white;
+    font-size: 1.5rem;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem 2.99rem;
+    transition: border .3s,transform .3s,-webkit-transform .3s;
+}

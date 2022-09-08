@@ -1,0 +1,121 @@
+.auth-page-container{
+    margin: 0;
+}
+.auth-page-top-bar{
+    width: 100%;
+    height: 80px;
+    position: fixed;
+    border-bottom: 1px solid lightgray;
+    z-index: 10;
+}
+.auth-page-top-bar-container{
+    width: 50%;
+    display: flex;
+    justify-content: space-between;
+    margin: auto;
+    align-items: center;
+    margin: 5px auto;
+    z-index: 10;
+}
+.auth-page-form-container{
+    width: 50%;
+    height: 100%;
+    position: relative;
+    top: 80px;
+    align-items: center;
+    margin: 30px auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 20px 0px;
+}
+.form-title h3{
+    margin: 28px 0;
+    font-size: 32px;
+    line-height: 40px;
+    font-weight: 400;
+    color: rgb(38, 38, 38);
+
+}
+.auth-form{
+    background: #f7f7f7;
+    border-radius: 4px;
+    border: 1px solid #ededed;
+    padding: 28px;
+    margin: 0 auto 40px;
+    width: 500px;
+}
+/* .sign-up{
+    height: 600px;
+    overflow-y: auto;
+    overflow-x: hidden;
+
+} */
+
+.auth-form-input-label{
+    font-size: 12px;
+    line-height: 16px;
+    display: block;
+    margin-bottom: 36px;
+}
+
+ .label-text {
+    font-size: 12px;
+    line-height: 16px;
+    font-weight: 600;
+    color: #6b6e76;
+    text-transform: uppercase;
+    display: block;
+    padding-left: 4px;
+}
+
+.auth-form-input-bar{
+    
+    font-size: 18px;
+    line-height: 24px;
+    font-weight: 400;
+    background: none;
+    border-radius: 0;
+    border: 0;
+    border-bottom: 1px solid #d9d9d9;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+    color: #262626;
+    display: block;
+    min-width: 0;
+    padding: 12px 8px 12px 4px;
+    width: 100%;
+}
+.button-wrapper{
+    display: flex;
+    justify-content: space-evenly;
+
+}
+.button-wrapper > *{
+    
+    font-size: 15px;
+    padding: 12px 20px;
+    font-weight: 600;
+    border-radius: 4px;
+    line-height: 1.5;
+    background: #3d95ce;
+    color: #fff;
+    border: none;
+}
+
+.sign-up-sub-btn{
+    font-size: 15px;
+    padding: 12px 20px;
+    font-weight: 600;
+    border-radius: 4px;
+    line-height: 1.5;
+    background: #3d95ce;
+    color: #fff;
+    border: none;
+}
+
+.errors-show{
+    margin-bottom: 10px;
+    justify-content: center;
+    align-items: center;
+}

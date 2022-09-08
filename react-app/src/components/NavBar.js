@@ -1,74 +1,64 @@
-import React from 'react';
-import { NavLink } from 'react-router-dom';
-import LogoutButton from './auth/LogoutButton';
-import { useSelector, useDispatch } from 'react-redux';
-import {getUserInitials} from '../util/nameconvert'
+import React from "react";
+import { NavLink, useHistory } from "react-router-dom";
+import LogoutButton from "./auth/LogoutButton";
+import { useSelector, useDispatch } from "react-redux";
+import { getUserInitials } from "../util/nameconvert";
 import { useEffect } from "react";
-import { getIncompleteTxns} from '../store/transaction'
+import { getIncompleteTxns } from "../store/transaction";
 
-import './NavBar.css'
-
-
+import "./NavBar.css";
 
 const NavBar = () => {
-  const user = useSelector(state => state.session?.user)
+  const user = useSelector((state) => state.session?.user);
   const transactions = useSelector((state) => state.transaction?.incomplete);
-  const initial = getUserInitials(user)
+  const initial = getUserInitials(user);
   const dispatch = useDispatch();
+  const history = useHistory()
 
   useEffect(() => {
     dispatch(getIncompleteTxns());
   }, [dispatch]);
 
   return (
-    <nav className='nav-bar'>
-      <div className="app-logo"> 
-      <NavLink to='/home' exact={true}>
-
-        <h1>Renmo (app-logo)</h1>
+    <nav className="nav-bar">
+      <NavLink to="/home" exact={true}>
+        <div className="app-logo">
+          Renmo
+        </div>
       </NavLink>
-      </div>
-        <div className="nav-container">
-          <div className="user-info">
-            <div className="user-initial">
-            <NavLink to='/home' exact={true}>
-                {initial}
-                </NavLink>
-            </div>
-            <div className="user-info-right">
-              <div className="user-welcome">Hi, {user.firstName}</div>
-              <div className="user-username">@{user.username}</div>
-            </div>
+      <div className="nav-container">
+        <div className="user-info">
+          <NavLink to="/home" exact={true}>
+            <div className="user-initial">{initial}</div>
+          </NavLink>
+          <div className="user-info-right">
+            <div className="user-welcome">Hi, {user.firstName}</div>
+            <div className="user-username">@{user.username}</div>
           </div>
-          <div className="pay-btn"> 
-            <a href="/pay">
-              Pay or Request 
-            </a>
-          
-          </div>
-          {/* <div className="payment-method">
+        </div>
+        <NavLink to="/pay" exact={true}>
+        <div className="pay-btn">
+          Pay or Request
+        </div>
+        </NavLink>
+        {/* <div className="payment-method">
             Money will be transferred from your bank account
           </div> */}
-          <div className="nav-links">
-              <div className="search"> <a href='/search'>Search</a></div>
-              <div className="incomplete">
-                <div className="incomplete-left">
-
-                <a href="/incomplete">Incomplete</a>
-                </div>
-                {transactions.length > 0 && 
-                
-                <div className="incomplete-right">
-
-                {transactions.length}
-                </div>
-                }
-              </div>
-              
-              <LogoutButton />
-          </div>
-
+        <div className="nav-links">
+          <a href="/search">
+            <div className="search"> Search</div>
+          </a>
+          <a href="/incomplete">
+            <div className="incomplete">
+              <div className="incomplete-left">Incomplete</div>
+              {transactions.length > 0 && (
+                <div className="incomplete-right">{transactions.length}</div>
+              )}
+            </div>
+          </a>
+          <LogoutButton />
         </div>
+      </div>
       {/* <ul>
         <li>
           <NavLink to='/' exact={true} activeClassName='active'>
@@ -96,6 +86,6 @@ const NavBar = () => {
       </ul> */}
     </nav>
   );
-}
+};
 
 export default NavBar;

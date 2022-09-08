@@ -142,7 +142,7 @@ const EditIncompleteTxn = () => {
                 onChange={(e) => setNote(e.target.value)}
               ></textarea>
             </div>
-            {errors?.note && !note && (
+            {errors?.note && (
               <div className="error" style={{ color: "red" }}>
                 {errors?.note?.map((error, ind) => (
                   <div key={ind}>{error}</div>
