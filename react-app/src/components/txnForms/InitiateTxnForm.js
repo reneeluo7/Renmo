@@ -12,7 +12,7 @@ const InitiateTxn = () => {
   const history = useHistory();
   // const loggedInUser = useSelector((state) => state.session.user);
   const selectedUser = useSelector((state) => state.session.selected);
-  const [amount, setAmount] = useState(0);
+  const [amount, setAmount] = useState();
   const [note, setNote] = useState("");
   const [isPublic, setIsPublic] = useState(true);
   const [errors, setErrors] = useState({});
@@ -92,16 +92,16 @@ const InitiateTxn = () => {
           </div>
           <div className="payment-amount">
             <div className="payment-amount-box">
-              <p className="dollar-sign">$</p>
+              <div className="dollar-sign">$</div>
               <div className="amount-number">
                 <input
                   type="number"
                   className="Number"
                   // autoFocus
-                  // placeholder="0"
+                  placeholder="0"
                   value={amount}
-                  // min='0'
-                  // max='3000'
+                  min='0'
+                  max='3000'
                   step='0.01'
                   // pattern="^\d*(\.\d{0,2})?$"
                   onChange={(e) => setAmount(e.target.value)}

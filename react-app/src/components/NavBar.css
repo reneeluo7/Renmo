@@ -8,6 +8,14 @@
     border-right: 1px solid #ccc;
     overflow-y: auto;
 }
+.app-logo {
+    font-family: 'Permanent Marker', cursive;
+    color: #008CFF;
+    font-weight: 800;
+    font-size: 3rem;
+    /* text-align: center; */
+    /* align-items: center; */
+}
 
 .user-info{
     min-height: 80px;
@@ -72,9 +80,13 @@
     justify-content: center;
     align-items: center;
     padding-top: 12px;
+    color: white;
+    font-size: 1.125rem;
+    font-weight: bold;
+    
 }
 
-.pay-btn > a {
+/* .pay-btn > a {
     position: relative;
     color: white;
     height: 100%;
@@ -83,6 +95,18 @@
     text-align: center;
     justify-content: center;
     /* padding-top: 20px; */
+
+
+.nav-links{
+    margin-top: 20px;
+
+}
+
+.nav-links > *{
+    height: 40px;
+    width: 276px;
+    /* border: 2px red dotted; */
+    
 }
 
 .incomplete{

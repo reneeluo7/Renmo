@@ -3,7 +3,7 @@ import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import LoginForm from './components/auth/LoginForm';
 import SignUpForm from './components/auth/SignUpForm';
-// import NavBar from './components/NavBar';
+
 import ProtectedRoute from './components/auth/ProtectedRoute';
 import UsersList from './components/users/UsersList';
 import User from './components/users/User';
@@ -15,6 +15,7 @@ import InitiateTxn from './components/txnForms/InitiateTxnForm';
 import EditIncompleteTxn from './components/txnForms/EditTxn';
 import TxnComments from './components/TxnComments';
 import UserPage from './components/UserPage';
+import SplashPage from './components/SplashPage';
 
 
 
@@ -35,10 +36,6 @@ function App() {
 
   return (
     <BrowserRouter>
-      <ProtectedRoute path='/' exact={true} >
-          
-          <h1>Welsome to Renmo</h1>
-        </ProtectedRoute>
       
       <Switch>
         <Route path='/login' exact={true}>
@@ -46,6 +43,10 @@ function App() {
         </Route>
         <Route path='/sign-up' exact={true}>
           <SignUpForm />
+        </Route>
+      <Route path='/' exact={true} >
+          <SplashPage />
+          {/* <h1>Welsome to Renmo</h1> */}
         </Route>
         <ProtectedRoute path='/users' exact={true} >
           <UsersList/>
