@@ -39,6 +39,7 @@
     align-items: center;
     font-size: 18px;
     padding-top: 38px;
+
 }
 
 
@@ -84,6 +85,7 @@
     text-align: center;
     padding-top: 13px;
     margin-right: 7px;
+    /* background-color: white; */
 }
 .txn-bar-amount{
     /* align-self: end; */
