@@ -29,7 +29,9 @@ export default function SplashPage() {
                 <div className="splash-main-left">
                     <p className="slogan-large">Fast, safe, social payments</p>
                     <p className="slogan-small">Pay. Get paid. Share. Join your friends on Renmo.</p>
-                    <div className="get-start-btn"><button>Get Started</button></div>
+                    <div className="get-start-btn">
+                        <button ><Link to='/login' >Get Started</Link></button>
+                        </div>
                 </div>
                 <div className="splash-main-right">
                     <img src="https://i.imgur.com/bLBq6nQ.png"></img>

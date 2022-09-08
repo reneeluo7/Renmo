@@ -6,6 +6,7 @@
     height: 80px;
     position: fixed;
     border-bottom: 1px solid lightgray;
+    z-index: 10;
 }
 .auth-page-top-bar-container{
     width: 50%;
@@ -14,6 +15,7 @@
     margin: auto;
     align-items: center;
     margin: 5px auto;
+    z-index: 10;
 }
 .auth-page-form-container{
     width: 50%;
@@ -43,6 +45,13 @@
     margin: 0 auto 40px;
     width: 500px;
 }
+/* .sign-up{
+    height: 600px;
+    overflow-y: auto;
+    overflow-x: hidden;
+
+} */
+
 .auth-form-input-label{
     font-size: 12px;
     line-height: 16px;
@@ -92,4 +101,21 @@
     background: #3d95ce;
     color: #fff;
     border: none;
+}
+
+.sign-up-sub-btn{
+    font-size: 15px;
+    padding: 12px 20px;
+    font-weight: 600;
+    border-radius: 4px;
+    line-height: 1.5;
+    background: #3d95ce;
+    color: #fff;
+    border: none;
+}
+
+.errors-show{
+    margin-bottom: 10px;
+    justify-content: center;
+    align-items: center;
 }
