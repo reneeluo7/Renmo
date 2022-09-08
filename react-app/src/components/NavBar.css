@@ -98,15 +98,38 @@
 
 
 .nav-links{
-    margin-top: 20px;
+    width: 100%;
+    margin-top: 40px;
+    display: flex;
+    flex-direction: column;
+    margin-right: 15px;
+    /* border: 2px red dotted; */
 
 }
 
-.nav-links > *{
-    height: 40px;
-    width: 276px;
+.nav-links > * {
+    height: 50px;
+    width: 100%;
     /* border: 2px red dotted; */
+    align-items: center;
+    padding-top: 10px;
+    font-size: 18px;
     
+}
+.nav-links > *:hover{
+    color: #008CFF;
+}
+
+
+.log-out-btn{
+    background-color: transparent;
+    border: none;
+    font-size: 16px;
+    align-self: start;
+}
+.log-out-btn:hover{
+    background-color: #008CFF;
+    color: white;
 }
 
 .incomplete{

@@ -47,6 +47,8 @@ const SearchBar = () => {
 
   return (
     <div className="user-search-input">
+      <div className="searchBar-input-wrap">
+
       <input
         type="text"
         className="user-search"
@@ -54,6 +56,7 @@ const SearchBar = () => {
         onChange={(e) => setInputStr(e.target.value.toLowerCase())}
         value={inputStr}
       />
+      </div>
       {showMenu && searchResult.length > 0 && (
         <div className="search-bar-drop-down">
           {searchResult.map((user, index) => (

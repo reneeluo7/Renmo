@@ -62,7 +62,7 @@ const LoginForm = () => {
         </div>
 
         <form onSubmit={onLogin} className="auth-form">
-          <div>
+          <div style={{ color: "red" }} className="errors-show">
             {errors.map((error, ind) => (
               <div key={ind}>{error}</div>
             ))}

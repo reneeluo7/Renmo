@@ -1,0 +1,56 @@
+.search-page-container{
+    width: 60%;
+    padding-top: 3.26rem;
+    align-items: baseline;
+}
+
+.search-page-container > h1 {
+    font-size: 20px;
+    margin-block-start: 0.67em;
+    margin-block-end: 0.67em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+    font-weight: bold;
+}
+
+.searchBar-input-wrap{
+    border: 0.5px solid;
+    overflow: hidden;
+    border-color: #888C94;
+    border-radius: 8px;
+    background-color: #fff;
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.1876em;
+    height: 45px;
+}
+.user-search{
+    padding-top: 10px;
+    padding-bottom: 10px;
+    width: 100%;
+    height: 100%;
+    padding: 6px 0 7px;
+    box-sizing: content-box;
+    animation-name: mui-auto-fill-cancel;
+    -webkit-tap-highlight-color: transparent;
+    overflow-x: auto;
+    overflow-y: hidden;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+    border: 0;
+}
+.search-dropdown-user-info{
+    display: flex;
+    margin-top: 10px;
+    margin-bottom: 5px;
+    margin-left: 5px;
+    padding-top: 5px;
+}
+.search-dropdown-user-info > * {
+    margin-bottom: 5px;
+    margin-right: 10px;
+}
+.search-dropdown-user-info:hover{
+    background-color: #008cff6d;
+    color: white;
+}
