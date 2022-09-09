@@ -2,6 +2,7 @@ import React from "react";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { createComment } from "../../store/comment";
+import { getUserInitials, getUserFullName } from "../../util/nameconvert";
 
 function CreateComment({ txn }) {
   const dispatch = useDispatch();
@@ -37,20 +38,24 @@ function CreateComment({ txn }) {
 
   return (
     <>
-      <form onSubmit={handleSubmit}>
+    {/* <div className=" create-comment-user">{getUserInitials(user)}</div> */}
+      <form 
+        className="create-comment-form"
+        onSubmit={handleSubmit}>
         <input
-          placeholder="add your comment here"
+          className="create-comment-input"
+          placeholder="Write a comment..."
           value={content}
           onChange={(e) => setContent(e.target.value)}
         ></input>
-        <button>Post</button>
+        <button className="create-comment-sub-btn">Post</button>
       </form>
       {errors.comment && (
-        <div className="error" style={{ color: "red" }}>
+        <p className="error" style={{ color: "red" }}>
           {errors?.comment?.map((error, ind) => (
             <div key={ind}>{error}</div>
           ))}
-        </div>
+        </p>
       )}
     </>
   );

@@ -101,6 +101,7 @@ const SignUpForm = () => {
                 name="firstName"
                 onChange={updateFirstName}
                 value={firstName}
+                maxLength="40"
                 // required={true}
               ></input>
             </label>
@@ -114,6 +115,7 @@ const SignUpForm = () => {
                 name="lastName"
                 onChange={updateLastName}
                 value={lastName}
+                maxLength="40"
                 // required={true}
               ></input>
             </label>
@@ -127,6 +129,7 @@ const SignUpForm = () => {
                 name="username"
                 onChange={updateUsername}
                 value={username}
+                maxLength="40"
                 // required={true}
               ></input>
             </label>

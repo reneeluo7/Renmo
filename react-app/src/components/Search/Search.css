@@ -58,15 +58,25 @@
     background-color: #008cff6d;
     /* color: white; */
 }
+.search-bar-drop-down{
+    box-shadow: 0px 1px 3px gray;
+    padding: 10px;
+}
 
 /* search user in pay form css */
+.search-dropdown-item{
+
+}
 .search-bar-drop-down-payform{
     position: absolute;
     z-index: 10;
     display: flex;
     flex-direction: column;
     background-color: white;
-    width: 390px;
+    width: 395px;
+    box-shadow: 0px 1px 3px gray;
+    margin-top: 16px;
+    padding: 5px;
 }
 .user-search-payform{
     border: 0;
@@ -77,9 +87,14 @@
     font-size: 16px;
     color:rgb(47, 48, 51);
     opacity: 1;
+
 }
 .user-search-payform:focus{
     outline: none;
+}
+.search-dropdown-item.payform{
+    /* background-color: aqua; */
+  overflow-wrap: anywhere;
 }
 
 .show-selected-user {
