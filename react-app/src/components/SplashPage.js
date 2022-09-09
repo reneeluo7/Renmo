@@ -1,9 +1,15 @@
+import React from 'react';
 import { Link } from 'react-router-dom';
 import './SplashPage.css'
+import { useSelector } from 'react-redux';
+import { Redirect } from "react-router-dom";
+
 
 
 
 export default function SplashPage() {
+    const user = useSelector(state => state.session.user)
+    if (user) return <Redirect to='/home' />
     
     return (
         <div className="splash-main">
@@ -29,9 +35,9 @@ export default function SplashPage() {
                 <div className="splash-main-left">
                     <p className="slogan-large">Fast, safe, social payments</p>
                     <p className="slogan-small">Pay. Get paid. Share. Join your friends on Renmo.</p>
-                    <div className="get-start-btn">
-                        <button ><Link to='/login' >Get Started</Link></button>
-                        </div>
+                    <Link to='/login' ><button className='splash-start-btn'><div className="get-start-btn">
+                        Get Started
+                        </div></button></Link>
                 </div>
                 <div className="splash-main-right">
                     <img src="https://i.imgur.com/bLBq6nQ.png"></img>

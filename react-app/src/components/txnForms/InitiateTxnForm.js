@@ -66,7 +66,7 @@ const InitiateTxn = () => {
       setErrors({ note: ["Please enter some details regarding the payment"] });
       return;
     }
-    if (note.length > 300) {
+    if (note.trim().length > 300) {
       setErrors({ note: ["Maximum note length is 300 characters"] });
       return;
     }
@@ -74,7 +74,7 @@ const InitiateTxn = () => {
     
     const newTxn = {
       amount,
-      note,
+      note:note.trim(),
       privacy,
       pending,
       category,
@@ -162,7 +162,7 @@ const InitiateTxn = () => {
                   rows="5"
                   value={note}
                   placeholder="Enter some details regarding the payment"
-                  onChange={(e) => setNote(e.target.value.trim())}
+                  onChange={(e) => setNote(e.target.value)}
                 ></textarea>
               </div>
               {errors?.note && (

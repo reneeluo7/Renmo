@@ -101,6 +101,7 @@
     background: #3d95ce;
     color: #fff;
     border: none;
+    cursor: pointer;
 }
 
 .sign-up-sub-btn{
