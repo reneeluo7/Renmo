@@ -54,8 +54,8 @@ const IncompletePage = () => {
                       >
                         Cancel
                       </button >
-                      <button>
 
+                      <button>
                       <Link to={{pathname:`/transactions/${txn.id}/edit`, state: {txn}}}>
                         {/* <button className="edit-txn"> Edit
                         </button> */}

@@ -120,7 +120,8 @@
 }
 .create-comment-sub-btn,
 .comment-edit-btn,
-.comment-delete-btn{
+.comment-delete-btn,
+.submit-edit-note{
     width: 80px;
     /* padding: 5px 5px; */
     margin: 0px 5px;
@@ -134,6 +135,21 @@
 }
 .create-comment-sub-btn:hover,
 .comment-edit-btn:hover,
-.comment-delete-btn:hover{
+.comment-delete-btn:hover,
+.submit-edit-note:hover{
     text-decoration: underline;
+}
+.edit-note-input > form{
+    border: 2px red dotted;
+    display: flex;
+    /* justify-content: space-between; */
+}
+#edit-note{
+    border: none;
+    overflow-wrap: anywhere;
+    width: 90%;
+
+}
+#edit-note:focus{
+    outline: none;
 }

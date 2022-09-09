@@ -13,7 +13,7 @@ export default function EditComment({ cmt }) {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if (content.length > 150) {
+    if (content.trim().length > 150) {
         setErrors({ comment: ["Maximum comment length is 150 characters"] });
         return;
       }
@@ -22,8 +22,9 @@ export default function EditComment({ cmt }) {
         return;
       }
       const editedComment = {
-        content
+        content:content.trim()
       };
+      console.log("edited comment after trim()", editedComment)
 
       const data = await dispatch(editComment(editedComment, cmt.id));
       if (data) {
@@ -80,6 +81,11 @@ export default function EditComment({ cmt }) {
           </form>
         </div>
       )}
+      <div style={{ color: "red" }} className="errors-show">
+            {errors && errors.comment?.map((error, ind) => (
+              <div key={ind}>{error}</div>
+            ))}
+          </div>
     </div>
   );
 }

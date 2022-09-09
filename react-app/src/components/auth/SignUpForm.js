@@ -18,14 +18,17 @@ const SignUpForm = () => {
   const onSignUp = async (e) => {
     e.preventDefault();
     if (firstName.length > 40 || lastName.length > 40 || username.length > 40) {
-      return setErrors(["Maximum length of first name, last name or username is 40 characters"])
+      return setErrors(["Maximum length of first name, last name is 40 characters"])
+    }
+    if ( username.length > 40) {
+      return setErrors(["Maximum length of username is 40 characters"])
     }
     if (password.length > 20 || password.length < 6) {
       return setErrors(['Password length should between 6 - 20 characters'])
     }
     if (password === repeatPassword) {
       const data = await dispatch(
-        signUp(firstName, lastName, username, email, password)
+        signUp(firstName.trim(), lastName.trim(), username.trim(), email, password)
       );
 
       if (data) {
@@ -101,7 +104,7 @@ const SignUpForm = () => {
                 name="firstName"
                 onChange={updateFirstName}
                 value={firstName}
-                maxLength="40"
+                // maxLength="40"
                 // required={true}
               ></input>
             </label>
@@ -115,7 +118,7 @@ const SignUpForm = () => {
                 name="lastName"
                 onChange={updateLastName}
                 value={lastName}
-                maxLength="40"
+                // maxLength="40"
                 // required={true}
               ></input>
             </label>
@@ -129,7 +132,7 @@ const SignUpForm = () => {
                 name="username"
                 onChange={updateUsername}
                 value={username}
-                maxLength="40"
+                // maxLength="40"
                 // required={true}
               ></input>
             </label>

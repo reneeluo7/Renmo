@@ -140,7 +140,7 @@ const EditIncompleteTxn = () => {
                 rows="5"
                 placeholder="Enter some details regarding the payment"
                 value={note}
-                onChange={(e) => setNote(e.target.value.trim())}
+                onChange={(e) => setNote(e.target.value)}
               ></textarea>
             </div>
             {errors?.note && (
