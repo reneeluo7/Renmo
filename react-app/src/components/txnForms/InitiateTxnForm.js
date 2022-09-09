@@ -17,6 +17,33 @@ const InitiateTxn = () => {
   const [isPublic, setIsPublic] = useState(true);
   const [errors, setErrors] = useState({});
 
+  // useEffect(() =>{
+  //   const err = {}
+  //   err.amount = []
+  //   if (amount?.split('.')[1]?.length > 2) {
+  //     err.amount.push("Only support a maximum of two decimal places.")
+  //   }
+  //   if (Number(amount) <= 0 || !amount) {
+  //     err.amount.push("Please enter a value grater than 0!")
+  //   }
+
+  //   setErrors(err)
+  // },[amount])
+
+  
+  
+  const checkNumLength =(num) => {
+    if (num?.split('.')[1]?.length > 2) {
+      setErrors({ amount: ["Only support a maximum of two decimal places."] })
+      return
+    } else {
+        setErrors({})
+      setAmount(num)
+    }
+      
+  }
+
+
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -27,7 +54,7 @@ const InitiateTxn = () => {
     let privacy;
     isPublic ? (privacy = "public") : (privacy = "private");
 
-    if (Number(amount) <= 0) {
+    if (Number(amount) <= 0 || !amount) {
       setErrors({ amount: ["Please enter a value grater than 0!"] });
       return;
     }
@@ -43,7 +70,8 @@ const InitiateTxn = () => {
       setErrors({ note: ["Maximum note length is 300 characters"] });
       return;
     }
-
+    
+    
     const newTxn = {
       amount,
       note,
@@ -53,12 +81,14 @@ const InitiateTxn = () => {
     };
 
     const data = await dispatch(createTxn(newTxn, selectedUser.id));
-    console.log("----data return from thunk", data);
+    // console.log("----data return from thunk", data);
     if (data) {
       setErrors(data);
     } else {
       setErrors({});
-      return history.push("/home");
+      if (category === 'pay') return history.push("/home");
+        else return history.push("/incomplete")
+     
     }
   };
 
@@ -89,11 +119,12 @@ const InitiateTxn = () => {
                     min="0"
                     max="3000"
                     step="0.01"
-                    // pattern="^\d*(\.\d{0,2})?$"
-                    onChange={(e) => setAmount(e.target.value)}
+                  
+                    // onChange={(e) => setAmount(e.target.value)}
+                    onChange={(e) => checkNumLength(e.target.value)}
                     required
                   />
-                  {errors.amount && Number(amount) <= 0 && (
+                  {errors.amount && (
                     <div className="error" style={{ color: "red" }}>
                       {errors?.amount?.map((error, ind) => (
                         <div key={ind}>{error}</div>
@@ -131,7 +162,7 @@ const InitiateTxn = () => {
                   rows="5"
                   value={note}
                   placeholder="Enter some details regarding the payment"
-                  onChange={(e) => setNote(e.target.value)}
+                  onChange={(e) => setNote(e.target.value.trim())}
                 ></textarea>
               </div>
               {errors?.note && (
@@ -150,8 +181,12 @@ const InitiateTxn = () => {
                   setIsPublic(!isPublic);
                 }}
               >
-                {!isPublic ? <h6>Private</h6> : <h6>Public</h6>}
+                {!isPublic ? <div><i className="fa-solid fa-user"></i> <h6>Private</h6> </div>
+                  : <div><i class="fa-sharp fa-solid fa-earth-americas"></i><h6>Public</h6></div> }
               </button>
+                {isPublic ? <div className="private-explain">This info can be viewed by everyone on the internet</div> 
+                  : <div className="private-explain"> This info can be viewed by the sender and recipient only</div>
+              }
             </div>
             <div className="pay-or-request-btns">
               <button
