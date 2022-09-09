@@ -78,16 +78,13 @@ const SearchUser = () => {
         <div className="search-bar-drop-down-payform">
           {searchResult.map((user, index) => (
             <div
+              className="search-dropdown-item payform"
               key={index}
               onClick={(e) => {
                 e.preventDefault()
                 setSelected(user)
-                setShowMenu(false)
-            
-            }}
-              
-              className="search-dropdown-item"
-            >
+                setShowMenu(false)}}
+                >
               <div className="search-dropdown-user-info">
                 <div className="txn-bar-initial">
                   {getUserInitials(user)}

@@ -22,6 +22,7 @@
     display: flex;
     margin: 40px 32px 32px 0;
     height: auto;
+    width: 100%;
 }
 
 .user-initial{
@@ -29,11 +30,13 @@
     border-radius: 50%;
     justify-content: center;
     text-align: center;
-    width: 80px;
+    width: 40%;
     height: 80px;
     border: 1px solid #888C94;
     padding-top: 28px;
     font-size: 16px;
+    min-width: 80px;
+
 }
 
 .user-info-right{
@@ -41,6 +44,7 @@
     flex-direction: column;
     margin: 0px 0px 0px 8px;
     justify-content: space-evenly;
+    width: 60%;
 }
 
 .user-welcome{
@@ -51,7 +55,9 @@
     margin-inline-start: 0px;
     margin-inline-end: 0px;
     font-weight: bold;
-    white-space: normal;
+    /* white-space: normal; */
+    overflow-wrap: anywhere;
+    width: 100%;
 
 }
 
@@ -67,7 +73,7 @@
     /* justify-content: center; */
     /* margin-bottom: 10px; */
     white-space: normal;
-    /* vertical-align: middle; */
+    overflow-wrap: anywhere;
 }
 
 .pay-btn{

@@ -46,8 +46,12 @@
     margin-right: 8px;
     vertical-align: top;
 }
-.amount-number{
-    /* width: 80px; */
+
+.amount-number input::-webkit-outer-spin-button,
+.amount-number input::-webkit-inner-spin-button {
+
+  -webkit-appearance: none;
+  /* margin: 0; */
 }
 
 .Number{
@@ -60,6 +64,7 @@
     -webkit-tap-highlight-color: transparent;
     border: 0;
     max-width: 233px;
+    text-align: center;
 }
 .search-user-input{
     padding-top:50px;

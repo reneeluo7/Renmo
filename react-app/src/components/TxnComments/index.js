@@ -33,7 +33,7 @@ function TxnComments() {
           <div className="homepage-user-txns comments">
             <div className="txn-bar comment">
               {targetTxn?.category === "pay" && (
-                <div className="txn-bar-left">
+                <div className="txn-bar-left comment">
                   <div className="txn-bar-initial">
                     {getUserInitials(targetTxn.payer)}
                   </div>
@@ -114,11 +114,11 @@ function TxnComments() {
               <div>
                 {comments &&
                   comments?.map((cmt) => (
-                    <div className="txn-bar-left" key={cmt.id}>
-                      <div className="txn-bar-initial">
+                    <div className="txn-bar-left comment-list" key={cmt.id}>
+                      <div className="txn-bar-initial comment-list">
                         {getUserInitials(cmt.user)}
                       </div>
-                      <div className="txn-bar-info">
+                      <div className="txn-bar-info comment-list">
                         <div className="topline">
                           {getUserFullName(cmt.user)}
                         </div>
