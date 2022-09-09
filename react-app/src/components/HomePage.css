@@ -71,9 +71,13 @@
     display: flex;
     color:#2F3033;
     justify-content: space-between;
+   margin: 10px 0px;
+   border-bottom: 1px solid rgba(128, 128, 128, 0.395);
 }
 .txn-bar-left{
     display: flex;
+    /* width: 90%; */
+    /* flex-wrap: wrap; */
 
 }
 .txn-bar-initial {
@@ -85,8 +89,64 @@
     text-align: center;
     padding-top: 13px;
     margin-right: 7px;
-    /* background-color: white; */
+    background-color: white;
+    
 }
 .txn-bar-amount{
     /* align-self: end; */
+}
+.txn-bar-info{
+    display: flex;
+    flex-direction: column;
+    /* border-bottom: 1px solid rgba(128, 128, 128, 0.531); */
+    /* width: 100%; */
+    /* flex-grow: 1;
+    flex-shrink: 1; */
+    box-sizing: border-box;
+    display: block;
+    
+
+}
+.topline{
+    font-size: 1rem;
+    font-weight: 500;
+    line-height: 1.25;
+    display: block;
+    color: #2F3033;
+}
+.topline span {
+    font-weight: bolder;
+    font-size: 17px;
+    
+}
+.topline a:hover{
+    font-weight: bolder;
+    color: #008CFF;
+    
+}
+.second-txn-date-line{
+    font-size: 0.875rem;
+    color: #55585E;
+    line-height: 1.43;
+    
+}
+.third-txn-note-line{
+    margin-top: 8px;
+    word-break: break-word;
+    color: #2F3033;
+    font-size: 1rem;
+    font-weight: 500;
+    line-height: 1.25;
+    /* overflow-y: auto; */
+    /* overflow-x: hidden; */
+    overflow-wrap: anywhere;
+    white-space: normal;
+    
+}
+.forth-txn-comment-line{
+    margin: 0.5rem 0;
+
+}
+.fa-comment:hover{
+    color: #008CFF;
 }

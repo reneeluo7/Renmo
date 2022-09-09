@@ -15,7 +15,7 @@ const SearchUser = () => {
 
   const noLogInUsers = users.filter((user) => user.id !== loggedInUser.id);
   
-    console.log("----to check selected", inputStr)
+    // console.log("----to check selected", inputStr)
     // console.log("----to check selected", selected)
   const filteredUsers = (inputStr) => {
     const list = [];
@@ -61,6 +61,8 @@ const SearchUser = () => {
 
   return (
     <div className="user-search-input-payform">
+      <div className="user-search-input-payform-form">
+
       {!selected && (<input
         type="text"
         className="user-search-payform"
@@ -69,10 +71,11 @@ const SearchUser = () => {
         value={inputStr}
       />)}
       {selected && <div className="show-selected-user">
-            <span>{getUserFullName(selected)}</span> <button className="clear-selected-user" onClick={handleClear}>x</button>
+            <span>{getUserFullName(selected)}</span> <button className="clear-selected-user" onClick={handleClear}>X</button>
         </div>}
+      </div>
       {showMenu && searchResult.length > 0 && (
-        <div className="search-bar-drop-down">
+        <div className="search-bar-drop-down-payform">
           {searchResult.map((user, index) => (
             <div
               key={index}

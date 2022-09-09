@@ -5,7 +5,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { useLocation } from "react-router-dom";
 import { getUserInitials, getUserFullName } from "../../util/nameconvert";
 import CreateComment from "./CreateComment";
-import "./index.css";
+import "./TxnComments.css";
 import EditComment from "./EditComment";
 import { getCommentByTxn } from "../../store/comment";
 
@@ -27,11 +27,11 @@ function TxnComments() {
   return (
     <div className="homepage-container">
       <NavBar />
-      <div className="homepage-right">
+      <div className="homepage-right comments-page">
         {!targetTxn && <h2>You are not authorized, please go back </h2>}
         {targetTxn && (
-          <div className="homepage-user-txns comments-page">
-            <div className="txn-bar">
+          <div className="homepage-user-txns comments">
+            <div className="txn-bar comment">
               {targetTxn?.category === "pay" && (
                 <div className="txn-bar-left">
                   <div className="txn-bar-initial">

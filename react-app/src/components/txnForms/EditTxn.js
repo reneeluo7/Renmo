@@ -17,16 +17,27 @@ const EditIncompleteTxn = () => {
   const txn = location.state?.txn;
   
   const [amount, setAmount] = useState(txn?.amount);
-  const [note, setNote] = useState(txn?.note);
+  const [note, setNote] = useState(txn?.note.trim());
   const [isPublic, setIsPublic] = useState(true);
   const [errors, setErrors] = useState({});
+
+  const checkNumLength =(num) => {
+    if (num?.split('.')[1]?.length > 2) {
+      setErrors({ amount: ["Only support a maximum of two decimal places."] })
+      return
+    } else {
+        setErrors({})
+      setAmount(num)
+    }
+      
+  }
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     // setErrors({});
     let privacy;
     isPublic ? (privacy = "public") : (privacy = "private");
-    if (Number(amount) <= 0) {
+    if (Number(amount) <= 0 || !amount) {
       setErrors({ amount: ["Please enter a value grater than 0!"] });
       return;
     }
@@ -73,14 +84,10 @@ const EditIncompleteTxn = () => {
         <div className="edit-form-container">
 
         <h1>Edit Your Transaction</h1>
-        <h3>Only amount, note and privacy can be edited</h3>
+        <h3>* Only amount, note and privacy can be edited</h3>
         <form onSubmit={handleSubmit}>
           <div>
-            {/* {message && message?.map((error, ind) => (
-              <div key={ind} className="form-errors" style={{ color: "red" }}>
-                {error}
-              </div>
-            ))} */}
+          
             {/* {errors && errors?.map((error, ind) => (
               <div key={ind} className="form-errors" style={{ color: "red" }}>
                 {error}
@@ -100,10 +107,10 @@ const EditIncompleteTxn = () => {
                   min={0}
                   max={3000}
                   step={0.01}
-                  onChange={(e) => setAmount(e.target.value)}
+                  onChange={(e) => checkNumLength(e.target.value)}
                   required
                 />
-                {errors.amount && Number(amount) <= 0 && (
+                {errors.amount  && (
                   <div className="error" style={{ color: "red" }}>
                     {errors?.amount?.map((error, ind) => (
                       <div key={ind}>{error}</div>
@@ -119,13 +126,7 @@ const EditIncompleteTxn = () => {
               <label>To </label>{" "}
               <input type="text" disabled value={getUserFullName(txn?.payer)} />
             </div>
-            {/* {errors?.recipient &&  !selectedUser &&
-              <div className="error" style={{ color: "red" }}>
-                {errors?.recipient?.map((error, ind) => (
-                  <div key={ind}>{error}</div>
-                ))}
-              </div>
-            } */}
+          
           </div>
           <div className="pay-note">
             <div className="pay-note-board">
@@ -139,7 +140,7 @@ const EditIncompleteTxn = () => {
                 rows="5"
                 placeholder="Enter some details regarding the payment"
                 value={note}
-                onChange={(e) => setNote(e.target.value)}
+                onChange={(e) => setNote(e.target.value.trim())}
               ></textarea>
             </div>
             {errors?.note && (
@@ -151,15 +152,19 @@ const EditIncompleteTxn = () => {
             )}
           </div>
           <div className="pay-privacySection">
-            <button
-              className="pay-privacy-btn"
-              onClick={(e) => {
-                e.preventDefault();
-                setIsPublic(!isPublic);
-              }}
-            >
-              {!isPublic ? <h6>Private</h6> : <h6>Public</h6>}
-            </button>
+          <button
+                className="pay-privacy-btn"
+                onClick={(e) => {
+                  e.preventDefault();
+                  setIsPublic(!isPublic);
+                }}
+              >
+                {!isPublic ? <div><i className="fa-solid fa-user"></i> <h6>Private</h6> </div>
+                  : <div><i class="fa-sharp fa-solid fa-earth-americas"></i><h6>Public</h6></div> }
+              </button>
+            {isPublic ? <div className="private-explain">This info can be viewed by everyone on the internet</div> 
+                  : <div className="private-explain"> This info can be viewed by the sender and recipient only</div>
+              }
           </div>
           <div className="edit-txn-submit-btn">
             <button className="edit-submit-btn" type="submit">

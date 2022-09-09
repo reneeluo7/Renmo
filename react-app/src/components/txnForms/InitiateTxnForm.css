@@ -1,4 +1,5 @@
-.create-txn-container{
+.create-txn-container,
+.edit-form-container{
     /* max-width: 60rem; */
     padding-top: 3.26rem;
     align-items: center;
@@ -8,9 +9,16 @@
     margin-right: auto;
     
 }
-.create-txn-container > p{
+.create-txn-container > p,
+.edit-form-container > h1{
     font-size: 26px;
     text-align: center;
+}
+
+.edit-form-container > h3{
+    font-size: 16px;
+    text-align: center;
+    margin-top: 1rem;
 }
 .payment-amount{
     text-align: center;
@@ -33,7 +41,7 @@
     font-size: 1.5rem;
     font-style: normal;
     margin-top: 8px;
-    font-family: Athletics Medium;
+    
     font-weight: 500;
     margin-right: 8px;
     vertical-align: top;
@@ -43,7 +51,7 @@
 }
 
 .Number{
-    width: auto;
+    width: fit-content;
     padding: 0;
     font-size: 3.25rem;
     font-style: normal;
@@ -51,19 +59,21 @@
     font-weight: 500;
     -webkit-tap-highlight-color: transparent;
     border: 0;
+    max-width: 233px;
 }
-/* .search-user-input{
+.search-user-input{
     padding-top:50px;
-} */
+}
 
 .search-user-input-box{
+    width: 100%;
     border: 0.5px solid;
     overflow-x: hidden;
     overflow-y: auto;
     /* transition: border-color 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms,box-shadow 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms; */
     border-color: #888C94;
     border-radius: 8px;
-    padding-right: 0;
+    min-height: 55px;
     background-color: #fff;
     display: flex;
     font-size: 1rem;
@@ -73,14 +83,42 @@
     line-height: 1.1876em;
     /* height: 55px; */
    padding: 5px;
+   align-items: center;
+    
+
+}
+.search-user-input-box > label{
+    padding-right: 12px;
+    color: #888c94;
 }
 
-.pay-note-board{
-    border-radius: 5px;
-    border: 1px solid black;
+.pay-note{
+    margin-top: 24px;
+    width: 100%;
 }
+.pay-note-board{
+    border-radius: 8px;
+    border: 0.5px solid;
+    border-color: #6B6E76;
+    border-radius: 8px;
+    background-color: #fff;
+    overflow: hidden;
+    padding: 10px;
+}
+.pay-note-board > label{
+    color: rgba(0, 0, 0, 0.54);
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1;
+    /* padding-top: 20px; */
+    /* padding-left: 15px; */
+    /* margin-top: 50px; */
+    
+}
+
 
 textarea {
+    padding: 5px;
     -webkit-font-smoothing: antialiased;
     font: inherit;
     color: currentColor;
@@ -105,7 +143,39 @@ textarea {
     column-count: initial;
 
 }
-.pay-privacy-btn h6{
+#payform-note:focus{
+    outline: none;
+}
+
+.pay-privacySection{
+    display: flex;
+    width: 100%;
+    align-items: center;
+}
+.pay-privacy-btn{
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    width: 65px;
+    justify-content: space-between;
+   
+}
+.pay-privacy-btn > div{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  
+    width: 100%;
+}
+.fa-user,
+.fa-earth-americas{
+    color: #0074DE;
+    font-size: 16px;
+}
+
+
+.pay-privacy-btn > div > h6{
     color: #0074DE;
     margin-left: 8px;
     font-size: 0.875rem;
@@ -117,14 +187,26 @@ textarea {
     margin-inline-start: 0px;
     margin-inline-end: 0px;
 }
+.private-explain{
+    color: #55585e;
+    font-size: 12px;
+    line-height: 16px;
+    padding-left: 40px;
 
+}
 .pay-or-request-btns{
-    padding-top: 150px;
+    padding-top: 3rem;
     display: flex;
     justify-content: space-between;
 
 }
-.pay-or-request-btns > * {
+.edit-txn-submit-btn{
+    padding-top: 3rem;
+    display: flex;
+    justify-content: center;
+}
+.pay-or-request-btns > *,
+.edit-submit-btn {
     width: 209px;
     color: #fff;
     background-color: #0074DE;
@@ -135,4 +217,6 @@ textarea {
     box-shadow: none;
     line-height: 1.25;
     border-radius: 2em;
+    cursor: pointer;
+    border: none;
 }

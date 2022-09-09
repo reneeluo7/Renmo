@@ -1,0 +1,22 @@
+.homepage-right .comments-page{
+    padding-top: 3.26rem;
+}
+
+.homepage-user-txns .comments{
+    position: relative;
+    padding-top: 6.26rem;
+  
+}
+/* .txn-bar .comment{
+    border: none;
+} */
+.comment-area{
+    border-top: 1px solid grey;
+}
+
+.edit-delete-line{
+    display: flex;
+    justify-content: space-between;
+
+
+}
