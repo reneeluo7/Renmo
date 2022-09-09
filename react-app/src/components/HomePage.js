@@ -44,7 +44,9 @@ const HomePage = () => {
                   <div className="txn-bar-info">
                     <div className="topline">
                       <span>You</span> paid{" "}
-                      <span>{getUserFullName(txn.payee)}</span>{" "}
+                      <span>
+                        <Link to={{pathname:`/u/${txn.payee.username}`, state:{user:txn.payee}}}>{getUserFullName(txn.payee)}</Link>
+                        </span>{" "}
                     </div>
                     <div className="second-txn-date-line">
                       {txn.created_at.slice(0, 16)}
@@ -71,7 +73,9 @@ const HomePage = () => {
                   <div className="txn-bar-info">
                     <div className="topline">
                       {" "}
-                      <span>{getUserFullName(txn.payee)}</span> charged{" "}
+                      <span>
+                      <Link to={{pathname:`/u/${txn.payee.username}`, state:{user:txn.payee}}}>{getUserFullName(txn.payee)}</Link>
+                        </span> charged{" "}
                       <span>You</span>
                     </div>
                     <div className="second-txn-date-line">
@@ -100,8 +104,10 @@ const HomePage = () => {
                     <div className="topline">
                       {" "}
                       <span>
-                        {getUserFullName(txn.payer)} paid <span>You</span>
-                      </span>{" "}
+                      <Link to={{pathname:`/u/${txn.payer.username}`, state:{user:txn.payer}}}>{getUserFullName(txn.payer)}</Link>
+                        </span> 
+                        {" "}paid {" "}<span>You</span>
+                     
                     </div>
                     <div className="second-txn-date-line">
                       {txn.created_at.slice(0, 16)}
@@ -126,8 +132,9 @@ const HomePage = () => {
                   <div className="txn-bar-info">
                     <div className="topline">
                       {" "}
-                      <span>
-                        <span>You</span> charged {getUserFullName(txn.payer)}
+                      
+                        <span>You</span> charged <span>
+                        <Link to={{pathname:`/u/${txn.payer.username}`, state:{user:txn.payer}}}>{getUserFullName(txn.payer)}</Link>
                       </span>{" "}
                     </div>
                     <div className="second-txn-date-line">

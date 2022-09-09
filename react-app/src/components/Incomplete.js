@@ -5,6 +5,7 @@ import NavBar from "./NavBar.js";
 import { closeTxn } from "../store/transaction";
 import { getUserInitials, getUserFullName } from "../util/nameconvert";
 import "./Incomplete.css";
+import './HomePage.css'
 import { cancelTransaction } from "../store/transaction";
 import { Link } from "react-router-dom";
 // import EditIncompleteTxn from "./txnForms/EditTxn.js";
@@ -23,7 +24,9 @@ const IncompletePage = () => {
     <div className="homepage-container">
       <NavBar />
       <div className="homepage-right incomplete">
-        <h1>Incomplete</h1>
+        {/* <div className="incomplete-page-container"> */}
+
+        <div className="incomplete-page-title"><h1 >Incomplete</h1></div>
         <div className="homepage-user-txns incomplete">
           {transactions && transactions?.map((txn) => (
             <div className="txn-bar" key={txn.id}>
@@ -40,7 +43,7 @@ const IncompletePage = () => {
                     <div className="second-txn-date-line">
                       {txn.created_at.slice(0, 16)}
                     </div>
-                    <div className="thrid-txn-note-line">{txn.note}</div>
+                    <div className="third-txn-note-line">{txn.note}</div>
                     <div className="manage-btns-container">
                       <button
                         className="cancel-txn"
@@ -50,12 +53,15 @@ const IncompletePage = () => {
                         }}
                       >
                         Cancel
-                      </button>
+                      </button >
+                      <button>
+
                       <Link to={{pathname:`/transactions/${txn.id}/edit`, state: {txn}}}>
                         {/* <button className="edit-txn"> Edit
                         </button> */}
                         Edit
                       </Link>
+                        </button>
                     </div>
                   </div>
                 </div>
@@ -74,7 +80,7 @@ const IncompletePage = () => {
                     <div className="second-txn-date-line">
                       {txn.created_at.slice(0, 16)}
                     </div>
-                    <div className="thrid-txn-note-line">{txn.note}</div>
+                    <div className="third-txn-note-line">{txn.note}</div>
                     <div className="manage-btns-container">
                       <DeleteClick txn={txn} />
                       <button className="pay-txn" onClick={() => dispatch(closeTxn(txn, txn.id))}>Pay</button>
@@ -91,7 +97,8 @@ const IncompletePage = () => {
           ))}
           {transactions.length === 0 && <div><h2>There is no incomplete transaction.</h2></div>}
         </div>
-      </div>
+        </div>
+      {/* </div> */}
     </div>
   );
 };

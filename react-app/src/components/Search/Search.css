@@ -38,6 +38,7 @@
     -webkit-box-shadow: none;
     box-shadow: none;
     border: 0;
+    
 }
 .search-dropdown-user-info{
     display: flex;
@@ -45,6 +46,9 @@
     margin-bottom: 5px;
     margin-left: 5px;
     padding-top: 5px;
+    padding-left: 5px;
+    border-radius: 6px;
+    /* border: 1px solid rgba(128, 128, 128, 0.452); */
 }
 .search-dropdown-user-info > * {
     margin-bottom: 5px;
@@ -52,7 +56,7 @@
 }
 .search-dropdown-user-info:hover{
     background-color: #008cff6d;
-    color: white;
+    /* color: white; */
 }
 
 /* search user in pay form css */

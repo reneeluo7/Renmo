@@ -17,6 +17,12 @@ const SignUpForm = () => {
 
   const onSignUp = async (e) => {
     e.preventDefault();
+    if (firstName.length > 40 || lastName.length > 40 || username.length > 40) {
+      return setErrors(["Maximum length of first name, last name or username is 40 characters"])
+    }
+    if (password.length > 20 || password.length < 6) {
+      return setErrors(['Password length should between 6 - 20 characters'])
+    }
     if (password === repeatPassword) {
       const data = await dispatch(
         signUp(firstName, lastName, username, email, password)
