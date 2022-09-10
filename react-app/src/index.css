@@ -11,4 +11,8 @@ a {
     font-family: 'Nunito', sans-serif;
   }
 
+  div{
+    overflow-wrap: anywhere;
+  }
+
 

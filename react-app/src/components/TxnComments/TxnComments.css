@@ -139,7 +139,8 @@
 .create-comment-sub-btn,
 .comment-edit-btn,
 .comment-delete-btn,
-.submit-edit-note{
+.submit-edit-note,
+.cancel-edit-note{
     min-width: 80px;
     /* padding: 5px 5px; */
     margin: 0px 5px;
@@ -160,10 +161,10 @@
 .edit-note-input > form{
     /* border: 2px red dotted; */
     display: flex;
-    /* justify-content: space-between; */
+    justify-content: space-between;
 }
 #edit-note{
-    border: none;
+    border: 1px solid rgba(128, 128, 128, 0.536);
     border-bottom: #2F3033;
     overflow-wrap: anywhere;
     width: 90%;

@@ -17,7 +17,7 @@ export default function EditComment({ cmt }) {
         setErrors({ comment: ["Maximum comment length is 150 characters"] });
         return;
       }
-      if (!content) {
+      if (!content.trim()) {
         setErrors({ comment: ["Comment cannot be empty"] });
         return;
       }
@@ -77,9 +77,14 @@ export default function EditComment({ cmt }) {
               cols="80"
               rows="4"
               autoFocus
-              onBlur={() => setEdit(false)}
+              onFocus={() => setErrors({})}
             />
             <button className="submit-edit-note" type="submit">Post</button>
+            <button className="cancel-edit-note" type="submit" 
+            onClick={() => {
+              setEdit(false)
+              setErrors({})
+              }}>Cancel</button>
           </form>
         </div>
       )}
