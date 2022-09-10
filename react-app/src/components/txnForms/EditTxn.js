@@ -42,18 +42,18 @@ const EditIncompleteTxn = () => {
       return;
     }
 
-    if (!note) {
+    if (!note.trim()) {
       setErrors({ note: ["Please enter some details regarding the payment"] });
       return;
     }
-    if (note.length > 300) {
+    if (note.trim().length > 300) {
       setErrors({ note: ["Maximum note length is 300 characters"] });
       return;
     }
 
     const editTxn = {
       amount,
-      note,
+      note:note.trim(),
       privacy,
       category: "request",
       pending: 1,
@@ -108,6 +108,7 @@ const EditIncompleteTxn = () => {
                   max={3000}
                   step={0.01}
                   onChange={(e) => checkNumLength(e.target.value)}
+                  
                   required
                 />
                 {errors.amount  && (
@@ -141,6 +142,7 @@ const EditIncompleteTxn = () => {
                 placeholder="Enter some details regarding the payment"
                 value={note}
                 onChange={(e) => setNote(e.target.value)}
+                onFocus={() => setErrors({})}
               ></textarea>
             </div>
             {errors?.note && (
