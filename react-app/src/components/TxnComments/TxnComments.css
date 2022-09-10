@@ -106,13 +106,15 @@
 .create-comment-input{
     color: rgba(0, 0, 0, 0.87);
     border: none;
+    /* border-bottom: #2F3033; */
     height: 1.1876em;
-    padding: 6px 0 7px;
+    padding: 6px 0 7px 5px;
     -webkit-tap-highlight-color: transparent;
     writing-mode: horizontal-tb;
     overflow-wrap: anywhere;
     white-space: normal;
     font-size: 1rem;
+    
     /* width: 80%; */
 }
 .create-comment-input:focus{
@@ -140,16 +142,17 @@
     text-decoration: underline;
 }
 .edit-note-input > form{
-    border: 2px red dotted;
+    /* border: 2px red dotted; */
     display: flex;
     /* justify-content: space-between; */
 }
 #edit-note{
     border: none;
+    border-bottom: #2F3033;
     overflow-wrap: anywhere;
     width: 90%;
 
 }
 #edit-note:focus{
-    outline: none;
+    /* outline: none; */
 }

@@ -57,8 +57,8 @@ function TxnComments() {
                     <div className="third-txn-note-line">{targetTxn.note}</div>
                     <div className="forth-txn-comment-line">
                       <i className="fa-sharp fa-solid fa-comment"></i>
-                      {targetTxn.comments.length !== 0 && (
-                        <span>{targetTxn.comments.length}</span>
+                      {comments.length !== 0 && (
+                        <span>{comments.length}</span>
                       )}
                     </div>
                   </div>

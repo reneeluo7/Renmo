@@ -55,13 +55,13 @@ const IncompletePage = () => {
                         Cancel
                       </button >
 
-                      <button>
-                      <Link to={{pathname:`/transactions/${txn.id}/edit`, state: {txn}}}>
+                      <Link to={{pathname:`/transactions/${txn.id}/edit`, state: {txn}}} className="edit-txn-btn">
+                      {/* <button> */}
                         {/* <button className="edit-txn"> Edit
                         </button> */}
                         Edit
+                        {/* </button> */}
                       </Link>
-                        </button>
                     </div>
                   </div>
                 </div>

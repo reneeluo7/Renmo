@@ -13,7 +13,7 @@ function CreateComment({ txn }) {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if (content.length > 150) {
+    if (content.trim().length > 150) {
       setErrors({ comment: ["Maximum comment length is 150 characters"] });
       return;
     }
@@ -23,7 +23,7 @@ function CreateComment({ txn }) {
     }
 
     const newComment = {
-      content,
+      content:content.trim(),
     };
     // console.log("----newComment and txnId dispatch to thunk", newComment, txnId );
     const data = await dispatch(createComment(newComment, txnId));

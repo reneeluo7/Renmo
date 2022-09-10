@@ -128,10 +128,15 @@
 
 
 .log-out-btn{
+    display: flex;
     background-color: transparent;
     border: none;
     font-size: 16px;
-    align-self: start;
+    align-items: center;
+    justify-content: center;
+    border-radius: 4px;
+    padding-top: 0;
+
 }
 .log-out-btn:hover{
     background-color: #008CFF;
@@ -144,13 +149,15 @@
 }
 
 .incomplete-right {
-    background-color: red;
+    display: flex;
+    background-color: #c72830;
     color: white;
     width: 24px;
     height: 24px;
     border-radius: 50%;
-    text-align: center;
+    /* text-align: center; */
     align-items: center;
     justify-content: center;
-    padding-top: 2px;
-}
+    font-size: 12px;
+    /* padding-top: 2px;*/
+ } 

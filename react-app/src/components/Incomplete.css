@@ -25,7 +25,7 @@
     color:#008CFF;
     /* background-color: #008CFF; */
     background-color: transparent;
-    padding: 10px 16px;
+    /* padding: 10px 16px; */
     font-size: 1rem;
     line-height: 1.25;
     border-radius: 2em;
@@ -36,11 +36,18 @@
     font-weight: 600;
     position: relative;
     align-items: center;
-    vertical-align: middle;
+    /* vertical-align: middle; */
     justify-content: center;
     text-decoration: none;
     margin-right: 8px;
     cursor: pointer;
+}
+.edit-txn-btn{
+    /* background-color:aquamarine; */
+    border: 2px solid #2F3033;
+    justify-content: center;
+    display: flex;
+    align-items: center;
 }
 .manage-btns-container > *:hover{
     background-color: #6B6E76;
