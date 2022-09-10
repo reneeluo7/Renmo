@@ -33,7 +33,7 @@ def get_incomplete_txns():
 @transaction_routes.route('/u/<int:id>')
 @login_required
 def get_other_user_txns(id):
-    txns = Transaction.query.filter(or_(Transaction.payer_id == id, Transaction.payee_id == id), Transaction.pending.is_(False),Transaction.privacy == "public").all()
+    txns = Transaction.query.filter(or_(Transaction.payer_id == id, Transaction.payee_id == id), Transaction.pending.is_(False),Transaction.privacy == "public", Transaction.category !='Declined').order_by(desc(Transaction.created_at)).all()
 
     return {'transactions':[txn.to_dict_users_comments() for txn in txns]}
 

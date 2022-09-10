@@ -77,6 +77,7 @@ export default function EditComment({ cmt }) {
               cols="80"
               rows="4"
               autoFocus
+              onBlur={() => setEdit(false)}
             />
             <button className="submit-edit-note" type="submit">Post</button>
           </form>

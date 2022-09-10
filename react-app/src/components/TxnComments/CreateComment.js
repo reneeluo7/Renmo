@@ -47,15 +47,16 @@ function CreateComment({ txn }) {
           placeholder="Write a comment..."
           value={content}
           onChange={(e) => setContent(e.target.value)}
+          onBlur={() => setErrors({})}
         ></input>
         <button className="create-comment-sub-btn">Post</button>
       </form>
       {errors.comment && (
-        <p className="error" style={{ color: "red" }}>
+        <div className="error" style={{ color: "red" }}>
           {errors?.comment?.map((error, ind) => (
             <div key={ind}>{error}</div>
           ))}
-        </p>
+        </div>
       )}
     </>
   );
