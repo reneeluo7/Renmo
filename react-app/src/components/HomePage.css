@@ -147,6 +147,9 @@
     margin: 0.5rem 0;
 
 }
+.fa-comment{
+    color: #888C94;
+}
 .fa-comment:hover{
     color: #008CFF;
 }
