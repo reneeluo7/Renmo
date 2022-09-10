@@ -3,7 +3,7 @@ from flask import Blueprint, redirect, request
 from flask_login import login_required, current_user
 from datetime import datetime
 from app.models import Transaction , Comment ,db ,User
-from sqlalchemy import or_
+from sqlalchemy import or_, desc
 from app.forms import TransactionForm
 from .auth_routes import validation_errors_to_error_messages
 
@@ -11,11 +11,11 @@ from .auth_routes import validation_errors_to_error_messages
 
 transaction_routes = Blueprint('transactions', __name__)
 
-#Get current user all completed txns
+#Get current user all completed txns not declined
 @transaction_routes.route('/')
 @login_required
 def get_completed_txns():
-    txns = Transaction.query.filter(or_(Transaction.payer_id == current_user.id, Transaction.payee_id == current_user.id), Transaction.pending.is_(False)).all()
+    txns = Transaction.query.filter(or_(Transaction.payer_id == current_user.id, Transaction.payee_id == current_user.id), Transaction.pending.is_(False), Transaction.category !='Declined').order_by(desc(Transaction.created_at)).all()
 
     return {'transactions':[txn.to_dict_users_comments() for txn in txns]}
 

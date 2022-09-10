@@ -76,6 +76,7 @@ export default function EditComment({ cmt }) {
               onChange={(e) => setContent(e.target.value)}
               cols="80"
               rows="4"
+              autoFocus
             />
             <button className="submit-edit-note" type="submit">Post</button>
           </form>
