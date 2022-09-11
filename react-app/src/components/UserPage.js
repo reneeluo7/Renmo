@@ -13,16 +13,18 @@ export default function UserPage() {
   const location = useLocation();
   const targetUser = location.state.user;
   const txns = useSelector((state) => state.transaction.target);
-
   const user = useSelector((state) => state.session?.user);
+  const [isload, setIsLoad] = useState(false)
 
   useEffect(async () => {
-    await dispatch(getTargetUserTxns(targetUser));
+    await dispatch(getTargetUserTxns(targetUser)).then(()=> setIsLoad(true));
   }, [dispatch]);
 
   return (
+   
     <div className="homepage-container">
       <NavBar />
+      {isload && 
       <div className="homepage-right">
         <div className="homepage-userinfo">
           <div className="user-initial">{getUserInitials(targetUser)}</div>
@@ -122,6 +124,10 @@ export default function UserPage() {
             {txns.length === 0 && <div><h2>There is no public feed.</h2></div>}
         </div>
       </div>
+      }
+      
     </div>
+    
+    
   );
 }

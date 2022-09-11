@@ -94,6 +94,7 @@
 }
 .txn-bar-amount{
     /* align-self: end; */
+    min-width: 72px;
 }
 .txn-bar-info{
     display: flex;
