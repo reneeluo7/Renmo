@@ -95,6 +95,7 @@
 .search-user-input-box > label{
     padding-right: 12px;
     color: #888c94;
+    min-width: 41px;
 }
 
 .pay-note{

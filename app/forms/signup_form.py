@@ -23,8 +23,8 @@ def valid_password(form, field):
     # Checking if password is longer than 5
     password = field.data
     
-    if len(password) < 6 :
-        raise ValidationError('Password should be longer than 5')
+    if len(password) < 6 or len(password) > 20  :
+        raise ValidationError('Password need to be between 6 - 20 characters')
 
 
 class SignUpForm(FlaskForm):
@@ -33,4 +33,4 @@ class SignUpForm(FlaskForm):
     username = StringField(
         'username', validators=[DataRequired(message="UserName is required"), username_exists])
     email = StringField('email', validators=[DataRequired(message="Email is required"), user_exists, Email()])
-    password = StringField('password', validators=[DataRequired(message="Password is required"), valid_password])
+    password = StringField('password', validators=[DataRequired(message="Password is required, 6-20 characters"), valid_password])

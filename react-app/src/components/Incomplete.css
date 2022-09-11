@@ -20,7 +20,7 @@
 }
 
 .manage-btns-container > * {
-    /* border: 2px red dotted; */
+    border: 2px #6B6E76 solid;
     /* color: white; */
     color:#008CFF;
     /* background-color: #008CFF; */
@@ -44,7 +44,7 @@
 }
 .edit-txn-btn{
     /* background-color:aquamarine; */
-    border: 2px solid #2F3033;
+    border: 2px solid #6B6E76;
     justify-content: center;
     display: flex;
     align-items: center;

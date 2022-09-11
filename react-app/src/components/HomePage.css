@@ -81,7 +81,7 @@
 
 }
 .txn-bar-initial {
-    width: 48px;
+    /* width: 48px; */
     height: 48px;
     border-radius: 50%;
     border: 1px solid gray;
@@ -151,6 +151,15 @@
 .fa-comment{
     color: #888C94;
 }
-.fa-comment:hover{
+.fa-comment.homepage:hover{
     color: #008CFF;
+}
+
+/* Userpage */
+.no-txns{
+    margin-top: 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
 }

@@ -22,7 +22,7 @@ function TxnComments() {
   useEffect(async () => {
     // await dispatch(setCommentTarget(targetTxn))
     await dispatch(getCommentByTxn(targetTxn?.id));
-  }, [dispatch]);
+  }, [dispatch, targetTxn]);
 
   return (
     <div className="homepage-container">
