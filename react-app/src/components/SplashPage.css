@@ -77,7 +77,8 @@
     overflow-wrap: break-word;
 }
 .slogan-small{
-    font-size: 2vw;
+    padding-right: 5px;
+    font-size: 1.3vw;
 }
 .splash-start-btn{
    margin-top: 30px;

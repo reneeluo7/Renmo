@@ -135,7 +135,7 @@ export default function UserPage() {
                 )}
               </div>
             ))}
-            {txns.length === 0 && <div className="no-txns"><h2>There is no public feed.</h2></div>}
+            {txns.length === 0 && <div className="no-txns"><p>There is no public feed</p></div>}
         </div>
       </div>
       }

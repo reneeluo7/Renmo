@@ -113,7 +113,7 @@ const IncompletePage = () => {
             ))}
           {transactions.length === 0 && (
             <div className="no-txns">
-              <h2>There is no incomplete transaction.</h2>
+              <p>There is no incomplete transaction</p>
             </div>
           )}
         </div>
