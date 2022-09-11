@@ -66,12 +66,12 @@ const SearchUser = () => {
       {!selected && (<input
         type="text"
         className="user-search-payform"
-        placeholder="Name or username"
+        placeholder="Search name or username"
         onChange={(e) => setInputStr(e.target.value.toLowerCase())}
         value={inputStr}
       />)}
       {selected && <div className="show-selected-user">
-            <span>{getUserFullName(selected)}</span> <button className="clear-selected-user" onClick={handleClear}>X</button>
+            <span>{getUserFullName(selected)}</span> <button className="clear-selected-user" onClick={handleClear}>x</button>
         </div>}
       </div>
       {showMenu && searchResult.length > 0 && (

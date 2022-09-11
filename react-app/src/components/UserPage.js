@@ -18,7 +18,7 @@ export default function UserPage() {
 
   useEffect(async () => {
     await dispatch(getTargetUserTxns(targetUser)).then(()=> setIsLoad(true));
-  }, [dispatch]);
+  }, [dispatch, targetUser]);
 
   return (
    
@@ -47,13 +47,20 @@ export default function UserPage() {
                         {user.id === txn.payer.id ? (
                           <span>You</span>
                         ) : (
-                          <span>{getUserFullName(txn.payer)}</span>
+                          <span>
+                            <Link to={{pathname:`/u/${txn.payer.username}`, state:{user:txn.payer}}}>{getUserFullName(txn.payer)}</Link>
+                            </span>
                         )}{" "}
                         paid{" "}
                         {user.id === txn.payee.id ? (
                           <span>You</span>
                         ) : (
-                          <span>{getUserFullName(txn.payee)}</span>
+                          <span>
+                            <Link 
+                            to={{pathname:`/u/${txn.payee.username}`, state:{user:txn.payee}}}>
+                              {getUserFullName(txn.payee)}
+                              </Link>
+                            </span>
                         )}{" "}
                       </div>
                       <div className="second-txn-date-line">
@@ -88,13 +95,20 @@ export default function UserPage() {
                         {user.id === txn.payee.id ? (
                           <span>You</span>
                         ) : (
-                          <span>{getUserFullName(txn.payee)}</span>
+                          <span>
+                            <Link 
+                            to={{pathname:`/u/${txn.payee.username}`, state:{user:txn.payee}}}>
+                              {getUserFullName(txn.payee)}
+                              </Link>
+                            </span>
                         )}{" "}
                         charged{" "}
                         {user.id === txn.payer.id ? (
                           <span>You</span>
                         ) : (
-                          <span>{getUserFullName(txn.payer)}</span>
+                          <span>
+                            <Link to={{pathname:`/u/${txn.payer.username}`, state:{user:txn.payer}}}>{getUserFullName(txn.payer)}</Link>
+                            </span>
                         )}
                       </div>
                       <div className="second-txn-date-line">
@@ -121,7 +135,7 @@ export default function UserPage() {
                 )}
               </div>
             ))}
-            {txns.length === 0 && <div><h2>There is no public feed.</h2></div>}
+            {txns.length === 0 && <div className="no-txns"><h2>There is no public feed.</h2></div>}
         </div>
       </div>
       }

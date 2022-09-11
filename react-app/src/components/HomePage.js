@@ -55,7 +55,7 @@ const HomePage = () => {
                     <div className="forth-txn-comment-line">
                       <Link to={{pathname:`/transactions/${txn.id}/comments`, state:{txn}}} >
                         <div>
-                          <i className="fa-sharp fa-solid fa-comment"></i>
+                          <i className="fa-sharp fa-solid fa-comment homepage"></i>
                           {txn.comments.length !== 0 && (
                             <span>{txn.comments.length}</span>
                           )}
@@ -85,7 +85,7 @@ const HomePage = () => {
                     <div className="forth-txn-comment-line">
                     <Link to={{pathname:`/transactions/${txn.id}/comments`, state:{txn}}} >
                         <div>
-                          <i className="fa-sharp fa-solid fa-comment"></i>
+                          <i className="fa-sharp fa-solid fa-comment homepage"></i>
                           {txn.comments.length !== 0 && (
                             <span>{txn.comments.length}</span>
                           )}
@@ -116,7 +116,7 @@ const HomePage = () => {
                     <div className="forth-txn-comment-line">
                     <Link to={{pathname:`/transactions/${txn.id}/comments`, state:{txn}}} >
                         <div>
-                          <i className="fa-sharp fa-solid fa-comment"></i>
+                          <i className="fa-sharp fa-solid fa-comment homepage"></i>
                           {txn.comments.length !== 0 && (
                             <span>{txn.comments.length}</span>
                           )}
@@ -144,7 +144,7 @@ const HomePage = () => {
                     <div className="forth-txn-comment-line">
                     <Link to={{pathname:`/transactions/${txn.id}/comments`, state:{txn}}} >
                         <div>
-                          <i className="fa-sharp fa-solid fa-comment"></i>
+                          <i className="fa-sharp fa-solid fa-comment homepage"></i>
                           {txn.comments.length !== 0 && (
                             <span>{txn.comments.length}</span>
                           )}
