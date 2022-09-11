@@ -27,7 +27,7 @@ function TxnComments() {
   return (
     <div className="homepage-container">
       <NavBar />
-      <div className="homepage-right comments-page">
+      <div className="homepage-right ">
         {!targetTxn && <h2>You are not authorized, please go back </h2>}
         {targetTxn && (
           <div className="homepage-user-txns comments">

@@ -23,7 +23,7 @@ const HomePage = () => {
   return (
     <div className="homepage-container">
       <NavBar />
-      <div className="homepage-right">
+      <div className="homepage-right homepagemain">
         <div className="homepage-userinfo">
           <div className="user-initial">{initial}</div>
           <div className="homepage-user-fullname">
