@@ -21,7 +21,7 @@ const IncompletePage = () => {
   return (
     <div className="homepage-container">
       <NavBar />
-      <div className="homepage-right incomplete">
+      <div className="homepage-right">
         <div className="incomplete-page-title">
           <h1>Incomplete</h1>
         </div>

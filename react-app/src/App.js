@@ -3,10 +3,9 @@ import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import LoginForm from './components/auth/LoginForm';
 import SignUpForm from './components/auth/SignUpForm';
-
 import ProtectedRoute from './components/auth/ProtectedRoute';
-import UsersList from './components/users/UsersList';
-import User from './components/users/User';
+// import UsersList from './components/users/UsersList';
+// import User from './components/users/User';
 import { authenticate } from './store/session';
 import HomePage from './components/HomePage';
 import IncompletePage from './components/Incomplete';
@@ -17,6 +16,7 @@ import TxnComments from './components/TxnComments';
 import UserPage from './components/UserPage';
 import SplashPage from './components/SplashPage';
 import PageNotFound from './components/pageNotFound/pageNotFound';
+import Footer from './components/Footer';
 
 
 
@@ -37,7 +37,8 @@ function App() {
 
   return (
     <BrowserRouter>
-      
+      <div>
+
       <Switch>
         <Route path='/login' exact={true}>
           <LoginForm />
@@ -47,7 +48,7 @@ function App() {
         </Route>
       <Route path='/' exact={true} >
           <SplashPage />
-          {/* <h1>Welsome to Renmo</h1> */}
+         
         </Route>
         {/* <ProtectedRoute path='/users' exact={true} >
           <UsersList/>
@@ -80,7 +81,10 @@ function App() {
           <PageNotFound />
         </Route>
       </Switch>
+      </div>
+      <Footer />
     </BrowserRouter>
+  
   );
 }
 
