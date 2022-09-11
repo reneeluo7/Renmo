@@ -17,7 +17,7 @@ function CreateComment({ txn }) {
       setErrors({ comment: ["Maximum comment length is 150 characters"] });
       return;
     }
-    if (!content) {
+    if (!content.trim()) {
       setErrors({ comment: ["Comment cannot be empty"] });
       return;
     }

@@ -16,6 +16,7 @@ import EditIncompleteTxn from './components/txnForms/EditTxn';
 import TxnComments from './components/TxnComments';
 import UserPage from './components/UserPage';
 import SplashPage from './components/SplashPage';
+import PageNotFound from './components/pageNotFound/pageNotFound';
 
 
 
@@ -48,12 +49,12 @@ function App() {
           <SplashPage />
           {/* <h1>Welsome to Renmo</h1> */}
         </Route>
-        <ProtectedRoute path='/users' exact={true} >
+        {/* <ProtectedRoute path='/users' exact={true} >
           <UsersList/>
         </ProtectedRoute>
         <ProtectedRoute path='/users/:userId' exact={true} >
           <User />
-        </ProtectedRoute>
+        </ProtectedRoute> */}
         <ProtectedRoute path='/home' exact={true} >
           <HomePage />
         </ProtectedRoute>
@@ -75,6 +76,9 @@ function App() {
         <ProtectedRoute path='/transactions/:id/comments' exact={true} >
           <TxnComments />
         </ProtectedRoute>
+        <Route>
+          <PageNotFound />
+        </Route>
       </Switch>
     </BrowserRouter>
   );

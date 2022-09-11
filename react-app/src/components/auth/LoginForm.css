@@ -1,21 +1,25 @@
 .auth-page-container{
     margin: 0;
+    display: flex;
 }
 .auth-page-top-bar{
+    margin: 0;
     width: 100%;
     height: 80px;
     position: fixed;
     border-bottom: 1px solid lightgray;
-    z-index: 10;
+    background-color: white;
+    z-index: 1;
 }
 .auth-page-top-bar-container{
     width: 50%;
     display: flex;
     justify-content: space-between;
-    margin: auto;
+    /* margin: auto; */
     align-items: center;
     margin: 5px auto;
-    z-index: 10;
+    
+    background-color: white;
 }
 .auth-page-form-container{
     width: 50%;
