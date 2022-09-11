@@ -173,3 +173,6 @@
 #edit-note:focus{
     /* outline: none; */
 }
+.fa-comment.txnpage:hover{
+    color: #888C94;
+}

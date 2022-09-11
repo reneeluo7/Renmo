@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-// import { Link, useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import NavBar from "../NavBar";
 import { useSelector, useDispatch } from "react-redux";
 import { useLocation } from "react-router-dom";
@@ -42,13 +42,28 @@ function TxnComments() {
                       {user.id === targetTxn.payer.id ? (
                         <span>You</span>
                       ) : (
-                        <span>{getUserFullName(targetTxn.payer)}</span>
+                        <span>
+                          {/* {getUserFullName(targetTxn.payer)} */}
+
+                          <Link
+                            to={{
+                              pathname: `/u/${targetTxn.payer.username}`,
+                              state: { user: targetTxn.payer },
+                            }}
+                          >
+                            {getUserFullName(targetTxn.payer)}
+                          </Link>
+                          </span>
                       )}{" "}
                       paid{" "}
                       {user.id === targetTxn.payee.id ? (
                         <span>You</span>
                       ) : (
-                        <span>{getUserFullName(targetTxn.payee)}</span>
+                        <span>
+                          {/* {getUserFullName(targetTxn.payee)} */}
+                          <Link to={{pathname:`/u/${targetTxn.payee.username}`, state:{user:targetTxn.payee}}}>{getUserFullName(targetTxn.payee)}</Link>
+
+                          </span>
                       )}{" "}
                     </div>
                     <div className="second-txn-date-line">
@@ -56,7 +71,7 @@ function TxnComments() {
                     </div>
                     <div className="third-txn-note-line">{targetTxn.note}</div>
                     <div className="forth-txn-comment-line">
-                      <i className="fa-sharp fa-solid fa-comment"></i>
+                      <i className="fa-sharp fa-solid fa-comment txnpage"></i>
                       {comments.length !== 0 && (
                         <span>{comments.length}</span>
                       )}
@@ -88,7 +103,7 @@ function TxnComments() {
                     </div>
                     <div className="third-txn-note-line">{targetTxn.note}</div>
                     <div className="forth-txn-comment-line">
-                      <i className="fa-sharp fa-solid fa-comment"></i>
+                      <i className="fa-sharp fa-solid fa-comment txnpage"></i>
                       {targetTxn.comments.length !== 0 && (
                         <span>{targetTxn.comments.length}</span>
                       )}

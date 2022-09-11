@@ -64,7 +64,7 @@ const HomePage = () => {
                           }}
                         >
                           <div>
-                            <i className="fa-sharp fa-solid fa-comment homepage"></i>
+                            <i className="fa-sharp fa-solid fa-comment"></i>
                             {txn.comments.length !== 0 && (
                               <span>{txn.comments.length}</span>
                             )}
@@ -106,7 +106,7 @@ const HomePage = () => {
                           }}
                         >
                           <div>
-                            <i className="fa-sharp fa-solid fa-comment homepage"></i>
+                            <i className="fa-sharp fa-solid fa-comment"></i>
                             {txn.comments.length !== 0 && (
                               <span>{txn.comments.length}</span>
                             )}
@@ -148,7 +148,7 @@ const HomePage = () => {
                           }}
                         >
                           <div>
-                            <i className="fa-sharp fa-solid fa-comment homepage"></i>
+                            <i className="fa-sharp fa-solid fa-comment"></i>
                             {txn.comments.length !== 0 && (
                               <span>{txn.comments.length}</span>
                             )}
@@ -188,7 +188,7 @@ const HomePage = () => {
                           }}
                         >
                           <div>
-                            <i className="fa-sharp fa-solid fa-comment homepage"></i>
+                            <i className="fa-sharp fa-solid fa-comment"></i>
                             {txn.comments.length !== 0 && (
                               <span>{txn.comments.length}</span>
                             )}
