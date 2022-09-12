@@ -109,14 +109,12 @@
     display: flex;
     flex-direction: column;
     margin-right: 15px;
-    /* border: 2px red dotted; */
 
 }
 
 .nav-links > * {
     height: 50px;
     width: 100%;
-    /* border: 2px red dotted; */
     align-items: center;
     padding-top: 10px;
     font-size: 18px;

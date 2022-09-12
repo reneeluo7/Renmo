@@ -9,18 +9,15 @@ import "./TxnComments.css";
 import EditComment from "./EditComment";
 import { getCommentByTxn } from "../../store/comment";
 
-
 function TxnComments() {
   const location = useLocation();
   const dispatch = useDispatch();
-
   const user = useSelector((state) => state.session?.user);
   const comments = useSelector((state) => state.comment?.comment);
- 
   const targetTxn = location.state?.txn;
 
   useEffect(async () => {
-    // await dispatch(setCommentTarget(targetTxn))
+   
     await dispatch(getCommentByTxn(targetTxn?.id));
   }, [dispatch, targetTxn]);
 
@@ -53,7 +50,7 @@ function TxnComments() {
                           >
                             {getUserFullName(targetTxn.payer)}
                           </Link>
-                          </span>
+                        </span>
                       )}{" "}
                       paid{" "}
                       {user.id === targetTxn.payee.id ? (
@@ -61,12 +58,15 @@ function TxnComments() {
                       ) : (
                         <span>
                           {/* {getUserFullName(targetTxn.payee)} */}
-                          <Link 
-                          to={{pathname:`/u/${targetTxn.payee.username}`, state:{user:targetTxn.payee}}}>
+                          <Link
+                            to={{
+                              pathname: `/u/${targetTxn.payee.username}`,
+                              state: { user: targetTxn.payee },
+                            }}
+                          >
                             {getUserFullName(targetTxn.payee)}
-                            </Link>
-
-                          </span>
+                          </Link>
+                        </span>
                       )}{" "}
                     </div>
                     <div className="second-txn-date-line">
@@ -75,9 +75,7 @@ function TxnComments() {
                     <div className="third-txn-note-line">{targetTxn.note}</div>
                     <div className="forth-txn-comment-line">
                       <i className="fa-sharp fa-solid fa-comment txnpage"></i>
-                      {comments.length !== 0 && (
-                        <span>{comments.length}</span>
-                      )}
+                      {comments.length !== 0 && <span>{comments.length}</span>}
                     </div>
                   </div>
                 </div>
@@ -93,11 +91,15 @@ function TxnComments() {
                         <span>You</span>
                       ) : (
                         <span>
-                          <Link 
-                          to={{pathname:`/u/${targetTxn.payee.username}`, state:{user:targetTxn.payee}}}>
+                          <Link
+                            to={{
+                              pathname: `/u/${targetTxn.payee.username}`,
+                              state: { user: targetTxn.payee },
+                            }}
+                          >
                             {getUserFullName(targetTxn.payee)}
-                            </Link>
-                          </span>
+                          </Link>
+                        </span>
                       )}{" "}
                       charged{" "}
                       {user.id === targetTxn.payer.id ? (
@@ -112,7 +114,7 @@ function TxnComments() {
                           >
                             {getUserFullName(targetTxn.payer)}
                           </Link>
-                          </span>
+                        </span>
                       )}
                     </div>
                     <div className="second-txn-date-line">

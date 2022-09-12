@@ -18,17 +18,25 @@ const SignUpForm = () => {
   const onSignUp = async (e) => {
     e.preventDefault();
     if (firstName.trim().length > 40 || lastName.trim().length > 40) {
-      return setErrors(["Maximum length of first name, last name is 40 characters"])
+      return setErrors([
+        "Maximum length of first name, last name is 40 characters",
+      ]);
     }
-    if ( username.length > 40) {
-      return setErrors(["Maximum length of username is 40 characters"])
+    if (username.length > 40) {
+      return setErrors(["Maximum length of username is 40 characters"]);
     }
     // if (password.length > 20 || password.length < 6) {
     //   return setErrors(['Password length should between 6 - 20 characters'])
     // }
     if (password === repeatPassword) {
       const data = await dispatch(
-        signUp(firstName.trim(), lastName.trim(), username.trim(), email, password)
+        signUp(
+          firstName.trim(),
+          lastName.trim(),
+          username.trim(),
+          email,
+          password
+        )
       );
 
       if (data) {
@@ -78,14 +86,14 @@ const SignUpForm = () => {
             </Link>
           </div>
           <div className="top-bar-right">
-          <div className="icon-links">
-                <a href="https://github.com/reneeluo7/Renmo">
-                  <i className="fa-brands fa-github"></i>
-                </a>
-                <a href="https://www.linkedin.com/in/rongrong-luo-renee">
-                  <i className="fa-brands fa-linkedin"></i>
-                </a>
-              </div>
+            <div className="icon-links">
+              <a href="https://github.com/reneeluo7/Renmo">
+                <i className="fa-brands fa-github"></i>
+              </a>
+              <a href="https://www.linkedin.com/in/rongrong-luo-renee">
+                <i className="fa-brands fa-linkedin"></i>
+              </a>
+            </div>
             <Link to="/login">
               <div className="log-in">Log In</div>
             </Link>

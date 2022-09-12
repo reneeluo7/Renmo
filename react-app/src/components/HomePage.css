@@ -4,10 +4,7 @@
     width: 100%;
     height: 100%;
 }
-.homepage-container .homepagemain{
-    height: 100%;
-    /* background-color: aqua; */
-}
+
 
 .homepage-right{
     position: relative;
@@ -80,9 +77,6 @@
 }
 .txn-bar-left{
     display: flex;
-    /* width: 90%; */
-    /* flex-wrap: wrap; */
-
 }
 .txn-bar-initial {
     /* width: 48px; */

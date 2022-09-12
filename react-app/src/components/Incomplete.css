@@ -36,14 +36,12 @@
     font-weight: 600;
     position: relative;
     align-items: center;
-    /* vertical-align: middle; */
     justify-content: center;
     text-decoration: none;
     margin-right: 8px;
     cursor: pointer;
 }
 .edit-txn-btn{
-    /* background-color:aquamarine; */
     border: 2px solid #6B6E76;
     justify-content: center;
     display: flex;
