@@ -85,9 +85,16 @@ const IncompletePage = () => {
                       <div className="topline">
                         {" "}
                         <span>
-                          <Link to={{pathname:`/u/${txn.payee.username}`, state:{user:txn.payee}}}>{getUserFullName(txn.payee)}</Link>
-                          </span> requests{" "}
-                        <span>You</span> to pay
+                          <Link
+                            to={{
+                              pathname: `/u/${txn.payee.username}`,
+                              state: { user: txn.payee },
+                            }}
+                          >
+                            {getUserFullName(txn.payee)}
+                          </Link>
+                        </span>{" "}
+                        requests <span>You</span> to pay
                       </div>
                       <div className="second-txn-date-line">
                         {txn.created_at.slice(0, 16)}

@@ -11,12 +11,10 @@ const SearchUser = () => {
   const [showMenu, setShowMenu] = useState(false);
   const [searchResult, setSearchResult] = useState([]);
   const [users, setUsers] = useState([]);
-  const [selected, setSelected] = useState()
+  const [selected, setSelected] = useState();
 
   const noLogInUsers = users.filter((user) => user.id !== loggedInUser.id);
-  
-    // console.log("----to check selected", inputStr)
-    // console.log("----to check selected", selected)
+
   const filteredUsers = (inputStr) => {
     const list = [];
     for (let user of noLogInUsers) {
@@ -30,12 +28,11 @@ const SearchUser = () => {
     return list;
   };
 
-  const handleClear =() =>{
-    setSelected()
-    setInputStr('')
-  }
+  const handleClear = () => {
+    setSelected();
+    setInputStr("");
+  };
 
-  
   useEffect(() => {
     async function fetchData() {
       const response = await fetch("/api/users/");
@@ -55,24 +52,30 @@ const SearchUser = () => {
     }
   }, [inputStr]);
 
-  useEffect(async() => {
-    await dispatch(setSelectedUser(selected))
-  },[selected])
+  useEffect(async () => {
+    await dispatch(setSelectedUser(selected));
+  }, [selected]);
 
   return (
     <div className="user-search-input-payform">
       <div className="user-search-input-payform-form">
-
-      {!selected && (<input
-        type="text"
-        className="user-search-payform"
-        placeholder="Search name or username"
-        onChange={(e) => setInputStr(e.target.value.toLowerCase())}
-        value={inputStr}
-      />)}
-      {selected && <div className="show-selected-user">
-            <span>{getUserFullName(selected)}</span> <button className="clear-selected-user" onClick={handleClear}>x</button>
-        </div>}
+        {!selected && (
+          <input
+            type="text"
+            className="user-search-payform"
+            placeholder="Search name or username"
+            onChange={(e) => setInputStr(e.target.value.toLowerCase())}
+            value={inputStr}
+          />
+        )}
+        {selected && (
+          <div className="show-selected-user">
+            <span>{getUserFullName(selected)}</span>{" "}
+            <button className="clear-selected-user" onClick={handleClear}>
+              x
+            </button>
+          </div>
+        )}
       </div>
       {showMenu && searchResult.length > 0 && (
         <div className="search-bar-drop-down-payform">
@@ -81,17 +84,16 @@ const SearchUser = () => {
               className="search-dropdown-item payform"
               key={index}
               onClick={(e) => {
-                e.preventDefault()
-                setSelected(user)
-                setShowMenu(false)}}
-                >
+                e.preventDefault();
+                setSelected(user);
+                setShowMenu(false);
+              }}
+            >
               <div className="search-dropdown-user-info">
-                <div className="txn-bar-initial">
-                  {getUserInitials(user)}
-                </div>
+                <div className="txn-bar-initial">{getUserInitials(user)}</div>
                 <div className="txn-bar-info">
-                    <p className="topline">{getUserFullName(user)}</p>
-                    <p className="secondline">@{user.username}</p>
+                  <p className="topline">{getUserFullName(user)}</p>
+                  <p className="secondline">@{user.username}</p>
                 </div>
               </div>
             </div>

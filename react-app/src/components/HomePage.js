@@ -216,8 +216,8 @@ const HomePage = () => {
         )}
         {transactions.length === 0 && (
           <div className="no-txns-homepage">
-            <p>No transaction yet...</p> 
-            
+            <p>No transaction yet...</p>
+
             <p>Pay your friends or request pay today</p>
           </div>
         )}

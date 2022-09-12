@@ -3,7 +3,6 @@ import { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { deleteComment, editComment } from "../../store/comment";
 
-
 export default function EditComment({ cmt }) {
   const dispatch = useDispatch();
   const user = useSelector((state) => state.session?.user);
@@ -14,27 +13,26 @@ export default function EditComment({ cmt }) {
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (content.trim().length > 150) {
-        setErrors({ comment: ["Maximum comment length is 150 characters"] });
-        return;
-      }
-      if (!content.trim()) {
-        setErrors({ comment: ["Comment cannot be empty"] });
-        return;
-      }
-      const editedComment = {
-        content:content.trim()
-      };
-      console.log("edited comment after trim()", editedComment)
+      setErrors({ comment: ["Maximum comment length is 150 characters"] });
+      return;
+    }
+    if (!content.trim()) {
+      setErrors({ comment: ["Comment cannot be empty"] });
+      return;
+    }
+    const editedComment = {
+      content: content.trim(),
+    };
+    console.log("edited comment after trim()", editedComment);
 
-      const data = await dispatch(editComment(editedComment, cmt.id));
-      if (data) {
-        setErrors(data);
-      } else {
-        setErrors({});
-        setEdit(false)
-      }
-
-  }
+    const data = await dispatch(editComment(editedComment, cmt.id));
+    if (data) {
+      setErrors(data);
+    } else {
+      setErrors({});
+      setEdit(false);
+    }
+  };
 
   return (
     <div>
@@ -79,20 +77,26 @@ export default function EditComment({ cmt }) {
               autoFocus
               onFocus={() => setErrors({})}
             />
-            <button className="submit-edit-note" type="submit">Post</button>
-            <button className="cancel-edit-note" type="submit" 
-            onClick={() => {
-              setEdit(false)
-              setErrors({})
-              }}>Cancel</button>
+            <button className="submit-edit-note" type="submit">
+              Post
+            </button>
+            <button
+              className="cancel-edit-note"
+              type="submit"
+              onClick={() => {
+                setEdit(false);
+                setErrors({});
+              }}
+            >
+              Cancel
+            </button>
           </form>
         </div>
       )}
       <div style={{ color: "red" }} className="errors-show">
-            {errors && errors.comment?.map((error, ind) => (
-              <div key={ind}>{error}</div>
-            ))}
-          </div>
+        {errors &&
+          errors.comment?.map((error, ind) => <div key={ind}>{error}</div>)}
+      </div>
     </div>
   );
 }

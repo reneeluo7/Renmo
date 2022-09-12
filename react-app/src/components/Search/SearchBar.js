@@ -12,7 +12,7 @@ const SearchBar = () => {
   const [users, setUsers] = useState([]);
 
   const noLogInUsers = users.filter((user) => user.id !== loggedInUser.id);
-  
+
   const filteredUsers = (inputStr) => {
     const list = [];
     for (let user of noLogInUsers) {
@@ -48,14 +48,14 @@ const SearchBar = () => {
   return (
     <div className="user-search-input">
       <div className="searchBar-input-wrap">
-      <i className="fa-solid fa-magnifying-glass"></i>
-      <input
-        type="text"
-        className="user-search"
-        placeholder="Name or username"
-        onChange={(e) => setInputStr(e.target.value.toLowerCase())}
-        value={inputStr}
-      />
+        <i className="fa-solid fa-magnifying-glass"></i>
+        <input
+          type="text"
+          className="user-search"
+          placeholder="Name or username"
+          onChange={(e) => setInputStr(e.target.value.toLowerCase())}
+          value={inputStr}
+        />
       </div>
       {showMenu && searchResult.length > 0 && (
         <div className="search-bar-drop-down">
@@ -63,16 +63,14 @@ const SearchBar = () => {
             <Link
               key={index}
               onClick={() => setInputStr("")}
-              to={{pathname:`/u/${user.username}`, state:{user}}}
+              to={{ pathname: `/u/${user.username}`, state: { user } }}
               className="search-dropdown-item"
             >
               <div className="search-dropdown-user-info">
-                <div className="txn-bar-initial">
-                  {getUserInitials(user)}
-                </div>
+                <div className="txn-bar-initial">{getUserInitials(user)}</div>
                 <div className="txn-bar-info">
-                    <p className="topline">{getUserFullName(user)}</p>
-                    <p className="secondline">@{user.username}</p>
+                  <p className="topline">{getUserFullName(user)}</p>
+                  <p className="secondline">@{user.username}</p>
                 </div>
               </div>
             </Link>

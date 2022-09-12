@@ -25,9 +25,9 @@ function CreateComment({ txn }) {
     const newComment = {
       content:content.trim(),
     };
-    // console.log("----newComment and txnId dispatch to thunk", newComment, txnId );
+    
     const data = await dispatch(createComment(newComment, txnId));
-    // console.log("----data return from thunk", data);
+    
     if (data) {
       setErrors(data);
     } else {
