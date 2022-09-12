@@ -100,6 +100,13 @@ const SearchUser = () => {
           ))}
         </div>
       )}
+      {showMenu && !searchResult.length && (
+        <div  className="search-bar-drop-down-payform">
+          <div className="no-user-found">
+          No User Found
+          </div>
+          </div>
+      )}
     </div>
   );
 };

@@ -12,7 +12,8 @@
     flex-direction: column;
     left: 317px;
     width: 70%;
-    height: 100vh;
+    min-height: 90vh;
+    height: auto;
     align-items: center;
     /* margin: auto; */
 

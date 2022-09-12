@@ -40,10 +40,18 @@ export default function SplashPage() {
             <div className="connect-wrapper">
               Connect With Developer
               <div className="icon-links">
-                <a href="https://github.com/reneeluo7/Renmo">
+                <a
+                  href="https://github.com/reneeluo7/Renmo"
+                  rel="noopener noreferrer"
+                  target="_blank"
+                >
                   <i className="fa-brands fa-github"></i>
                 </a>
-                <a href="https://www.linkedin.com/in/rongrong-luo-renee">
+                <a
+                  href="https://www.linkedin.com/in/rongrong-luo-renee"
+                  rel="noopener noreferrer"
+                  target="_blank"
+                >
                   <i className="fa-brands fa-linkedin"></i>
                 </a>
               </div>
