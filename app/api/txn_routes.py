@@ -70,7 +70,7 @@ def initiate_txn(userid):
         db.session.commit()
        
         return {"transaction": transaction.to_dict_users_comments() }
-    print("xxxxxxxxx", form.errors)
+    # print("xxxxxxxxx", form.errors)
     return {"errors": (form.errors)}, 401
 
 
