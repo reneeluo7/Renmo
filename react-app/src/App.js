@@ -37,14 +37,16 @@ function App() {
 
   return (
     <BrowserRouter>
-      <div>
+      
 
       <Switch>
         <Route path='/login' exact={true}>
           <LoginForm />
+          
         </Route>
         <Route path='/sign-up' exact={true}>
           <SignUpForm />
+          
         </Route>
       <Route path='/' exact={true} >
           <SplashPage />
@@ -58,31 +60,39 @@ function App() {
         </ProtectedRoute> */}
         <ProtectedRoute path='/home' exact={true} >
           <HomePage />
+          <Footer />
         </ProtectedRoute>
         <ProtectedRoute path='/incomplete' exact={true} >
           <IncompletePage />
+          <Footer />
         </ProtectedRoute>
         <ProtectedRoute path='/search' exact={true} >
           <Search />
+          <Footer />
         </ProtectedRoute>
         <ProtectedRoute path='/pay' exact={true} >
           <InitiateTxn />
+          <Footer />
         </ProtectedRoute>
         <ProtectedRoute path='/u/:username' exact={true} >
           <UserPage />
+          <Footer />
         </ProtectedRoute>
         <ProtectedRoute path='/transactions/:id/edit' exact={true} >
           <EditIncompleteTxn />
+          <Footer />
         </ProtectedRoute>
         <ProtectedRoute path='/transactions/:id/comments' exact={true} >
           <TxnComments />
+          <Footer />
         </ProtectedRoute>
         <Route>
           <PageNotFound />
+          <Footer />
         </Route>
       </Switch>
-      </div>
-      <Footer />
+     
+     
     </BrowserRouter>
   
   );
