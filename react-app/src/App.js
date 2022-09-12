@@ -91,7 +91,7 @@ function App() {
           {/* <Footer /> */}
         </Route>
       </Switch>
-     
+     <Footer />
      
     </BrowserRouter>
   
