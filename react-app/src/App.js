@@ -57,35 +57,35 @@ function App() {
         </ProtectedRoute> */}
         <ProtectedRoute path='/home' exact={true} >
           <HomePage />
-          <Footer />
+          {/* <Footer /> */}
         </ProtectedRoute>
         <ProtectedRoute path='/incomplete' exact={true} >
           <IncompletePage />
-          <Footer />
+          {/* <Footer /> */}
         </ProtectedRoute>
         <ProtectedRoute path='/search' exact={true} >
           <Search />
-          <Footer />
+          {/* <Footer /> */}
         </ProtectedRoute>
         <ProtectedRoute path='/pay' exact={true} >
           <InitiateTxn />
-          <Footer />
+          {/* <Footer /> */}
         </ProtectedRoute>
         <ProtectedRoute path='/u/:username' exact={true} >
           <UserPage />
-          <Footer />
+          {/* <Footer /> */}
         </ProtectedRoute>
         <ProtectedRoute path='/transactions/:id/edit' exact={true} >
           <EditIncompleteTxn />
-          <Footer />
+          {/* <Footer /> */}
         </ProtectedRoute>
         <ProtectedRoute path='/transactions/:id/comments' exact={true} >
           <TxnComments />
-          <Footer />
+          {/* <Footer /> */}
         </ProtectedRoute>
         <Route>
           <PageNotFound />
-          <Footer />
+          {/* <Footer /> */}
         </Route>
       </Switch>
      
