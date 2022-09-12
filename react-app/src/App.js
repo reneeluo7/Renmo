@@ -4,8 +4,7 @@ import { useDispatch } from "react-redux";
 import LoginForm from "./components/auth/LoginForm";
 import SignUpForm from "./components/auth/SignUpForm";
 import ProtectedRoute from "./components/auth/ProtectedRoute";
-// import UsersList from './components/users/UsersList';
-// import User from './components/users/User';
+
 import { authenticate } from "./store/session";
 import HomePage from "./components/HomePage";
 import IncompletePage from "./components/Incomplete";
