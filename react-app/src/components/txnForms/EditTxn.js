@@ -109,7 +109,7 @@ const EditIncompleteTxn = () => {
                   step={0.01}
                   onChange={(e) => checkNumLength(e.target.value)}
                   
-                  required
+                  // required
                 />
                 {errors.amount  && (
                   <div className="error" style={{ color: "red" }}>

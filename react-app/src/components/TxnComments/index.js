@@ -61,7 +61,10 @@ function TxnComments() {
                       ) : (
                         <span>
                           {/* {getUserFullName(targetTxn.payee)} */}
-                          <Link to={{pathname:`/u/${targetTxn.payee.username}`, state:{user:targetTxn.payee}}}>{getUserFullName(targetTxn.payee)}</Link>
+                          <Link 
+                          to={{pathname:`/u/${targetTxn.payee.username}`, state:{user:targetTxn.payee}}}>
+                            {getUserFullName(targetTxn.payee)}
+                            </Link>
 
                           </span>
                       )}{" "}
@@ -89,13 +92,27 @@ function TxnComments() {
                       {user.id === targetTxn.payee.id ? (
                         <span>You</span>
                       ) : (
-                        <span>{getUserFullName(targetTxn.payee)}</span>
+                        <span>
+                          <Link 
+                          to={{pathname:`/u/${targetTxn.payee.username}`, state:{user:targetTxn.payee}}}>
+                            {getUserFullName(targetTxn.payee)}
+                            </Link>
+                          </span>
                       )}{" "}
                       charged{" "}
                       {user.id === targetTxn.payer.id ? (
                         <span>You</span>
                       ) : (
-                        <span>{getUserFullName(targetTxn.payer)}</span>
+                        <span>
+                          <Link
+                            to={{
+                              pathname: `/u/${targetTxn.payer.username}`,
+                              state: { user: targetTxn.payer },
+                            }}
+                          >
+                            {getUserFullName(targetTxn.payer)}
+                          </Link>
+                          </span>
                       )}
                     </div>
                     <div className="second-txn-date-line">

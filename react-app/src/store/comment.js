@@ -28,10 +28,10 @@ const update = (cmt) => ({
 // GET
 export const getCommentByTxn = (txnId) => async (dispatch) => {
   const response = await fetch(`/api/comments/transactions/${txnId}`);
-  console.log("---response in thunk", response);
+  
   if (response.ok) {
     const data = await response.json();
-    console.log("---console log in thunk fetch from backend data", data);
+    
     dispatch(loadComments(data.comments));
     return response;
   }
@@ -44,7 +44,7 @@ export const createComment = (data, txnId) => async (dispatch) => {
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify(data),
   });
-  console.log(".....response in thunk from backend", response);
+ 
   if (response.ok) {
     const data = await response.json();
 
