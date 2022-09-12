@@ -76,7 +76,7 @@ export const getTargetUserTxns = (user) => async (dispatch) => {
 
 // POST
 export const createTxn = (txn, recipientId) => async (dispatch) => {
-    console.log('passed in from frontend', txn)
+    // console.log('passed in from frontend', txn)
   const response = await fetch(`/api/transactions/pay/${recipientId}`, {
     method: ["POST"],
     headers: {
@@ -92,10 +92,10 @@ export const createTxn = (txn, recipientId) => async (dispatch) => {
   });
   if (response.ok) {
     const data = await response.json();
-    console.log(
-      "---console log in create txn thunk fetch from backend data",
-      data
-    );
+    // console.log(
+    //   "---console log in create txn thunk fetch from backend data",
+    //   data
+    // );
     dispatch(addTxn(data.transaction));
     return null;
   } else if (response.status < 500) {

@@ -4,20 +4,27 @@ import { useSelector, useDispatch } from "react-redux";
 import { getUserInitials, getUserFullName } from "../util/nameconvert";
 import { getCompletedTxns } from "../store/transaction";
 import NavBar from "./NavBar.js";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import { useLocation } from "react-router-dom";
 import { getTargetUserTxns } from "../store/transaction";
 
 export default function UserPage() {
+  const history = useHistory()
   const dispatch = useDispatch();
   const location = useLocation();
-  const targetUser = location.state.user;
+  const targetUser = location.state?.user;
   const txns = useSelector((state) => state.transaction.target);
   const user = useSelector((state) => state.session?.user);
   const [isload, setIsLoad] = useState(false)
+  
 
   useEffect(async () => {
-    await dispatch(getTargetUserTxns(targetUser)).then(()=> setIsLoad(true));
+    if (!targetUser || targetUser.id === undefined) {
+      history.push('/home')
+    } else {
+
+      await dispatch(getTargetUserTxns(targetUser)).then(()=> setIsLoad(true));
+    }
   }, [dispatch, targetUser]);
 
   return (
