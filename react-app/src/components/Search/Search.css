@@ -1,5 +1,6 @@
 .homepage-right.search{
-    height: 100vh;
+    min-height: 90vh;
+    height: auto;
 }
 .search-page-container{
     width: 60%;
@@ -29,6 +30,13 @@
     display: flex;
     padding-left: 10px;
     align-items: center;
+}
+.search-explain{
+    margin-top: 10px;
+}
+.no-user-found{
+    color: #55585E;
+    font-style: italic;
 }
 .user-search{
     padding-top: 10px;
@@ -75,7 +83,7 @@
 
 /* search user in pay form css */
 .search-dropdown-item{
-
+   
 }
 .search-bar-drop-down-payform{
     position: absolute;
@@ -83,12 +91,14 @@
     display: flex;
     flex-direction: column;
     background-color: white;
-    width: 395px;
+    width: 391px;
     box-shadow: 0px 1px 3px gray;
     margin-top: 16px;
     padding: 5px;
-    height: 380px;
+    height: auto;
+    max-height: 380px;
     overflow-y: auto;
+    border-radius: 2px;
     
 }
 .user-search-payform{

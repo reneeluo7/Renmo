@@ -57,6 +57,7 @@ const SearchBar = () => {
           value={inputStr}
         />
       </div>
+        {!showMenu && <div className="search-explain">* Only users registered with Renmo can be searched</div>}
       {showMenu && searchResult.length > 0 && (
         <div className="search-bar-drop-down">
           {searchResult.map((user, index) => (
@@ -76,6 +77,13 @@ const SearchBar = () => {
             </Link>
           ))}
         </div>
+      )}
+      {showMenu && !searchResult.length && (
+        <div  className="search-bar-drop-down">
+          <div className="no-user-found">
+          No User Found
+          </div>
+          </div>
       )}
     </div>
   );
