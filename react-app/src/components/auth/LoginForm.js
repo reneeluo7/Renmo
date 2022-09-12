@@ -50,6 +50,14 @@ const LoginForm = () => {
             </Link>
           </div>
           <div className="top-bar-right">
+          <div className="icon-links">
+                <a href="https://github.com/reneeluo7/Renmo">
+                  <i className="fa-brands fa-github"></i>
+                </a>
+                <a href="https://www.linkedin.com/in/rongrong-luo-renee">
+                  <i className="fa-brands fa-linkedin"></i>
+                </a>
+              </div>
             <Link to="/sign-up">
               <div className="sign-up">Sign Up</div>
             </Link>

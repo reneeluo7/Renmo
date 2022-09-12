@@ -32,3 +32,7 @@
 .fa-linkedin{
     font-size: 30px;
 }
+.fa-github:hover,
+.fa-linkedin:hover{
+    color: #008CFF;
+}
