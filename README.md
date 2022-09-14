@@ -1,6 +1,6 @@
 # Renmo
 
-Renmo, is an application that allows you to pay and request money from your friends or any Renmo user. At its core, Renmo provides a social way to pay your friends when you owe them money and don't want to deal with cash. User can also express his/herself in each payment note.
+Renmo, is an application clone of Venmo, that allows you to pay and request money from your friends or any Renmo user. At its core, Renmo provides a social way to pay your friends when you owe them money and don't want to deal with cash. User can also express his/herself in each payment note.
 
 **Live Site:** >>>>>>[Renmo](https://renmo-app.herokuapp.com/)
 
