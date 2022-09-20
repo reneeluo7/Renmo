@@ -1,6 +1,13 @@
 from .db import db
 from datetime import datetime
 
+
+like = db.Table(
+    "likes",
+    db.Column("txn_id", db.Integer, db.ForeignKey("transactions.id")),
+    db.Column("user_id", db.Integer, db.ForeignKey("users.id"))
+)
+
 class Transaction(db.Model):
     __tablename__ = 'transactions'
 
@@ -25,6 +32,13 @@ class Transaction(db.Model):
 
     comments = db.relationship("Comment",
         back_populates="transaction", cascade='all, delete')
+    
+    transactions_likes = db.relationship(
+        "User",
+        secondary="likes",
+        back_populates="user_likes",
+        cascade='all, delete'
+    )
 
 
     def to_dict(self):
@@ -51,5 +65,6 @@ class Transaction(db.Model):
             'privacy': self.privacy,
             'note': self.note,
             'category': self.category,
-            'comments': [comment.to_dict() for comment in self.comments]
+            'comments': [comment.to_dict() for comment in self.comments],
+            'likes': [user.to_dict()['id'] for user in self.transactions_likes]
         }

@@ -26,6 +26,14 @@ class User(db.Model, UserMixin):
 
     comments = db.relationship('Comment', back_populates='user',cascade='all, delete')
 
+    user_likes = db.relationship(
+        "Transaction",
+        secondary="likes",
+        back_populates="transactions_likes",
+        cascade='all, delete'
+    )
+    
+
     @property
     def password(self):
         return self.hashed_password
