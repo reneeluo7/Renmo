@@ -7,6 +7,8 @@ import NavBar from "./NavBar.js";
 import { Link, useHistory } from "react-router-dom";
 import { useLocation } from "react-router-dom";
 import { getTargetUserTxns } from "../store/transaction";
+import { getLikesByTxn, likeTxn, unlikeTxn } from "../store/like";
+
 
 export default function UserPage() {
   const history = useHistory()
@@ -75,6 +77,9 @@ export default function UserPage() {
                       </div>
                       <div className="third-txn-note-line">{txn.note}</div>
                       <div className="forth-txn-comment-line">
+                      <div className="like-btn">
+                          <LikeClick txn = {txn} />
+                          </div>
                         <Link
                           to={{
                             pathname: `/transactions/${txn.id}/comments`,
@@ -123,6 +128,9 @@ export default function UserPage() {
                       </div>
                       <div className="third-txn-note-line">{txn.note}</div>
                       <div className="forth-txn-comment-line">
+                      <div className="like-btn">
+                          <LikeClick txn = {txn} />
+                          </div>
                         <Link
                           to={{
                             pathname: `/transactions/${txn.id}/comments`,
@@ -150,5 +158,39 @@ export default function UserPage() {
     </div>
     
     
+  );
+}
+
+
+const LikeClick = (txn) => {
+  const user = useSelector(state => state.session.user)
+  const [isLiked, setIsLiked] = useState(txn.txn.likes?.includes(user.id))
+  const dispatch = useDispatch()
+  const likes = useSelector(state => state.like.likes)
+  const location = useLocation();
+  const targetUser = location.state?.user;
+  const [isload, setIsLoad] = useState(false)
+  
+  useEffect( async() => {
+     await  await dispatch(getTargetUserTxns(targetUser)).then(()=> setIsLoad(true));
+  }, [dispatch, isLiked])
+
+  const handleLike = async(e) => {
+    e.preventDefault()
+    if(!isLiked) {
+      await dispatch(likeTxn(txn.txn.id))
+      setIsLiked(!isLiked)
+    } else {
+      await dispatch(unlikeTxn(txn.txn.id))
+      setIsLiked(!isLiked)
+    }
+    setIsLiked(!isLiked)
+  }
+  return (
+    <>
+     {isLiked ?  <i className="fa-solid fa-heart" style={{color: "red"}} onClick={handleLike}/> : <i className="fa-regular fa-heart" onClick={handleLike}/> }
+     {/* {likes.length !== 0 &&<span>{likes.length}</span>} */}
+     <span>{txn.txn.likes.length}</span>
+    </>
   );
 }

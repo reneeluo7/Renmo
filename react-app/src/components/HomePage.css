@@ -145,10 +145,18 @@
 }
 .forth-txn-comment-line{
     margin: 0.5rem 0;
+    display: flex;
+    gap:8px;
 
 }
+.like-btn > span{
+    /* font-size: 14px; */
+    margin-left: 2px;
+}
+
 .fa-comment{
     color: #888C94;
+    margin-right: 2px;
 }
 .fa-comment:hover{
     color: #008CFF;

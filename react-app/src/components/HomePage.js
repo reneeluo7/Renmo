@@ -1,11 +1,10 @@
 import React from "react";
 import { useEffect, useState } from "react";
-
 // import LogoutButton from './auth/LogoutButton';
 import { useSelector, useDispatch } from "react-redux";
 import { getUserInitials, getUserFullName } from "../util/nameconvert";
 import { getCompletedTxns } from "../store/transaction";
-
+import { getLikesByTxn, likeTxn, unlikeTxn } from "../store/like";
 import NavBar from "./NavBar.js";
 import "./HomePage.css";
 import { Link } from "react-router-dom";
@@ -57,6 +56,9 @@ const HomePage = () => {
                       </div>
                       <div className="third-txn-note-line">{txn.note}</div>
                       <div className="forth-txn-comment-line">
+                        <div className="like-btn">
+                          <LikeClick txn = {txn} />
+                          </div>
                         <Link
                           to={{
                             pathname: `/transactions/${txn.id}/comments`,
@@ -99,6 +101,9 @@ const HomePage = () => {
                       </div>
                       <div className="third-txn-note-line">{txn.note}</div>
                       <div className="forth-txn-comment-line">
+                      <div className="like-btn">
+                          <LikeClick txn = {txn} />
+                          </div>
                         <Link
                           to={{
                             pathname: `/transactions/${txn.id}/comments`,
@@ -141,6 +146,9 @@ const HomePage = () => {
                       </div>
                       <div className="third-txn-note-line">{txn.note}</div>
                       <div className="forth-txn-comment-line">
+                      <div className="like-btn">
+                          <LikeClick txn = {txn} />
+                          </div>
                         <Link
                           to={{
                             pathname: `/transactions/${txn.id}/comments`,
@@ -181,6 +189,9 @@ const HomePage = () => {
                       </div>
                       <div className="third-txn-note-line">{txn.note}</div>
                       <div className="forth-txn-comment-line">
+                      <div className="like-btn">
+                          <LikeClick txn = {txn} />
+                          </div>
                         <Link
                           to={{
                             pathname: `/transactions/${txn.id}/comments`,
@@ -225,5 +236,35 @@ const HomePage = () => {
     </div>
   );
 };
+
+const LikeClick = (txn) => {
+  const user = useSelector(state => state.session.user)
+  const [isLiked, setIsLiked] = useState(txn.txn.likes?.includes(user.id))
+  const dispatch = useDispatch()
+  const likes = useSelector(state => state.like.likes)
+  // console.log("-------txn", txn.txn.likes)
+  useEffect( async () => {
+     await dispatch(getCompletedTxns())
+  }, [dispatch, isLiked])
+
+  const handleLike = async(e) => {
+    e.preventDefault()
+    if(!isLiked) {
+      await dispatch(likeTxn(txn.txn.id))
+      setIsLiked(!isLiked)
+    } else {
+      await dispatch(unlikeTxn(txn.txn.id))
+      setIsLiked(!isLiked)
+    }
+    setIsLiked(!isLiked)
+  }
+  return (
+    <>
+     {isLiked ?  <i className="fa-solid fa-heart" style={{color: "red"}} onClick={handleLike}/> : <i className="fa-regular fa-heart" onClick={handleLike}/> }
+     {/* {likes.length !== 0 &&<span>{likes.length}</span>} */}
+     {txn.txn.likes.length !== 0 && <span>{txn.txn.likes.length}</span>}
+    </>
+  );
+}
 
 export default HomePage;

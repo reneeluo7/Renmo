@@ -28,6 +28,15 @@ def get_incomplete_txns():
     return {'transactions':[txn.to_dict_users_comments() for txn in txns]}
 
 
+#Get one txn likes
+@transaction_routes.route('/<int:txn_id>')
+@login_required
+def get_one_txn(txn_id):
+    txn = Transaction.query.get(txn_id)
+    if not txn:
+        return {'errors':['Transaction can not be found']},404
+    return {"likes": txn.to_dict_users_comments()['likes']}
+
 
 #Get other user all public and completed txns
 @transaction_routes.route('/u/<int:id>')
