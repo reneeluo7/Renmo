@@ -3,7 +3,9 @@
     left: 317px;
     height: 100%;
 }
-
+.not-authorized{
+    margin-top: 100px;
+}
 .homepage-user-txns.comments{
     position: relative;
     padding-top: 6.26rem;

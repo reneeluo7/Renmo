@@ -169,28 +169,28 @@ const LikeClick = (txn) => {
   const likes = useSelector(state => state.like.likes)
   const location = useLocation();
   const targetUser = location.state?.user;
-  const [isload, setIsLoad] = useState(false)
+  // const [isload, setIsLoad] = useState(false)
   
   useEffect( async() => {
-     await  await dispatch(getTargetUserTxns(targetUser)).then(()=> setIsLoad(true));
-  }, [dispatch, isLiked])
+     await dispatch(getTargetUserTxns(targetUser))
+  }, [isLiked])
 
   const handleLike = async(e) => {
     e.preventDefault()
-    if(!isLiked) {
+    if(isLiked === false) {
       await dispatch(likeTxn(txn.txn.id))
-      setIsLiked(!isLiked)
+      setIsLiked(true)
     } else {
       await dispatch(unlikeTxn(txn.txn.id))
-      setIsLiked(!isLiked)
+      setIsLiked(false)
     }
-    setIsLiked(!isLiked)
+    // setIsLiked(!isLiked)
   }
   return (
     <>
      {isLiked ?  <i className="fa-solid fa-heart" style={{color: "red"}} onClick={handleLike}/> : <i className="fa-regular fa-heart" onClick={handleLike}/> }
      {/* {likes.length !== 0 &&<span>{likes.length}</span>} */}
-     <span>{txn.txn.likes.length}</span>
+     {txn.txn.likes.length !== 0 && <span>{txn.txn.likes.length}</span>}
     </>
   );
 }

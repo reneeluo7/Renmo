@@ -12,10 +12,12 @@
 }
 .disclaimer{
     margin-top: 10px;
-    color:#6b6e76
+    color:#6b6e76;
+    font-size: 14px;
+    
 }
 .connect-wrapper{
-    font-size: 20px;
+    font-size: 16px;
     display: flex;
     gap:20px;
     font-weight: bold;
@@ -28,8 +30,9 @@
 }
 
 .fa-github,
-.fa-linkedin{
-    font-size: 30px;
+.fa-linkedin,
+.fa-angellist{
+    font-size: 24px;
 }
 .fa-github:hover,
 .fa-linkedin:hover{

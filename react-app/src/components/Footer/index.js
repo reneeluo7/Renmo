@@ -4,7 +4,7 @@ import "./Footer.css";
 export default function Footer() {
   return (
     <div className="footer-container">
-      <div className="disclaimer">This website is a clone of Venmo.</div>
+      <div className="disclaimer">This website is inspired by Venmo.</div>
       <div className="connect-wrapper">
         Connect With Developer
         <div className="icon-links">
@@ -21,6 +21,13 @@ export default function Footer() {
             target="_blank"
           >
             <i className="fa-brands fa-linkedin"></i>
+          </a>
+          <a
+            href="https://angel.co/u/rongrong-renee-luo"
+            rel="noopener noreferrer"
+            target="_blank"
+          >
+            <i className="fa-brands fa-angellist"></i>
           </a>
         </div>
       </div>

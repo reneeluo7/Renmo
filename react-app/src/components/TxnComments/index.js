@@ -8,6 +8,7 @@ import CreateComment from "./CreateComment";
 import "./TxnComments.css";
 import EditComment from "./EditComment";
 import { getCommentByTxn } from "../../store/comment";
+import { getLikesByTxn, likeTxn, unlikeTxn } from "../../store/like";
 
 function TxnComments() {
   const location = useLocation();
@@ -15,18 +16,18 @@ function TxnComments() {
   const user = useSelector((state) => state.session?.user);
   const comments = useSelector((state) => state.comment?.comment);
   const targetTxn = location.state?.txn;
+  const [isload, setIsLoad] = useState(false)
 
   useEffect(async () => {
-   
-    await dispatch(getCommentByTxn(targetTxn?.id));
+    await dispatch(getCommentByTxn(targetTxn?.id)).then(()=> setIsLoad(true))
   }, [dispatch, targetTxn]);
 
   return (
     <div className="homepage-container">
       <NavBar />
       <div className="homepage-right ">
-        {!targetTxn && <h2>You are not authorized, please go back </h2>}
-        {targetTxn && (
+        {!targetTxn && <h2 className="not-authorized">You are not authorized, please go back </h2>}
+        {isload && targetTxn && (
           <div className="homepage-user-txns comments">
             <div className="txn-bar comment">
               {targetTxn?.category === "pay" && (
@@ -74,8 +75,15 @@ function TxnComments() {
                     </div>
                     <div className="third-txn-note-line">{targetTxn.note}</div>
                     <div className="forth-txn-comment-line">
-                      <i className="fa-sharp fa-solid fa-comment txnpage"></i>
-                      {comments.length !== 0 && <span>{comments.length}</span>}
+                      <div className="like-btn">
+                        <LikeClick txn={targetTxn} />
+                      </div>
+                      <div>
+                        <i className="fa-sharp fa-solid fa-comment txnpage"></i>
+                        {comments.length !== 0 && (
+                          <span>{comments.length}</span>
+                        )}
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -122,10 +130,15 @@ function TxnComments() {
                     </div>
                     <div className="third-txn-note-line">{targetTxn.note}</div>
                     <div className="forth-txn-comment-line">
-                      <i className="fa-sharp fa-solid fa-comment txnpage"></i>
-                      {targetTxn.comments.length !== 0 && (
-                        <span>{targetTxn.comments.length}</span>
-                      )}
+                      <div className="like-btn">
+                        <LikeClick txn={targetTxn} />
+                      </div>
+                      <div>
+                        <i className="fa-sharp fa-solid fa-comment txnpage"></i>
+                        {comments.length !== 0 && (
+                          <span>{comments.length}</span>
+                        )}
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -173,3 +186,43 @@ function TxnComments() {
 }
 
 export default TxnComments;
+
+const LikeClick = (txn) => {
+  const user = useSelector((state) => state.session.user);
+  const [isLiked, setIsLiked] = useState(txn.txn.likes?.includes(user.id));
+  const dispatch = useDispatch();
+  const likes = useSelector((state) => state.like.likes);
+  // const location = useLocation();
+  // const targetUser = location.state?.user;
+
+  useEffect(async () => {
+    await dispatch(getLikesByTxn(txn.txn.id));
+  }, [isLiked]);
+
+  const handleLike = async (e) => {
+    e.preventDefault();
+    if (isLiked === false) {
+      await dispatch(likeTxn(txn.txn.id));
+      setIsLiked(true);
+    } else {
+      await dispatch(unlikeTxn(txn.txn.id));
+      setIsLiked(false);
+    }
+    // setIsLiked(!isLiked)
+  };
+  return (
+    <>
+      {isLiked ? (
+        <i
+          className="fa-solid fa-heart"
+          style={{ color: "red" }}
+          onClick={handleLike}
+        />
+      ) : (
+        <i className="fa-regular fa-heart" onClick={handleLike} />
+      )}
+      {/* {likes.length !== 0 &&<span>{likes.length}</span>} */}
+      {likes.length !== 0 && <span>{likes.length}</span>}
+    </>
+  );
+};
