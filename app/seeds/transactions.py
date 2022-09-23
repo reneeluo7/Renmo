@@ -15,8 +15,8 @@ t1 = Transaction(
         transactions_likes=[u3, u8]
     )
 t2= Transaction(
-        payer=2,
-        payee=3,
+        payer=u2,
+        payee=u3,
         amount=25,
         pending=False,
         privacy='public',
