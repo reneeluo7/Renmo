@@ -28,6 +28,15 @@ def get_incomplete_txns():
     return {'transactions':[txn.to_dict_users_comments() for txn in txns]}
 
 
+#Get one txn likes
+@transaction_routes.route('/<int:txn_id>')
+@login_required
+def get_one_txn(txn_id):
+    txn = Transaction.query.get(txn_id)
+    if not txn:
+        return {'errors':['Transaction can not be found']},404
+    return {"likes": txn.to_dict_users_comments()['likes']}
+
 
 #Get other user all public and completed txns
 @transaction_routes.route('/u/<int:id>')
@@ -144,3 +153,34 @@ def cancel_txn(txnid):
     db.session.delete(transaction)
     db.session.commit()
     return {'message': 'Transaction Deleted'}
+
+
+# like and unlike txn routes
+@transaction_routes.route('/<int:txnid>/like', methods=['PUT'])
+@login_required
+def like(txnid):
+    transaction = Transaction.query.get(txnid)
+    user = User.query.get(current_user.id)
+    isUserLiked = False
+    for id in transaction.transactions_likes:
+        if id == user.id:
+            isUserLiked = True
+
+    if not isUserLiked:
+        transaction.transactions_likes.append(user)
+        db.session.commit()
+    
+    return {"likes": [user.to_dict()['id'] for user in transaction.transactions_likes]}
+
+
+
+@transaction_routes.route('/<int:txnid>/like', methods=['DELETE'])
+@login_required
+def unlike(txnid):
+    transaction = Transaction.query.get(txnid)
+    user = User.query.get(current_user.id)
+   
+    transaction.transactions_likes.remove(user)
+    db.session.commit()
+    
+    return {"likes": [user.to_dict()['id'] for user in transaction.transactions_likes]}

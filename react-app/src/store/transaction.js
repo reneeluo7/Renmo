@@ -13,6 +13,7 @@ const loadCompleted = (transactions) => ({
   type: LOAD_COMPLETED,
   transactions,
 });
+
 const loadIncomplete = (transactions) => ({
   type: LOAD_INCOMPLETE,
   transactions,
@@ -74,6 +75,8 @@ export const getTargetUserTxns = (user) => async (dispatch) => {
   }
 };
 
+
+
 // POST
 export const createTxn = (txn, recipientId) => async (dispatch) => {
     // console.log('passed in from frontend', txn)
@@ -92,10 +95,7 @@ export const createTxn = (txn, recipientId) => async (dispatch) => {
   });
   if (response.ok) {
     const data = await response.json();
-    // console.log(
-    //   "---console log in create txn thunk fetch from backend data",
-    //   data
-    // );
+  
     dispatch(addTxn(data.transaction));
     return null;
   } else if (response.status < 500) {
@@ -125,10 +125,7 @@ export const editTransaction = (txn, txnId) => async (dispatch) =>{
       });
       if (response.ok) {
         const data = await response.json();
-        // console.log(
-        //   "---console log in edit txn thunk fetch from backend data",
-        //   data
-        // );
+       
         dispatch(editATxn(data.transaction));
         return null;
       } else if (response.status < 500) {

@@ -1,11 +1,10 @@
 import React from "react";
 import { useEffect, useState } from "react";
-
 // import LogoutButton from './auth/LogoutButton';
 import { useSelector, useDispatch } from "react-redux";
 import { getUserInitials, getUserFullName } from "../util/nameconvert";
 import { getCompletedTxns } from "../store/transaction";
-
+import { getLikesByTxn, likeTxn, unlikeTxn } from "../store/like";
 import NavBar from "./NavBar.js";
 import "./HomePage.css";
 import { Link } from "react-router-dom";
@@ -15,15 +14,16 @@ const HomePage = () => {
   const transactions = useSelector((state) => state.transaction?.completed);
   const initial = getUserInitials(user);
   const dispatch = useDispatch();
+  const [isload, setIsLoad] = useState(false)
 
-  useEffect(() => {
-    dispatch(getCompletedTxns());
+  useEffect(async() => {
+    await dispatch(getCompletedTxns()).then(() => setIsLoad(true))
   }, [dispatch]);
 
   return (
     <div className="homepage-container">
       <NavBar />
-      <div className="homepage-right homepagemain">
+     { isload && <div className="homepage-right homepagemain">
         <div className="homepage-userinfo">
           <div className="user-initial">{initial}</div>
           <div className="homepage-user-fullname">
@@ -57,6 +57,9 @@ const HomePage = () => {
                       </div>
                       <div className="third-txn-note-line">{txn.note}</div>
                       <div className="forth-txn-comment-line">
+                        <div className="like-btn">
+                          <LikeClick txn = {txn} />
+                          </div>
                         <Link
                           to={{
                             pathname: `/transactions/${txn.id}/comments`,
@@ -99,6 +102,9 @@ const HomePage = () => {
                       </div>
                       <div className="third-txn-note-line">{txn.note}</div>
                       <div className="forth-txn-comment-line">
+                      <div className="like-btn">
+                          <LikeClick txn = {txn} />
+                          </div>
                         <Link
                           to={{
                             pathname: `/transactions/${txn.id}/comments`,
@@ -141,6 +147,9 @@ const HomePage = () => {
                       </div>
                       <div className="third-txn-note-line">{txn.note}</div>
                       <div className="forth-txn-comment-line">
+                      <div className="like-btn">
+                          <LikeClick txn = {txn} />
+                          </div>
                         <Link
                           to={{
                             pathname: `/transactions/${txn.id}/comments`,
@@ -181,6 +190,9 @@ const HomePage = () => {
                       </div>
                       <div className="third-txn-note-line">{txn.note}</div>
                       <div className="forth-txn-comment-line">
+                      <div className="like-btn">
+                          <LikeClick txn = {txn} />
+                          </div>
                         <Link
                           to={{
                             pathname: `/transactions/${txn.id}/comments`,
@@ -221,9 +233,43 @@ const HomePage = () => {
             <p>Pay your friends or request pay today</p>
           </div>
         )}
-      </div>
+      </div>}
     </div>
   );
 };
+
+const LikeClick = (txn) => {
+  const user = useSelector(state => state.session.user)
+  console.log("txn, txn.txn.likes", txn.txn.likes)
+  const [isLiked, setIsLiked] = useState(txn.txn.likes?.includes(user.id))
+  console.log("-------homepage isLiked", txn.txn, isLiked, txn.txn.likes?.includes(user.id))
+  const dispatch = useDispatch()
+  // const likes = useSelector(state => state.like.likes)
+  // const [isload, setIsLoad] = useState(false)
+  // console.log("-------txn", txn.txn.likes)
+  useEffect( async() => {
+     await dispatch(getCompletedTxns())
+     setIsLiked(txn.txn.likes.includes(user.id))
+  }, [dispatch, isLiked])
+
+  const handleLike = async(e) => {
+    e.preventDefault()
+    if(isLiked === false) {
+      await dispatch(likeTxn(txn.txn.id))
+      // setIsLiked(true)
+    } else {
+      await dispatch(unlikeTxn(txn.txn.id))
+      // setIsLiked(false)
+    }
+    setIsLiked(!isLiked)
+  }
+  return (
+     <>
+     {isLiked ?  <i className="fa-solid fa-heart" style={{color: "red"}} onClick={handleLike}/> : <i className="fa-regular fa-heart" onClick={handleLike}/> }
+     {/* {likes.length !== 0 &&<span>{likes.length}</span>} */}
+     {txn.txn.likes.length !== 0 && <span>{txn.txn.likes.length}</span>}
+    </>
+  );
+}
 
 export default HomePage;
