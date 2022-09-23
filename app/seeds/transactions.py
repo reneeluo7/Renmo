@@ -4,8 +4,8 @@ from .users import u1, u2, u3, u4, u5, u6, u7, u8, u9, u10
 
 
 t1 = Transaction(
-        payer_id=1,
-        payee_id=3,
+        payer=u1,
+        payee=u3,
         amount=25,
         pending=False,
         privacy='public',
@@ -15,8 +15,8 @@ t1 = Transaction(
         transactions_likes=[u3, u8]
     )
 t2= Transaction(
-        payer_id=2,
-        payee_id=3,
+        payer=2,
+        payee=3,
         amount=25,
         pending=False,
         privacy='public',
@@ -26,8 +26,8 @@ t2= Transaction(
         transactions_likes=[u3]
     )
 t3 = Transaction(
-        payer_id=4,
-        payee_id=1,
+        payer=u4,
+        payee=u1,
         amount=8,
         pending=False,
         privacy='public',
@@ -37,8 +37,8 @@ t3 = Transaction(
         transactions_likes=[u1]
     )
 t4 = Transaction(
-        payer_id=5,
-        payee_id=7,
+        payer=u5,
+        payee=u7,
         amount=1000,
         pending=False,
         privacy='public',
@@ -48,8 +48,8 @@ t4 = Transaction(
         transactions_likes=[u9, u6]
     )
 t5 = Transaction(
-        payer_id=1,
-        payee_id=10,
+        payer=u1,
+        payee=u10,
         amount=32,
         pending=True,
         privacy='public',
@@ -59,8 +59,8 @@ t5 = Transaction(
         
     )
 t6 = Transaction(
-        payer_id=9,
-        payee_id=1,
+        payer=u9,
+        payee=u1,
         amount=10,
         pending=True,
         privacy='public',
@@ -69,8 +69,8 @@ t6 = Transaction(
         created_at=datetime.fromisoformat('2022-08-14')
     )
 t7 = Transaction(
-        payer_id=6,
-        payee_id=8,
+        payer=u6,
+        payee=u8,
         amount=20,
         pending=False,
         privacy='public',
@@ -79,8 +79,8 @@ t7 = Transaction(
         created_at=datetime.fromisoformat('2022-08-15')
     )
 t8 = Transaction(
-        payer_id=4,
-        payee_id=5,
+        payer=u4,
+        payee=u5,
         amount=54,
         pending=False,
         privacy='public',
@@ -90,8 +90,8 @@ t8 = Transaction(
         transactions_likes=[u4, u5, u10]
     )
 t9 = Transaction(
-        payer_id=1,
-        payee_id=5,
+        payer=u1,
+        payee=u5,
         amount=34,
         pending=False,
         privacy='public',
@@ -101,8 +101,8 @@ t9 = Transaction(
         transactions_likes=[u4, u5]
     )
 t10 = Transaction(
-        payer_id=3,
-        payee_id=6,
+        payer=u3,
+        payee=u6,
         amount=40,
         pending=False,
         privacy='public',
