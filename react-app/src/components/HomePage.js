@@ -249,8 +249,8 @@ const LikeClick = (txn) => {
   // console.log("-------txn", txn.txn.likes)
   useEffect( async() => {
      await dispatch(getCompletedTxns())
-     setIsLiked(txn.txn.likes.includes(user.id))
-  }, [dispatch, isLiked])
+    //  setIsLiked(txn.txn.likes.includes(user.id))
+  }, [ isLiked])
 
   const handleLike = async(e) => {
     e.preventDefault()
