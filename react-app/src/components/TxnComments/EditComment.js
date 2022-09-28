@@ -23,7 +23,7 @@ export default function EditComment({ cmt }) {
     const editedComment = {
       content: content.trim(),
     };
-    console.log("edited comment after trim()", editedComment);
+   
 
     const data = await dispatch(editComment(editedComment, cmt.id));
     if (data) {

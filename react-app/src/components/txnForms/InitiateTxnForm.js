@@ -75,7 +75,7 @@ const InitiateTxn = () => {
     };
 
     const data = await dispatch(createTxn(newTxn, selectedUser.id));
-    // console.log("----data return from thunk", data);
+    
     if (data) {
       setErrors(data);
     } else {
@@ -179,7 +179,7 @@ const InitiateTxn = () => {
                   </div>
                 ) : (
                   <div>
-                    <i class="fa-sharp fa-solid fa-earth-americas"></i>
+                    <i className="fa-sharp fa-solid fa-earth-americas"></i>
                     <h6>Public</h6>
                   </div>
                 )}

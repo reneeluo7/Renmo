@@ -162,7 +162,7 @@ const EditIncompleteTxn = () => {
                     </div>
                   ) : (
                     <div>
-                      <i class="fa-sharp fa-solid fa-earth-americas"></i>
+                      <i className="fa-sharp fa-solid fa-earth-americas"></i>
                       <h6>Public</h6>
                     </div>
                   )}

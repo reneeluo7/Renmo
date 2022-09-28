@@ -240,26 +240,23 @@ const HomePage = () => {
 
 const LikeClick = (txn) => {
   const user = useSelector(state => state.session.user)
-  console.log("txn, txn.txn.likes", txn.txn.likes)
+ 
   const [isLiked, setIsLiked] = useState(txn.txn.likes?.includes(user.id))
-  console.log("-------homepage isLiked", txn.txn, isLiked, txn.txn.likes?.includes(user.id))
   const dispatch = useDispatch()
-  // const likes = useSelector(state => state.like.likes)
-  // const [isload, setIsLoad] = useState(false)
-  // console.log("-------txn", txn.txn.likes)
+
   useEffect( async() => {
      await dispatch(getCompletedTxns())
-    //  setIsLiked(txn.txn.likes.includes(user.id))
+   
   }, [ isLiked])
 
   const handleLike = async(e) => {
     e.preventDefault()
     if(isLiked === false) {
       await dispatch(likeTxn(txn.txn.id))
-      // setIsLiked(true)
+     
     } else {
       await dispatch(unlikeTxn(txn.txn.id))
-      // setIsLiked(false)
+      
     }
     setIsLiked(!isLiked)
   }

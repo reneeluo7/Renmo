@@ -68,7 +68,7 @@ const reducer = (state = initialState, action) => {
   let newState;
   switch (action.type) {
     case LOAD:
-      console.log("000", action.likes)
+    
       newState = { ...state, likes: [...action?.likes] };
       action?.likes?.forEach((id) => {
         newState[id] = id;

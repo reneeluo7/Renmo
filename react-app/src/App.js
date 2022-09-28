@@ -78,7 +78,7 @@ function App() {
           <TxnComments />
           <Footer />
         </ProtectedRoute>
-        <Route>
+        <Route path="*">
           <PageNotFound />
           <Footer />
         </Route>

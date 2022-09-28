@@ -50,7 +50,6 @@ export const getCompletedTxns = () => async (dispatch) => {
   const response = await fetch(`/api/transactions/`);
   if (response.ok) {
     const data = await response.json();
-    // console.log("---console log in thunk fetch from backend data", data)
     dispatch(loadCompleted(data.transactions));
     return response;
   }
@@ -60,7 +59,6 @@ export const getIncompleteTxns = () => async (dispatch) => {
   const response = await fetch(`/api/transactions/incomplete`);
   if (response.ok) {
     const data = await response.json();
-    // console.log("---console log in thunk fetch from backend data", data)
     dispatch(loadIncomplete(data.transactions));
     return response;
   }
@@ -79,7 +77,6 @@ export const getTargetUserTxns = (user) => async (dispatch) => {
 
 // POST
 export const createTxn = (txn, recipientId) => async (dispatch) => {
-    // console.log('passed in from frontend', txn)
   const response = await fetch(`/api/transactions/pay/${recipientId}`, {
     method: ["POST"],
     headers: {
