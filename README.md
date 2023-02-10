@@ -55,11 +55,7 @@ Renmo, is an application clone of Venmo, that allows you to pay and request mone
 
 
 
-## To-do-list
 
-- Fund CRUD
-- Like CRUD
-- Friends CRUD
 
 
 
